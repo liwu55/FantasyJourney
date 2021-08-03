@@ -1,10 +1,10 @@
-using UnityEngine;
+using System;
 
 /// <summary>
 /// 普通单例
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class SingletonObj<T> where T : new()
+public class SingleTonObj<T> where T :class
 {
     private static T instance;
     public static T Instance
@@ -13,7 +13,7 @@ public class SingletonObj<T> where T : new()
         {
             if (instance == null)
             {
-                instance = new T();
+                instance = Activator.CreateInstance(typeof(T),true) as T;
             }
             return instance;
         }

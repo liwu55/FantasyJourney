@@ -1,4 +1,4 @@
-﻿namespace Game
+﻿namespace Game.bean
 {
     /// <summary>
     /// 英雄信息

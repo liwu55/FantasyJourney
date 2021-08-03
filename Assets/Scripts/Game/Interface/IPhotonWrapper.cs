@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.bean;
 
 namespace Game.Interface
 {
@@ -15,5 +16,7 @@ namespace Game.Interface
         List<RoomInfo> GetAllRooms();
 
         void JoinRoom(Action<bool> result);
+
+        List<RoomPlayerInfo> GetCurRoomPlayers();
     }
 }

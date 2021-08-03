@@ -4,7 +4,7 @@ using UnityEngine;
 /// 需要手动添加到一个GameObject上再使用
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class SingletonMono<T> : MonoBehaviour where T : class
+public class SingleTonMono<T> : MonoBehaviour where T : class
 {
     private static T instance;
     public static T Instance

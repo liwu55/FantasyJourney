@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.bean;
 
 namespace Game
 {
@@ -41,5 +42,10 @@ namespace Game
         /// 切换英雄
         /// </summary>
         public static Action<HeroInfo> HeroChange;
+
+        /// <summary>
+        /// 点击了游戏开始
+        /// </summary>
+        public static Action<MapInfo> GameStart;
     }
 }

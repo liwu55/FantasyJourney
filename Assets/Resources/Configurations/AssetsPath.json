@@ -1,0 +1,8 @@
+﻿{
+  "paths": [
+    {
+      "name": "Login",
+      "path": "UI/LoginPanel"
+    }
+  ]  
+}

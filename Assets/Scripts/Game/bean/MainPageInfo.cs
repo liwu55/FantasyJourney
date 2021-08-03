@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Game
+namespace Game.bean
 {
     /// <summary>
     /// 主页需要的数据

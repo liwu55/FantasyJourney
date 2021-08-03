@@ -1,10 +1,13 @@
 using Game;
+using Game.bean;
 using Game.Interface;
 
 //游戏控制类。负责所有游戏逻辑总控制
 //单例，待实现
-public class GameController
+public class GameController: SingleTonObj<GameController>
 {
+    private GameController(){}
+    
     //具体的游戏逻辑控制，按功能分
     
     //UI控制
@@ -32,8 +35,11 @@ public class GameController
     /// </summary>
     private void InitObj()
     {
-        //_uiController=xxx
-        _loginManager=new LoginManager1();
+        _uiController=new TestUIController();
+        _loginManager=new TestLoginManager();
+        _mapManager= new TestMapManager();
+        _photonWrapper=new TestPhotonWrapper();
+        _playerInfo=new PlayerInfo();
     }
 
     private void BindUIEvent()
@@ -45,6 +51,12 @@ public class GameController
         UIEvent.LobbyClick += Lobby;
         UIEvent.QuickStartClick += QuickStart;
         UIEvent.HeroChange += HeroChange;
+        UIEvent.GameStart += GameStart;
+    }
+
+    private void GameStart(MapInfo mapInfo)
+    {
+        //游戏开始，根据地图配置，跳到各自的场景
     }
 
     private void QuickStart()

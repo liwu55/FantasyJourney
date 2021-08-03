@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.bean;
 
 namespace Game.Interface
 {
@@ -22,6 +23,6 @@ namespace Game.Interface
         /// 获取排行榜信息
         /// </summary>
         /// <returns></returns>
-        List<UserInfo> GetRankList();
+        List<UserInfo> GetRankList(int num);
     }
 }

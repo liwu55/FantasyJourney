@@ -1,4 +1,6 @@
-﻿namespace Game.Interface
+﻿using Game.bean;
+
+namespace Game.Interface
 {
     public interface IUIController
     {

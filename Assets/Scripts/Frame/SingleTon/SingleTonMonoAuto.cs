@@ -4,7 +4,7 @@ using UnityEngine;
 /// 自动生成对象，可以直接使用
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class SingletonMonoAuto<T> : MonoBehaviour where T: MonoBehaviour
+public class SingleTonMonoAuto<T> : MonoBehaviour where T: MonoBehaviour
 {
     private static T instance;
     public static T Instance
