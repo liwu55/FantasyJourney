@@ -3,6 +3,10 @@
     {
       "name": "Login",
       "path": "UI/LoginPanel"
+    },
+    {
+      "name": "LoginSuc",
+      "path": "UI/LoginSucPanel"
     }
   ]  
 }

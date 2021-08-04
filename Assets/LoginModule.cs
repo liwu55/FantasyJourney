@@ -1,6 +1,7 @@
 using System;
 using Frame.UI;
 using Game;
+using Game.bean;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,4 +20,11 @@ public class LoginModule : UIModuleBase
             UIEvent.LoginClick(inputName.text,inputPsw.text);
         });
     }
+
+    public string GetUsernameStr()
+    {
+       UserInfo _user =  TestDataBaseManager.Instance.GetUserInfo(inputName.text, inputPsw.text);
+       return _user.username;
+    }
+    
 }

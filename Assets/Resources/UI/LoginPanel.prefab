@@ -1157,7 +1157,6 @@ GameObject:
   - component: {fileID: 2252792008425426313}
   - component: {fileID: 2252792008425426315}
   - component: {fileID: 2252792008425426312}
-  - component: {fileID: 5063339935502184109}
   - component: {fileID: 1986192677}
   - component: {fileID: 1986192675}
   - component: {fileID: 1986192676}
@@ -1229,19 +1228,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5063339935502184109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2252792008425426358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 479d1fdee58d8c3408dd49002f5756c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleShowType: 0
 --- !u!225 &1986192677
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1691,7 +1677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: username
+  m_Text: 
 --- !u!1 &2252792009093489392
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Frame.Constant;
 using Frame.Utility;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Frame.UI
 {
@@ -17,7 +18,7 @@ namespace Frame.UI
         private Dictionary<string, UIWidget> _uiWidgets;
         public ModuleShowType moduleShowType;
         private CanvasGroup cg;
-        private void Awake()
+        protected virtual void Awake()
         {
             _uiWidgets=new Dictionary<string, UIWidget>();
             //根据标记找到重要的对象
@@ -76,7 +77,7 @@ namespace Frame.UI
             gameObject.SetActive(false);
         }
 
-        public void OnSpawn()
+        public virtual void OnSpawn(Object obj)
         {
             cg.alpha = 1;
             cg.blocksRaycasts = true;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Game.bean;
 
+
 namespace Game.Interface
 {
     public interface IDataBaseManager
@@ -18,7 +19,6 @@ namespace Game.Interface
         /// <param name="psw"></param>
         /// <returns>用户名密码正确，则返回用户信息，错误返回null</returns>
         UserInfo GetUserInfo(string name,string psw);
-
         /// <summary>
         /// 获取排行榜信息
         /// </summary>

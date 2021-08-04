@@ -18,6 +18,7 @@ namespace Game
 
         public void ShowStore()
         {
+            
         }
 
         public void ShowLoginError()

@@ -1,8 +1,10 @@
-﻿namespace Frame.Utility
+﻿using System;
+
+namespace Frame.Utility
 {
     public interface PoolObject
     {
-        void OnSpawn();
+        void OnSpawn(Object obj);
         void OnRecycle();
         void OnPause();
         void OnResume();
