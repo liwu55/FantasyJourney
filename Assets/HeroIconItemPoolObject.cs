@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using Frame.Utility;
 using UnityEngine;
+using Object = System.Object;
 
 public class HeroIconItemPoolObject : MonoBehaviour,PoolObject
 {
-    public void OnSpawn()
+    public void OnSpawn(Object obj)
     {
     }
 

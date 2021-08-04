@@ -1,6 +1,9 @@
 ﻿using System;
 using Game.bean;
 using Game.Interface;
+using Mono.Data.Sqlite;
+using UnityEngine;
+
 
 namespace Game
 {
@@ -10,7 +13,6 @@ namespace Game
     public class TestLoginManager:ILoginManager
     {
         private IDataBaseManager _dataBaseManager;
-
         public TestLoginManager()
         {
             _dataBaseManager=new TestDataBaseManager();
@@ -19,19 +21,19 @@ namespace Game
         {
             LoginResult result =new LoginResult();
             //查数据库
-            //...
+            
             //查到了
             bool check = _dataBaseManager.GetUserInfo(name,pwd)!=null;
             if(check){
                 result.suc = true;
-                //result.userInfo =
+                result.userInfo = _dataBaseManager.GetUserInfo(name, pwd);
                 callBack(result);
             }else{
                 //没查到
                 result.suc = false;
                 callBack(result);
             }
-            
         }
+
     }
 }

@@ -75,6 +75,10 @@
     {
       "name": "skills_9",
       "path": "Skills/skills_9"
+    },
+    {
+      "name": "LoginSuc",
+      "path": "UI/LoginSucPanel"
     }
   ]  
 }

@@ -1,9 +1,10 @@
 using Frame.Utility;
 using UnityEngine;
+using Object = System.Object;
 
 public class LoginPoolObject : MonoBehaviour,PoolObject
 {
-    public void OnSpawn()
+    public void OnSpawn(Object obj)
     {
     }
 

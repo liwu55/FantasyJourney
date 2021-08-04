@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Frame.UI;
 using Frame.Utility;
 using UnityEngine;
+using Object = System.Object;
 
 public class UIManager : SingleTonMonoAuto<UIManager>
 {
@@ -25,11 +26,11 @@ public class UIManager : SingleTonMonoAuto<UIManager>
         tranCanvas = GameObject.Find("Canvas").transform;
     }
 
-    public void ShowModule(string name)
+    public void ShowModule(string name,Object data=null)
     {
         if (!_uiModuleBases.ContainsKey(name))
         {
-            GameObject module = ObjectPool.Instance.SpawnObj(name, tranCanvas);
+            GameObject module = ObjectPool.Instance.SpawnObj(name, tranCanvas ,data);
             UIModuleBase uiModuleBase = module.GetComponent<UIModuleBase>();
             _uiModuleBases.Add(name, uiModuleBase);
         }

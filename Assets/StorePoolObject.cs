@@ -1,10 +1,11 @@
 using Frame.Utility;
 using UnityEngine;
+using Object = System.Object;
 
 public class StorePoolObject : MonoBehaviour,PoolObject
 {
 
-    public void OnSpawn()
+    public void OnSpawn(Object obj)
     {
     }
 

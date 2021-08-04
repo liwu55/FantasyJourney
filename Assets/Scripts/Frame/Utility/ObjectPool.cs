@@ -17,7 +17,7 @@ namespace Frame.Utility
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public GameObject SpawnObj(string name, Transform parent = null)
+        public GameObject SpawnObj(string name, Transform parent = null,System.Object data=null)
         {
             GameObject obj;
             //对象池里面有对应的对象可以复用
@@ -42,7 +42,9 @@ namespace Frame.Utility
             }
 
             PoolObject poolObject = obj.GetComponent<PoolObject>();
-            poolObject.OnSpawn();
+            Debug.Log("SpawnObj date ="+data);
+            poolObject.OnSpawn(data);
+            
             
             return obj;
         }
