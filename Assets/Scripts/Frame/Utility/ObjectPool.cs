@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Frame.Utility
@@ -25,6 +24,7 @@ namespace Frame.Utility
             if (objPools.ContainsKey(name) && objPools[name].Count > 0)
             {
                 obj = objPools[name].Pop();
+                obj.SetActive(true);
             }
             else
             {
@@ -53,6 +53,7 @@ namespace Frame.Utility
         /// <param name="obj"></param>
         public void RecycleObj(GameObject obj)
         {
+            obj.SetActive(false);
             string name = obj.name;
             if (!objPools.ContainsKey(name))
             {

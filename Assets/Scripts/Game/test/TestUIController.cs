@@ -18,6 +18,7 @@ namespace Game
 
         public void ShowStore()
         {
+            UIManager.Instance.ShowModule("Store");
         }
 
         public void ShowLoginError()

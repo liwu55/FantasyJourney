@@ -17,6 +17,12 @@ namespace Frame.UI
         private Button button;
         private Dropdown dropdown;
         private InputField inputField;
+        private Toggle toggle;
+        private ToggleGroup tg;
+
+        public ToggleGroup Tg => tg;
+
+        public Toggle Toggle => toggle;
 
         public InputField InputField => inputField;
 
@@ -44,6 +50,8 @@ namespace Frame.UI
             button = GetComponent<Button>();
             dropdown = GetComponent<Dropdown>();
             inputField = GetComponent<InputField>();
+            toggle = GetComponent<Toggle>();
+            tg = GetComponent<ToggleGroup>();
         }
     }
 }

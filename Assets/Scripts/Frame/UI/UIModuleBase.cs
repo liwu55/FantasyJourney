@@ -17,7 +17,7 @@ namespace Frame.UI
         private Dictionary<string, UIWidget> _uiWidgets;
         public ModuleShowType moduleShowType;
         private CanvasGroup cg;
-        private void Awake()
+        protected virtual void Awake()
         {
             _uiWidgets=new Dictionary<string, UIWidget>();
             //根据标记找到重要的对象
@@ -28,7 +28,7 @@ namespace Frame.UI
         private void FindImportantWidget()
         {
             //通过拿Transform拿到所有子类
-            Transform[] trans = GetComponentsInChildren<Transform>();
+            Transform[] trans = GetComponentsInChildren<Transform>(true);
             for (int i = 0; i < trans.Length; i++)
             {
                 Transform childTran = trans[i];

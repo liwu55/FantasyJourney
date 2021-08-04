@@ -11,6 +11,7 @@
         /// 资源路径的配置
         /// </summary>
         public static string PATH_CONFIGURATION_ASSETS_PATH = "Configurations/AssetsPath";
+        public static string PATH_CONFIGURATION_HEROS = "Configurations/HeroConfiguration";
         public static string PATH_CONFIGURATION_LOCALIZATION_TEXT_DATA = "Configurations/LanguageText";
     }
 }

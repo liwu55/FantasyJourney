@@ -15,6 +15,28 @@ namespace Frame.Utility
 
         private Dictionary<string, string> _assetsPaths;
         private Dictionary<string, string[]> _localizationTextData;
+        private List<HeroInfos.Hero> heros;
+
+        public List<HeroInfos.Hero> GetHeroInfos()
+        {
+            if (heros == null)
+            {
+                InitHeros();
+            }
+
+            return heros;
+        }
+
+        private void InitHeros()
+        {
+            heros=new List<HeroInfos.Hero>();
+            HeroInfos heroInfos = JsonParser.Instance.ParseJsonFile<HeroInfos>(
+                SystemDefine.PATH_CONFIGURATION_HEROS);
+            for (int i = 0; i < heroInfos.heros.Length; i++)
+            {
+                heros.Add(heroInfos.heros[i]);
+            }
+        }
 
         /// <summary>
         /// 根据名字拿到路径

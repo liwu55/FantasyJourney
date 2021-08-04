@@ -3,6 +3,78 @@
     {
       "name": "Login",
       "path": "UI/LoginPanel"
+    },
+    {
+      "name": "Store",
+      "path": "UI/StoreModule"
+    },
+    {
+      "name": "HeroIconItem",
+      "path": "UI/HeroIconItem"
+    },
+    {
+      "name": "NotSetHero1",
+      "path": "Heroes/NotSetHero1"
+    },
+    {
+      "name": "NotSetHero2",
+      "path": "Heroes/NotSetHero2"
+    },
+    {
+      "name": "NotSetHero3",
+      "path": "Heroes/NotSetHero3"
+    },
+    {
+      "name": "avatar1",
+      "path": "Avatar/avatar1"
+    },
+    {
+      "name": "avatar2",
+      "path": "Avatar/avatar2"
+    },
+    {
+      "name": "avatar3",
+      "path": "Avatar/avatar3"
+    },
+    {
+      "name": "skills_0",
+      "path": "Skills/skills_0"
+    },
+    {
+      "name": "skills_1",
+      "path": "Skills/skills_1"
+    },
+    {
+      "name": "skills_2",
+      "path": "Skills/skills_2"
+    },
+    {
+      "name": "skills_3",
+      "path": "Skills/skills_3"
+    },
+    {
+      "name": "skills_4",
+      "path": "Skills/skills_4"
+    },
+    {
+      "name": "skills_5",
+      "path": "Skills/skills_5"
+    },
+    {
+      "name": "skills_6",
+      "path": "Skills/skills_6"
+    },
+    {
+      "name": "skills_7",
+      "path": "Skills/skills_7"
+    },
+    {
+      "name": "skills_8",
+      "path": "Skills/skills_8"
+    },
+    {
+      "name": "skills_9",
+      "path": "Skills/skills_9"
     }
   ]  
 }

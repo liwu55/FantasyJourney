@@ -1,0 +1,37 @@
+﻿{
+  "heros": [
+    {
+      "id": 0,
+      "name": "燕双鹰",
+      "des": "拿着一根大棒子，给你来一棒子！",
+      "model": "NotSetHero1",
+      "avatar": "avatar1",
+      "skills": [
+        "skills_0","skills_1"
+      ],
+      "price" : 3998
+    },
+    {
+      "id": 1,
+      "name": "傻狗圆",
+      "des": "拿着一根大棒子，给你来一棒子！",
+      "model": "NotSetHero2",
+      "avatar": "avatar2",
+      "skills": [
+        "skills_2","skills_3"
+      ],
+      "price" : 3998
+    },
+    {
+      "id": 2,
+      "name": "傻狗炫",
+      "des": "拿着一根大棒子，给你来一棒子！",
+      "model": "NotSetHero3",
+      "avatar": "avatar3",
+      "skills": [
+        "skills_4","skills_5"
+      ],
+      "price" : 3998
+    }
+  ]
+}
