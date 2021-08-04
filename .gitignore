@@ -10,3 +10,5 @@ UserSettings
 *.sln
 .vs
 .vsconfig
+Assets/Plugins/Newtonsoft.Json.dll
+Assets/Plugins/Newtonsoft.Json.dll.meta
