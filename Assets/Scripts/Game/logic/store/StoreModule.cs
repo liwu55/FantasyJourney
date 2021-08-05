@@ -13,8 +13,8 @@ public class StoreModule : UIModuleBase
     private Transform heroListTrans;
     private ToggleGroup tg;
     private Text heroName;
-    private Image skill1;
-    private Image skill2;
+    private UIWidget skill1;
+    private UIWidget skill2;
     private Button actionButton;
     private Text actionText;
     private StoreHeroInfo checkingHero;
@@ -27,8 +27,8 @@ public class StoreModule : UIModuleBase
         heroListTrans = FW("HeroList#").transform;
         tg = FW("HeroList#").Tg;
         heroName = FW("name#").Text;
-        skill1 = FW("Skill1#").Img;
-        skill2 = FW("Skill2#").Img;
+        skill1 = FW("Skill1#");
+        skill2 = FW("Skill2#");
         actionButton = FW("Action#").Button;
         actionText = FW("ActionText#").Text;
     }
@@ -41,6 +41,14 @@ public class StoreModule : UIModuleBase
 
     private void InitListener()
     {
+        skill1.Button.onClick.AddListener(() =>
+        {
+            checkingHero.animator.SetTrigger("skill1");
+        });
+        skill2.Button.onClick.AddListener(() =>
+        {
+            checkingHero.animator.SetTrigger("skill2");
+        });
         actionButton.onClick.AddListener(() =>
         {
             if (checkingHero == null)
@@ -122,15 +130,22 @@ public class StoreModule : UIModuleBase
 
     void SyncShowHeroInfo(StoreHeroInfo storeHero)
     {
+        bool isHeroChange = checkingHero == null || 
+                            (storeHero != null && checkingHero != null
+                                               && checkingHero.hero != storeHero.hero);
+
         if(storeHero!=null){
             checkingHero = storeHero;
         }
 
-        HeroInfos.Hero hero = checkingHero.hero;
-        heroName.text = hero.name;
-        HeroShow.Instance.ShowHero(hero.model);
-        skill1.sprite = ResManager.LoadImg(hero.skills[0]);
-        skill2.sprite = ResManager.LoadImg(hero.skills[1]);
+        if(isHeroChange){
+            HeroInfos.Hero hero = checkingHero.hero;
+            heroName.text = hero.name;
+            checkingHero.animator = HeroShow.Instance.ShowHero(hero.model);
+            skill1.Img.sprite = ResManager.LoadImg(hero.skills[0].icon);
+            skill2.Img.sprite = ResManager.LoadImg(hero.skills[1].icon);
+        }
+        
         if (checkingHero.owned)
         {
             if (checkingHero == chooseHero)

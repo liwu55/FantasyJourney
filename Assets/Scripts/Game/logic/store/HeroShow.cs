@@ -10,10 +10,16 @@ public class HeroShow : SingleTonMono<HeroShow>
         heroesTrans = transform.Find("Heroes");
     }
 
-    public void ShowHero(string hero)
+    public Animator ShowHero(string hero)
     {
         RecycleAll();
-        ObjectPool.Instance.SpawnObj(hero, heroesTrans);
+        GameObject goHero = ObjectPool.Instance.SpawnObj(hero, heroesTrans);
+        Animator animator = goHero.GetComponent<Animator>();
+        if (animator == null)
+        {
+            animator = goHero.GetComponentInChildren<Animator>();
+        }
+        return animator;
     }
 
     private void RecycleAll()
