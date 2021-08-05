@@ -36,7 +36,7 @@ public class GameController: SingleTonObj<GameController>
     private void InitObj()
     {
         _uiController=new TestUIController();
-        _loginManager=new TestLoginManager();
+        _loginManager=new LoginManager();
         _mapManager= new TestMapManager();
         _photonWrapper=new TestPhotonWrapper();
         _playerInfo=new PlayerInfo();
@@ -122,7 +122,7 @@ public class GameController: SingleTonObj<GameController>
     /// </summary>
     public void Entrance()
     {
-        //_uiController.ShowLogin();
-        _uiController.ShowStore();
+        _uiController.ShowLogin();
+        //_uiController.ShowStore();
     }
 }

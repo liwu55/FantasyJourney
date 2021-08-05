@@ -10,12 +10,12 @@ namespace Game
     /// <summary>
     /// 登录实现实例
     /// </summary>
-    public class TestLoginManager:ILoginManager
+    public class LoginManager:ILoginManager
     {
         private IDataBaseManager _dataBaseManager;
-        public TestLoginManager()
+        public LoginManager()
         {
-            _dataBaseManager=new TestDataBaseManager();
+            _dataBaseManager=new DataBaseManager();
         }
         public void Login(string name, string pwd, Action<LoginResult> callBack)
         {

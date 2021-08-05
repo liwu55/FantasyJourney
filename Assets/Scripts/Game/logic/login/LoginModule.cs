@@ -23,7 +23,7 @@ public class LoginModule : UIModuleBase
 
     public string GetUsernameStr()
     {
-       UserInfo _user =  TestDataBaseManager.Instance.GetUserInfo(inputName.text, inputPsw.text);
+       UserInfo _user =  DataBaseManager.Instance.GetUserInfo(inputName.text, inputPsw.text);
        return _user.username;
     }
     
