@@ -22,7 +22,7 @@ public class LoginSucPanel : UIModuleBase
    
    public void Init()
    {
-      LoginMsg.text = "亲爱的" + usernameStr + ",欢迎进入游戏";
+      LoginMsg.text = "亲爱的" + usernameStr + ",欢迎进入游戏！";
       BtnCheck.onClick.AddListener(() =>
       {
          //进入游戏

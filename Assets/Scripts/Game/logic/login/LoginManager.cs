@@ -21,12 +21,12 @@ namespace Game
         {
             LoginResult result =new LoginResult();
             //查数据库
-            
+            UserInfo userInfo = _dataBaseManager.GetUserInfo(name, pwd);
             //查到了
-            bool check = _dataBaseManager.GetUserInfo(name,pwd)!=null;
+            bool check = userInfo!=null;
             if(check){
                 result.suc = true;
-                result.userInfo = _dataBaseManager.GetUserInfo(name, pwd);
+                result.userInfo = userInfo;
                 callBack(result);
             }else{
                 //没查到
