@@ -55,6 +55,17 @@ namespace Frame.UI
             return null;
         }
 
+        protected void CheckAllFindWidget()
+        {
+            Debug.Log(GetType().Name+" CheckAllFindWidget-------------------");
+            foreach (var child in _uiWidgets)
+            {
+                Debug.Log(child.Key+" = "+child.Value);
+            }   
+            Debug.Log("------------------------------------------");
+        }
+        
+
         private bool CheckSuffix(Transform childTran)
         {
             foreach (string keyChar in SystemDefine.IMPORTANT_OBJ_SUFFIX)
