@@ -1,6 +1,7 @@
 using Game;
 using Game.bean;
 using Game.Interface;
+using Photon.Pun;
 
 //游戏控制类。负责所有游戏逻辑总控制
 //单例，待实现
@@ -123,6 +124,12 @@ public class GameController: SingleTonObj<GameController>
     public void Entrance()
     {
         //_uiController.ShowLogin();
-        _uiController.ShowStore();
+        //_uiController.ShowStore();
+        //_uiController.ShowRoomInfo();
+        _uiController.ShowMain(null);
+        
+        
+        PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 }

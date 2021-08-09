@@ -58,18 +58,24 @@ public class UIManager : SingleTonMonoAuto<UIManager>
         }
     }
 
+
+    public void PopModule()
+    {
+        if (uiModuleStack.Count > 1)
+        {
+            UIModuleBase topModule = uiModuleStack.Pop();
+            topModule.Hide();
+            topModule = uiModuleStack.Peek();
+            topModule.OnResume();
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //最少留一个
-            if (uiModuleStack.Count > 1)
-            {
-                UIModuleBase topModule = uiModuleStack.Pop();
-                topModule.Hide();
-                topModule = uiModuleStack.Peek();
-                topModule.OnResume();
-            }
+            PopModule();
         }
     }
 }

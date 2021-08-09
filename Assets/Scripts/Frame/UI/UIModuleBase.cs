@@ -24,6 +24,7 @@ namespace Frame.UI
             //根据标记找到重要的对象
             FindImportantWidget();
             cg = GetComponent<CanvasGroup>();
+            Debug.Log(GetType().Name+" Awake cg="+cg);
         }
 
         private void FindImportantWidget()
@@ -67,12 +68,12 @@ namespace Frame.UI
             return false;
         }
 
-        public void Show()
+        public virtual  void Show()
         {
             gameObject.SetActive(true);
         }
 
-        public void Hide()
+        public  virtual void Hide()
         {
             gameObject.SetActive(false);
         }
@@ -83,18 +84,18 @@ namespace Frame.UI
             cg.blocksRaycasts = true;
         }
 
-        public void OnRecycle()
+        public virtual void OnRecycle()
         {
             cg.alpha = 0;
             cg.blocksRaycasts = false;
         }
 
-        public void OnPause()
+        public virtual void OnPause()
         {
             cg.blocksRaycasts = false;
         }
 
-        public void OnResume()
+        public virtual void OnResume()
         {
             cg.blocksRaycasts = true;
         }

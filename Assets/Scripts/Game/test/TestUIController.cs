@@ -13,6 +13,7 @@ namespace Game
 
         public void ShowMain(MainPageInfo mainPageInfo)
         {
+            UIManager.Instance.ShowModule("MainPanel");
             Debug.Log("显示主页面");
         }
 
@@ -40,6 +41,7 @@ namespace Game
 
         public void ShowRoomInfo()
         {
+            UIManager.Instance.ShowModule("RoomlistPanel");
         }
     }
 }
