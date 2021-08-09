@@ -35,7 +35,7 @@ public class LoginModule : UIModuleBase
 
     public void PlayMentionAnime()
     {
-      Tweener _tweener = txtMention.DOFade(1,2);
+      Tweener _tweener = txtMention.DOFade(0,2);
       _tweener.SetDelay(0);
       _tweener.SetEase(Ease.Linear);
       _tweener.SetAutoKill(true);

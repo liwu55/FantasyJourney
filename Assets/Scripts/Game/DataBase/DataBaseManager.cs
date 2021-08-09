@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Game.bean;
 using Game.Interface;
-using Mono.Data.Sqlite;
+using MySql.Data.MySqlClient;
 using UnityEngine;
-
 namespace Game
 {
     public class DataBaseManager : SingleTonObj<DataBaseManager>, IDataBaseManager
     {
+        private MySqlAccess mySqlAccess;
         private string _connectionStr;
-        private SqliteConnection _connection;
-
-        private SqliteCommand _command;
-
-        //private SqliteDataReader _reader;
-        //private int limitRankList = 3;
+        private MySqlConnection _connection;
+        private MySqlCommand _command;
         Dictionary<string, UserInfo> _dictionary = new Dictionary<string, UserInfo>();
 
         /// <summary>
@@ -36,14 +31,12 @@ namespace Game
                 //把用户数据存入字典
                 _dictionary.Add(userinfo.username, userinfo);
             }
+            
             UpdateUserInfo(userId, username, password, money, honor, heroList);
-            /*string sql = @"Insert INTO CustomerInfo VALUES({0},'{1}','{2}',{3},{4},'{5}')";
-            sql = String.Format(sql,userId.ToString(),username,password,money.ToString(),honor.ToString(),heroList);*/
-            //Debug.Log("sql= "+sql);
         }
 
         /// <summary>
-        /// 防止SQL注入 使用参数代替字符串更新信息
+        /// Insert一个用户（此方法有bug，暂时不要调用）
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="username"></param>
@@ -53,14 +46,12 @@ namespace Game
         /// <param name="ownedHero"></param>
         private void  UpdateUserInfo(int @ID,string @username,string @password,int @money,int @honor,string @ownedHero)
         {
-            
-           // string sql = @"Insert INTO CustomerInfo VALUES({0},'{1}','{2}',{3},{4},'{5}')";
-            _command.Parameters.Add(new SqliteParameter("@ID", @ID));
-            _command.Parameters.Add(new SqliteParameter("@username", @username));
-            _command.Parameters.Add(new SqliteParameter("@password", @password));
-            _command.Parameters.Add(new SqliteParameter("@money", @money));
-            _command.Parameters.Add(new SqliteParameter("@honor", @honor));
-            _command.Parameters.Add(new SqliteParameter("@ownedHero", @ownedHero));
+            _command.Parameters.Add(new MySqlParameter("@ID", @ID));
+            _command.Parameters.Add(new MySqlParameter("@username", @username));
+            _command.Parameters.Add(new MySqlParameter("@password", @password));
+            _command.Parameters.Add(new MySqlParameter("@money", @money));
+            _command.Parameters.Add(new MySqlParameter("@honor", @honor));
+            _command.Parameters.Add(new MySqlParameter("@ownedHero", @ownedHero));
             _command.CommandText = "Insert INTO CustomerInfo VALUES(@ID,@username,@password, @money,@honor, @ownedHero)";
             int i = _command.ExecuteNonQuery();
             Debug.Log("产生影响"+ i);
@@ -73,22 +64,17 @@ namespace Game
         //初始化数据库
         private void InitDataBase()
         {
-            _connectionStr = "Data Source = " + Application.streamingAssetsPath + "/DBCustomerInfo.db";
-            _connection = new SqliteConnection(_connectionStr);
+            mySqlAccess = new MySqlAccess("10.9.72.192","3306","root","123456","dbcustomerinfo");
+            _connection = mySqlAccess.mySqlConnection;
             _command = _connection.CreateCommand();
-            if (_connection != null)
-            {
-                Debug.Log("可以找到数据库");
-                //打开连接
-                _connection.Open();
-            }
+
             SaveInDic();
         }
 
         private void SaveInDic()
         {
             _command.CommandText = "Select * From CustomerInfo";
-            SqliteDataReader _reader = _command.ExecuteReader();
+            MySqlDataReader _reader = _command.ExecuteReader();
             //将数据传入字典
             while (_reader.Read())
             {
@@ -162,7 +148,7 @@ namespace Game
             List<UserInfo> rankList = new List<UserInfo>();
             //排序的SQL语句
             _command.CommandText = "Select * from CustomerInfo ORDER BY honor DESC , money DESC limit " + num;
-            SqliteDataReader _reader = _command.ExecuteReader();
+            MySqlDataReader _reader = _command.ExecuteReader();
             while (_reader.Read())
             {
                 UserInfo _userInfo;
