@@ -17,6 +17,10 @@ public class LoginSucPanel : UIModuleBase
       BtnCheck = FW("BtnCheck#").Button;
       LoginMsg = FW("txtLoginMsg#").Text;
       
+      BtnCheck.onClick.AddListener(() =>
+      {
+         UIManager.Instance.ShowModule("MainPanel");
+      });
    }
 
    

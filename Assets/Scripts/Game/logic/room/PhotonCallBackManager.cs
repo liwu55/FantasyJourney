@@ -40,12 +40,6 @@ public class PhotonCallBackManager : MonoBehaviourPunCallbacks
             onRoomListUpdate -= updateEvent;
         }
     }
-
-    
-
-    
-    
-    
     
     
     #region Photon CallBacks
