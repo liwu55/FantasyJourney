@@ -68,7 +68,7 @@ public class UIManager : SingleTonMonoAuto<UIManager>
             _uiModuleBases[name].Hide();
         }
     }
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

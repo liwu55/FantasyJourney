@@ -122,7 +122,7 @@ public class GameController: SingleTonObj<GameController>
     /// </summary>
     public void Entrance()
     {
-        _uiController.ShowLogin();
-        //_uiController.ShowStore();
+        // _uiController.ShowLogin();
+        _uiController.ShowStore();
     }
 }

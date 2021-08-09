@@ -48,11 +48,10 @@ public class PlayerCrtlr : MonoBehaviour
         Vector3 dir = new Vector3(h, 0, v);
         if (dir.magnitude > 0)
         {
-            _aniCtrler.IsPlayRunAction = true;
+            _aniCtrler.PlayRun();
         }
         else
         {
-            _aniCtrler.IsPlayRunAction = false;
             _aniCtrler.PlayIdle();
         }
         Vector3 dirWorld = Camera.main.transform.TransformDirection(dir);

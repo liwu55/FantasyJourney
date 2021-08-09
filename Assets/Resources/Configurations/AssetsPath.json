@@ -79,6 +79,18 @@
     {
       "name": "LoginSuc",
       "path": "UI/LoginSucPanel"
+    },
+    {
+      "name": "GreyPoint",
+      "path": "Flag/GreyPoint"
+    },
+    {
+      "name": "BluePoint",
+      "path": "Flag/BluePoint"
+    },
+    {
+      "name": "RedPoint",
+      "path": "Flag/RedPoint"
     }
   ]  
 }

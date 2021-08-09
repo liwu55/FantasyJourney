@@ -49,13 +49,14 @@ public class CharacterAniCtrler:MonoBehaviour
             m_animator.SetInteger(STR_ACTION, 0);
         }
         //将剩余队列的动作重新拿出来播放
-        PlayRemainAction();
+        //PlayRemainAction();
 
+        /*
         if (IsPlayRunAction)
         {
             IsPlayRunAction = false;
             PlayRun();
-        }
+        }*/
     }
 
     /// <summary>

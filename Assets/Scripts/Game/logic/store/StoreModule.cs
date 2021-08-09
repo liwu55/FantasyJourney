@@ -19,10 +19,19 @@ public class StoreModule : UIModuleBase
     private Text actionText;
     private StoreHeroInfo checkingHero;
     private StoreHeroInfo chooseHero;
+    private UIWidget skillShow;
+    private Text skillName;
+    private Text skillDes;
 
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
+        InitViews();
+        ShowAllHeroes();
+        InitListener();
+    }
+
+    private void InitViews()
+    {
         _heroManager = new HeroManager();
         heroListTrans = FW("HeroList#").transform;
         tg = FW("HeroList#").Tg;
@@ -31,12 +40,11 @@ public class StoreModule : UIModuleBase
         skill2 = FW("Skill2#");
         actionButton = FW("Action#").Button;
         actionText = FW("ActionText#").Text;
-    }
-
-    private void Start()
-    {
-        ShowAllHeroes();
-        InitListener();
+        skillShow = FW("SkillShow#");
+        skillName = FW("SkillName#").Text;
+        skillDes = FW("SkillDes#").Text;
+        
+        HideSkillDes();
     }
 
     private void InitListener()
@@ -49,13 +57,30 @@ public class StoreModule : UIModuleBase
         {
             checkingHero.animator.SetTrigger("skill2");
         });
+        skill1.GetComponent<Skill>().OnEnter += () =>
+        {
+            ShowSkillDes(checkingHero.hero.skills[0]);
+        };
+        skill1.GetComponent<Skill>().OnExit += () =>
+        {
+            HideSkillDes();
+        };
+        skill2.GetComponent<Skill>().OnEnter += () =>
+        {
+            ShowSkillDes(checkingHero.hero.skills[1]);
+        };
+        skill2.GetComponent<Skill>().OnExit += () =>
+        {
+            HideSkillDes();
+        };
+            
         actionButton.onClick.AddListener(() =>
         {
             if (checkingHero == null)
             {
                 return;
             }
-
+            //购买
             if (!checkingHero.owned)
             {
                 checkingHero.owned = true;
@@ -84,6 +109,20 @@ public class StoreModule : UIModuleBase
         });
     }
 
+    private void HideSkillDes()
+    {
+        skillShow.gameObject.SetActive(false);
+    }
+
+    private void ShowSkillDes(HeroInfos.Hero.Skill heroSkill)
+    {
+        skillShow.gameObject.SetActive(true);
+        Debug.Log("skillName="+skillName);
+        Debug.Log("heroSkill="+heroSkill);
+        skillName.text = heroSkill.name;
+        skillDes.text = heroSkill.des;
+    }
+
     private void ShowAllHeroes()
     {
         List<HeroInfos.Hero> allHero = _heroManager.GetAllHero();
@@ -98,6 +137,7 @@ public class StoreModule : UIModuleBase
             storeHeroInfo.hero = hero;
             storeHeroInfo.owned = CheckIfOwn(hero);
             storeHeroInfo.index = i;
+            //测试代码，第二个设为选中
             if (i == 1)
             {
                 storeHeroInfo.choose = true;
@@ -106,7 +146,7 @@ public class StoreModule : UIModuleBase
 
             heroItemModule.BindInfo(storeHeroInfo);
             itemToggle.group = tg;
-            //第一个设为选中，显示当前信息
+            //第一个设为显示，显示当前信息
             if (i == 0)
             {
                 itemToggle.isOn = true;
