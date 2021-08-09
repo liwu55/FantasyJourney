@@ -12,6 +12,7 @@ namespace Frame.UI
         Multiple
     }
 
+
     [RequireComponent(typeof(CanvasGroup))]
     public class UIModuleBase : MonoBehaviour,PoolObject
     {
