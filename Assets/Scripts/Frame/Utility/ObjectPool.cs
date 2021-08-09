@@ -42,7 +42,7 @@ namespace Frame.Utility
             }
 
             PoolObject poolObject = obj.GetComponent<PoolObject>();
-            Debug.Log("SpawnObj date ="+data);
+//            Debug.Log("SpawnObj date ="+data);
             poolObject.OnSpawn(data);
             
             

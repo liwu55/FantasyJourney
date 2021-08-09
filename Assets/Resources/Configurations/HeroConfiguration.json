@@ -3,33 +3,60 @@
     {
       "id": 0,
       "name": "燕双鹰",
-      "des": "拿着一根大棒子，给你来一棒子！",
+      "des": "你的枪里没有子弹",
       "model": "NotSetHero1",
       "avatar": "avatar1",
       "skills": [
-        "skills_0","skills_1"
+        {
+          "icon":  "skills_0",
+          "name":"技能1" ,
+          "des":"技能1的描述"
+        },
+        {
+          "icon":  "skills_1",
+          "name":"技能2" ,
+          "des":"技能2的描述"
+        }
       ],
       "price" : 3998
     },
     {
       "id": 1,
-      "name": "傻狗圆",
-      "des": "拿着一根大棒子，给你来一棒子！",
-      "model": "NotSetHero2",
+      "name": "牛牛",
+      "des": "强壮的牛牛",
+      "model": "niuniu",
       "avatar": "avatar2",
       "skills": [
-        "skills_2","skills_3"
+        {
+          "icon":  "skills_2",
+          "name":"牛牛一锤" ,
+          "des":"牛牛给你来一锤"
+        },
+        {
+          "icon":  "skills_3",
+          "name":"牛牛冲刺" ,
+          "des":"牛牛冲刺了！都让开点！"
+        }
       ],
       "price" : 3998
     },
     {
       "id": 2,
-      "name": "傻狗炫",
-      "des": "拿着一根大棒子，给你来一棒子！",
-      "model": "NotSetHero3",
+      "name": "猫人",
+      "des": "猫变成了人？还拿着剑？",
+      "model": "cat",
       "avatar": "avatar3",
       "skills": [
-        "skills_4","skills_5"
+        {
+          "icon":  "skills_4",
+          "name":"猫剑术" ,
+          "des":"猫人的剑术出神入化"
+        },
+        {
+          "icon":  "skills_5",
+          "name":"醉剑" ,
+          "des":"猫人喝了假酒，上头一剑"
+        }
       ],
       "price" : 3998
     }

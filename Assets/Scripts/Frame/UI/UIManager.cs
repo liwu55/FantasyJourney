@@ -26,6 +26,17 @@ public class UIManager : SingleTonMonoAuto<UIManager>
         tranCanvas = GameObject.Find("Canvas").transform;
     }
 
+    public T GetModule<T>(string ModuleName) where T:UIModuleBase
+    {
+        if (_uiModuleBases.ContainsKey(ModuleName))
+        {
+            return _uiModuleBases[ModuleName] as T;
+        }
+
+        return null;
+        
+    }
+    
     public void ShowModule(string name,Object data=null)
     {
         if (!_uiModuleBases.ContainsKey(name))
@@ -58,7 +69,6 @@ public class UIManager : SingleTonMonoAuto<UIManager>
         }
     }
 
-
     public void PopModule()
     {
         if (uiModuleStack.Count > 1)
@@ -69,6 +79,7 @@ public class UIManager : SingleTonMonoAuto<UIManager>
             topModule.OnResume();
         }
     }
+
 
     private void Update()
     {

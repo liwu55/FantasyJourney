@@ -1,4 +1,6 @@
-﻿namespace Game.bean
+﻿using UnityEngine;
+
+namespace Game.bean
 {
     public class StoreHeroInfo
     {
@@ -6,5 +8,6 @@
         public bool owned;
         public int index;
         public bool choose;
+        public Animator animator;
     }
 }

@@ -11,7 +11,15 @@ public class HeroInfos
         public string des;
         public string model;
         public string avatar;
-        public string[] skills;
+        public Skill[] skills;
         public int price;
+
+        [System.Serializable]
+        public class Skill
+        {
+            public string icon;
+            public string name;
+            public string des;
+        }
     }
 }

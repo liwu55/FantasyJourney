@@ -41,12 +41,12 @@
       "path": "Heroes/NotSetHero1"
     },
     {
-      "name": "NotSetHero2",
-      "path": "Heroes/NotSetHero2"
+      "name": "niuniu",
+      "path": "Heroes/niuniu"
     },
     {
-      "name": "NotSetHero3",
-      "path": "Heroes/NotSetHero3"
+      "name": "cat",
+      "path": "Heroes/cat"
     },
     {
       "name": "avatar1",
@@ -103,6 +103,18 @@
     {
       "name": "LoginSuc",
       "path": "UI/LoginSucPanel"
+    },
+    {
+      "name": "GreyPoint",
+      "path": "Flag/GreyPoint"
+    },
+    {
+      "name": "BluePoint",
+      "path": "Flag/BluePoint"
+    },
+    {
+      "name": "RedPoint",
+      "path": "Flag/RedPoint"
     }
   ]  
 }

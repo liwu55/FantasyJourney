@@ -12,7 +12,7 @@ namespace Game
         /// 登录点击触发，传入用户名，密码
         /// </summary>
         public static Action<String,String> LoginClick;
-        
+
         /// <summary>
         /// 仓库点击
         /// </summary>
@@ -47,5 +47,6 @@ namespace Game
         /// 点击了游戏开始
         /// </summary>
         public static Action<MapInfo> GameStart;
+        
     }
 }
