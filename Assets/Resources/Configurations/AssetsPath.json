@@ -9,6 +9,30 @@
       "path": "UI/StoreModule"
     },
     {
+      "name": "RoomlistPanel",
+      "path": "UI/RoomlistPanel"
+    },
+    {
+      "name": "CreateRoomPanel",
+      "path": "UI/CreateRoomPanel"
+    },
+    {
+      "name": "RoomPanel",
+      "path": "UI/RoomPanel"
+    },
+    {
+      "name": "RoomInfo",
+      "path": "UI/RoomInfo" 
+    },
+    {
+      "name": "PlayerInfoPanel",
+      "path": "UI/PlayerInfo"
+    },
+    {
+      "name": "MainPanel",
+      "path": "UI/MainPanel"
+    },
+    {
       "name": "HeroIconItem",
       "path": "UI/HeroIconItem"
     },

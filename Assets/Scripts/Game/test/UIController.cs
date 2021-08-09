@@ -42,6 +42,7 @@ namespace Game
 
         public void ShowRoomInfo()
         {
+            UIManager.Instance.ShowModule("RoomlistPanel");
         }
     }
 }

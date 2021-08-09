@@ -56,7 +56,6 @@ public class PlayerCrtlr : MonoBehaviour
         }
         Vector3 dirWorld = Camera.main.transform.TransformDirection(dir);
         dirWorld.y = 0;
-        print(GetAngle(transform.forward, dirWorld));
         if (GetAngle(transform.forward, dirWorld) > 135f)
         {
             transform.forward = dirWorld;

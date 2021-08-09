@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Game/DoOneFight/GameTimer.cs.meta
 guid: d159ede86df4c374dad59a37c8e0b2f4
+=======
+guid: 87776a9b1f405644abcc38ecd70c37fb
+>>>>>>> 753932a0c4666b170d6b781e1decc3d3428d21d6:Assets/Photon/PhotonChat/Code/ChatAppSettings.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
