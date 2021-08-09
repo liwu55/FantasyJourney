@@ -79,11 +79,9 @@ namespace Game
             if (_connection != null)
             {
                 Debug.Log("可以找到数据库");
-                Debug.Log(_connectionStr);
                 //打开连接
                 _connection.Open();
             }
-
             SaveInDic();
         }
 
@@ -109,8 +107,6 @@ namespace Game
             }
             _reader.Close();
         }
-
-
         /// <summary>
         /// 通过用户名获取UserInfo
         /// </summary>
@@ -137,14 +133,11 @@ namespace Game
                     bool pwdIsSame = _user.password == pwd ? true : false;
                     if (pwdIsSame)
                     {
-                        //TODO UIEVENT
-                        UIManager.Instance.ShowModule("LoginSuc", name);
                         Debug.Log("登陆成功");
                         return _user;
                     }
                     else
                     {
-                        //TODO UIEVENT
                         Debug.Log("账户名或密码错误");
                         return null;
                     }

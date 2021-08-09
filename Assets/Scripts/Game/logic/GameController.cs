@@ -35,7 +35,7 @@ public class GameController: SingleTonObj<GameController>
     /// </summary>
     private void InitObj()
     {
-        _uiController=new TestUIController();
+        _uiController=new UIController();
         _loginManager=new LoginManager();
         _mapManager= new TestMapManager();
         _photonWrapper=new TestPhotonWrapper();
@@ -108,7 +108,7 @@ public class GameController: SingleTonObj<GameController>
                 MainPageInfo mainPageInfo = new MainPageInfo();
                 mainPageInfo.userInfo = loginResult.userInfo;
                 mainPageInfo.maps = _mapManager.GetAllMap();
-                _uiController.ShowMain(mainPageInfo);
+                _uiController.ShowLoginSuc(mainPageInfo);
             }
             else
             {
