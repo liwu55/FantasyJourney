@@ -1,9 +1,10 @@
 using Frame.FSM;
 using Game.flag.State;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SimpleHeroController : MonoBehaviour
+public class SimpleHeroController : MonoBehaviourPun
 {
     public Vector3 velocity;
     public bool isSkilling1 = false;

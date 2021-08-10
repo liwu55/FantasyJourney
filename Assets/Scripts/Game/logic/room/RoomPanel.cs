@@ -30,7 +30,8 @@ public class RoomPanel : UIModuleBase
         startButton.Button.onClick.AddListener(() =>
         {
             //加载场景
-            PhotonNetwork.LoadLevel("Scene1");
+            // PhotonNetwork.LoadLevel("Scene1");
+            PhotonNetwork.LoadLevel("Flag");
             Debug.Log("游戏开始");
         });
 

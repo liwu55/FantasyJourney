@@ -35,6 +35,7 @@ namespace Game.flag
 
         public void Change(int rowIndex, int columnIndex, string sign)
         {
+            //TODO 除房主外没有数据
             pointSigns[rowIndex, columnIndex] = sign;
             Judge();
         }
