@@ -55,9 +55,10 @@ namespace Game
             _command.CommandText = "Insert INTO CustomerInfo VALUES(@ID,@username,@password, @money,@honor, @ownedHero)";
             int i = _command.ExecuteNonQuery();
             Debug.Log("产生影响"+ i);
-        }  
-        public DataBaseManager()
+        }
+        private DataBaseManager()
         {
+            Debug.Log("DataBaseManager实例化");
             InitDataBase();
         }
 

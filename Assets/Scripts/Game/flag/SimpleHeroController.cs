@@ -1,3 +1,4 @@
+using System;
 using Frame.FSM;
 using Game.flag.State;
 using Photon.Pun;
@@ -6,9 +7,13 @@ using UnityEngine.UI;
 
 public class SimpleHeroController : MonoBehaviourPun
 {
+    [NonSerialized]
     public Vector3 velocity;
+    [NonSerialized]
     public bool isSkilling1 = false;
+    [NonSerialized]
     public bool isSkilling2 = false;
+    [NonSerialized]
     public bool occuping=false;
     public float operationDistance = 3;
     public string pointSign = "BluePoint";
@@ -20,6 +25,10 @@ public class SimpleHeroController : MonoBehaviourPun
 
     private void Awake()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         cc = GetComponent<CharacterController>();
         loading = transform.Find("Loading").GetComponent<Loading>();
         //状态机设置
@@ -49,22 +58,38 @@ public class SimpleHeroController : MonoBehaviourPun
 
     private void FixedUpdate()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         cc.SimpleMove(velocity);
     }
 
     public void Skill1End()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         isSkilling1 = false;
     }
 
     public void Skill2End()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         isSkilling2 = false;
     }
 
     //占领的进度改变了
     public void OnOccupyProgressChange(float progress)
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         if (!loading.gameObject.activeSelf)
         {
             loading.gameObject.SetActive(true);

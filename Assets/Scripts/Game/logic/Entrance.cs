@@ -18,7 +18,7 @@ public class Entrance : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        
+        Debug.Log("OnApplicationQuit 关闭数据库连接");
         DataBaseManager.Instance.OnQuit();
     }
 }

@@ -15,7 +15,7 @@ namespace Game
         private IDataBaseManager _dataBaseManager;
         public LoginManager()
         {
-            _dataBaseManager=new DataBaseManager();
+            _dataBaseManager = DataBaseManager.Instance;
         }
         public void Login(string name, string pwd, Action<LoginResult> callBack)
         {
