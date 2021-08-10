@@ -1,9 +1,9 @@
 using System;
+using ExitGames.Client.Photon;
 using Frame.FSM;
 using Game.flag.State;
 using Photon.Pun;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SimpleHeroController : MonoBehaviourPun
 {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Game.flag.State
 {
@@ -22,8 +23,14 @@ namespace Game.flag.State
 
         private void OnEnter(Frame.FSM.State obj)
         {
-            Debug.Log("OnEnter Skill2");
-            animator.SetTrigger("skill2");
+            animator.SetBool("Skill2",true);
+            simpleHeroController.StartCoroutine(ResetSkillState());
+        }
+
+        IEnumerator ResetSkillState()
+        {
+            yield return new WaitForSeconds(0.2f);
+            animator.SetBool("Skill2",false);
         }
 
         private void OnUpdate(Frame.FSM.State obj)

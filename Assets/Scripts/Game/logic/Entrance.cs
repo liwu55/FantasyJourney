@@ -8,17 +8,10 @@ public class Entrance : MonoBehaviour
     private void Awake()
     {
         GameController.Instance.Init();
-       
     }
 
     private void Start()
     {
         GameController.Instance.Entrance();
-    }
-
-    private void OnApplicationQuit()
-    {
-        Debug.Log("OnApplicationQuit 关闭数据库连接");
-        DataBaseManager.Instance.OnQuit();
     }
 }

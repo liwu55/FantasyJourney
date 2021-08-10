@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 using UnityEngine;
 namespace Game
 {
-    public class DataBaseManager : SingleTonObj<DataBaseManager>, IDataBaseManager
+    public class DataBaseManager : SingleTonMonoAuto<DataBaseManager>, IDataBaseManager
     {
         private MySqlAccess mySqlAccess;
         private string _connectionStr;
@@ -160,8 +160,9 @@ namespace Game
             return rankList;
         }
 
-        public void OnQuit()
+        private void OnApplicationQuit()
         {
+            Debug.Log("关闭数据库连接");
             if (mySqlAccess.mySqlConnection!=null)
             {
                 mySqlAccess.mySqlConnection.Close();
