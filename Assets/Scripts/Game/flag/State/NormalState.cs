@@ -10,7 +10,6 @@ namespace Game.flag.State
         private Transform cameraTrans;
         private float gravity = 29.7f;
         private float y = 0;
-
         private SimpleHeroController simpleHeroController;
 
         public NormalState(string stateName, SimpleHeroController simpleHeroController)

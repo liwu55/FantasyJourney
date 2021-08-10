@@ -155,7 +155,16 @@ namespace Game
                 _dictionary.TryGetValue((string) _reader.GetValue(1), out _userInfo);
                 rankList.Add(_userInfo);
             }
+            _reader.Close();
             return rankList;
+        }
+
+        public void OnQuit()
+        {
+            if (mySqlAccess.mySqlConnection!=null)
+            {
+                mySqlAccess.mySqlConnection.Close();
+            }
         }
     }
 }
