@@ -120,6 +120,18 @@
     {
       "name": "RedPoint",
       "path": "Flag/RedPoint"
+    },
+    {
+      "name": "FlagGaming",
+      "path": "UI/FlagGaming"
+    },
+    {
+      "name": "Canvas",
+      "path": "UI/Canvas"
+    },
+    {
+      "name": "FlagOver",
+      "path": "UI/FlagOverModule"
     }
   ]  
 }

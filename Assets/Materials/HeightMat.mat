@@ -76,7 +76,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _height: 0
+    - _height: 4
     - height: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

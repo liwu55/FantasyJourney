@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.flag.State
 {
@@ -6,11 +7,14 @@ namespace Game.flag.State
     {
         private Animator animator;
         private CharacterController cc;
-        public float speed = 6;
+        public float speed = 12;
         private Transform cameraTrans;
         private float gravity = 29.7f;
         private float y = 0;
         private SimpleHeroController simpleHeroController;
+        
+        public Func<bool> OnMouseLeftClick;
+        public Func<bool> OnMouseRightClick;
 
         public NormalState(string stateName, SimpleHeroController simpleHeroController)
             : base(stateName)
@@ -81,13 +85,9 @@ namespace Game.flag.State
             animator.SetFloat("Speed", velocityH.magnitude);
             if (Input.GetMouseButtonDown(0))
             {
-                if (CheckIfClickPoint(out simpleHeroController.occupingPoint))
+                if (OnMouseLeftClick != null && OnMouseLeftClick())
                 {
-                    //转向该点
-                    simpleHeroController.transform.forward =
-                        simpleHeroController.occupingPoint.transform.position - 
-                        simpleHeroController.transform.position;
-                    simpleHeroController.occuping = true;
+                    Debug.Log("OnMouseLeftClick Intercept");
                 }
                 else
                 {
@@ -96,44 +96,15 @@ namespace Game.flag.State
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                simpleHeroController.isSkilling2 = true;
-            }
-        }
-
-        private bool CheckIfClickPoint(out PointBase occupingPoint)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            int flayPointLayer = LayerMask.NameToLayer("flagPoint");
-            bool hitFlag = Physics.Raycast(ray, out hit, 1000, 1 << flayPointLayer);
-            if (hitFlag)
-            {
-                float distance = Vector3.Distance(simpleHeroController.transform.position, hit.transform.position);
-                Debug.Log("distance="+distance);
-                if (distance > simpleHeroController.operationDistance)
+                if (OnMouseRightClick != null && OnMouseRightClick())
                 {
-                    Debug.Log("距离太远，不能操作");
+                    Debug.Log("OnMouseRightClick Intercept");
                 }
                 else
                 {
-                    Debug.Log("距离在范围内，可以操作");
-                    PointBase point = hit.collider.GetComponent<PointBase>();
-                    if (!point.IsOccupied()||point.GetOccupiedSign()!=simpleHeroController.pointSign)
-                    {
-                        Debug.Log("占领该据点");
-                        occupingPoint = point;
-                        return true;
-                        //point.ChangeOccupiedSign(simpleHeroController.pointSign);
-                    }
-                    else
-                    {
-                        Debug.Log("该据点已占领");
-                    }
+                    simpleHeroController.isSkilling2 = true;
                 }
             }
-
-            occupingPoint = null;
-            return false;
         }
     }
 }

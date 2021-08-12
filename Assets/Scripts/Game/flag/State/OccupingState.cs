@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine;
 
 namespace Game.flag.State
 {
@@ -27,7 +29,7 @@ namespace Game.flag.State
         {
             float duringTime = Time.time - enterTime;
             float progress = duringTime / occupyNeedTime;
-            simpleHeroController.OnOccupyProgressChange(progress);
+            simpleHeroController.photonView.RPC("OnOccupyProgressChange",RpcTarget.All,new object[]{progress});
         }
 
         private void OnEnter(Frame.FSM.State obj)

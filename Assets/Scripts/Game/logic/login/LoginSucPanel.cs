@@ -1,6 +1,7 @@
 using System.ComponentModel.Design;
 using Frame.UI;
 using Game;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -40,6 +41,8 @@ public class LoginSucPanel : UIModuleBase
    {
       base.OnSpawn(obj);
       usernameStr = (string)obj;
+      //设置photon昵称
+      PhotonNetwork.NickName = usernameStr;
       Debug.Log("usernameStr="+usernameStr);
       Init();
    }

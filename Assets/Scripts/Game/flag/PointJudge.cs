@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Photon.Pun;
+using UnityEngine;
 
 namespace Game.flag
 {
@@ -8,9 +11,9 @@ namespace Game.flag
         private string unoccupiedSign;
         private int dimensionCount;
 
-        public void Init(string unoccupiedSign, int dimensionCount)
+        public void Init(int dimensionCount)
         {
-            this.unoccupiedSign = unoccupiedSign;
+            unoccupiedSign = FlagData.Instance.GetUnoccupiedSignName();
             this.dimensionCount = dimensionCount;
             pointSigns = new string[dimensionCount, dimensionCount];
             for (int i = 0; i < dimensionCount; i++)
@@ -35,8 +38,19 @@ namespace Game.flag
 
         public void Change(int rowIndex, int columnIndex, string sign)
         {
-            //TODO 除房主外没有数据
             pointSigns[rowIndex, columnIndex] = sign;
+            //等一会再判断
+            MapInit.Instance.StartCoroutine(DelayJudge());
+        }
+        
+        public void JustChange(int rowIndex, int columnIndex, string sign)
+        {
+            pointSigns[rowIndex, columnIndex] = sign;
+        }
+
+        IEnumerator DelayJudge()
+        {
+            yield return new WaitForSeconds(0.6f);
             Judge();
         }
 
@@ -45,6 +59,8 @@ namespace Game.flag
         /// </summary>
         public void Judge()
         {
+            List<PointIndex> toResetPoints = new List<PointIndex>();
+            string winSign = "";
             int sucCount = 0;
             //横竖排
             for (int i = 0; i < dimensionCount; i++)
@@ -82,13 +98,32 @@ namespace Game.flag
                 if (rowAllSame)
                 {
                     Debug.Log("第" + i + "行是一样的");
+                    winSign = pointSigns[i, 0];
                     sucCount++;
+                    for (int j = 0; j < dimensionCount; j++)
+                    {
+                        PointIndex toResetIndex = new PointIndex();
+                        toResetIndex.rowIndex = i;
+                        toResetIndex.columnIndex = j;
+                        toResetPoints.Add(toResetIndex);
+                    }
                 }
 
                 if (columnAllSame)
                 {
                     Debug.Log("第" + i + "列是一样的");
+                    winSign = pointSigns[0, i];
                     sucCount++;
+                    for (int j = 0; j < dimensionCount; j++)
+                    {
+                        PointIndex toResetIndex = new PointIndex();
+                        toResetIndex.rowIndex = j;
+                        toResetIndex.columnIndex = i;
+                        if (!toResetPoints.Contains(toResetIndex))
+                        {
+                            toResetPoints.Add(toResetIndex);
+                        }
+                    }
                 }
             }
 
@@ -111,7 +146,18 @@ namespace Game.flag
             if (allSame)
             {
                 Debug.Log("正对角是一样的");
+                winSign = pointSigns[0, 0];
                 sucCount++;
+                for (int j = 0; j < dimensionCount; j++)
+                {
+                    PointIndex toResetIndex = new PointIndex();
+                    toResetIndex.rowIndex = j;
+                    toResetIndex.columnIndex = j;
+                    if (!toResetPoints.Contains(toResetIndex))
+                    {
+                        toResetPoints.Add(toResetIndex);
+                    }
+                }
             }
 
             //反斜对角
@@ -133,10 +179,51 @@ namespace Game.flag
             if (allSame)
             {
                 Debug.Log("反对角是一样的");
+                winSign = pointSigns[0, dimensionCount - 1];
                 sucCount++;
+                for (int j = 0; j < dimensionCount; j++)
+                {
+                    PointIndex toResetIndex = new PointIndex();
+                    toResetIndex.rowIndex = j;
+                    toResetIndex.columnIndex = dimensionCount - 1 - j;
+                    if (!toResetPoints.Contains(toResetIndex))
+                    {
+                        toResetPoints.Add(toResetIndex);
+                    }
+                }
             }
 
             Debug.Log("一共有" + sucCount + "排一样的");
+            if (sucCount != 0)
+            {
+                Debug.Log("获胜的是 " + winSign);
+
+                MapInit.Instance.ResetPoints(toResetPoints);
+                FlagData.Instance.photonView.RPC("GotScore",
+                    RpcTarget.All, new object[] {winSign});
+            }
+        }
+
+        public class PointIndex
+        {
+            public int rowIndex;
+            public int columnIndex;
+
+            public override bool Equals(object obj)
+            {
+                if (!(obj is PointIndex))
+                {
+                    return false;
+                }
+
+                PointIndex other = (PointIndex) obj;
+                return rowIndex == other.rowIndex && columnIndex == other.columnIndex;
+            }
+
+            public override int GetHashCode()
+            {
+                return rowIndex * 137 + columnIndex * 13;
+            }
         }
     }
 }
