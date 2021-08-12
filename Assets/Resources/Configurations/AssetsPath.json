@@ -49,6 +49,11 @@
       "path": "Heroes/cat"
     },
     {
+      "name": "Skull",
+      "path": "Heroes/Skull"
+    },
+    
+    {
       "name": "avatar1",
       "path": "Avatar/avatar1"
     },

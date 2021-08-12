@@ -25,12 +25,12 @@ public class SimpleHeroController : MonoBehaviourPun
 
     private void Awake()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+       if (!photonView.IsMine)
+       {
+           return;
+       }
         cc = GetComponent<CharacterController>();
-        loading = transform.Find("Loading").GetComponent<Loading>();
+//        loading = transform.Find("Loading").GetComponent<Loading>();
         //状态机设置
         StateMachine heroStateMachine = new StateMachine("HeroState");
         State normalState = new NormalState("Normal",this);
@@ -58,38 +58,39 @@ public class SimpleHeroController : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+      if (!photonView.IsMine)
+      {
+          return;
+      }
+      Debug.Log("v="+velocity);
         cc.SimpleMove(velocity);
     }
 
     public void Skill1End()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+      if (!photonView.IsMine)
+      {
+          return;
+      }
         isSkilling1 = false;
     }
 
     public void Skill2End()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+      if (!photonView.IsMine)
+      {
+          return;
+      }
         isSkilling2 = false;
     }
 
     //占领的进度改变了
     public void OnOccupyProgressChange(float progress)
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+     //  if (!photonView.IsMine)
+     //  {
+     //      return;
+     //  }
         if (!loading.gameObject.activeSelf)
         {
             loading.gameObject.SetActive(true);
