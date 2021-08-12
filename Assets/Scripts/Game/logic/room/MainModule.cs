@@ -42,7 +42,7 @@ public class MainModule : UIModuleBase
    void setNickName()
    {
       //设置昵称
-      PhotonNetwork.LocalPlayer.NickName = playerName.Text.text;
+      //PhotonNetwork.LocalPlayer.NickName = playerName.Text.text;
       Debug.Log("我的昵称是:"+PhotonNetwork.LocalPlayer.NickName);
       
       //设置英雄

@@ -37,8 +37,10 @@ public class UIManager : SingleTonMonoAuto<UIManager>
         
     }
     
+    
     public void ShowModule(string name,Object data=null)
     {
+        EnsureCanvasExist();
         if (!_uiModuleBases.ContainsKey(name))
         {
             GameObject module = ObjectPool.Instance.SpawnObj(name, tranCanvas ,data);
@@ -58,6 +60,25 @@ public class UIManager : SingleTonMonoAuto<UIManager>
             }
 
             uiModuleStack.Push(moduleBase);
+        }
+    }
+
+    private void EnsureCanvasExist()
+    {
+        //转换场景后需要重新获取新场景的Canvas
+        //先找一下
+        if (tranCanvas == null)
+        {
+            var goCanvas = GameObject.Find("Canvas");
+            if (goCanvas != null)
+            {
+                tranCanvas = goCanvas.transform;
+            }
+        }
+        //找不到新建一个
+        if (tranCanvas == null)
+        {
+            tranCanvas = ObjectPool.Instance.SpawnObj("Canvas").transform;
         }
     }
 

@@ -1,0 +1,16 @@
+﻿{
+  "winScore": 3,
+  "unoccupiedPoint": "GreyPoint",
+  "Teams": [
+    {
+      "name": "蓝队",
+      "color": "#0000aa",
+      "pointName": "BluePoint"
+    },
+    {
+      "name": "红队",
+      "color": "#aa0000",
+      "pointName": "RedPoint"
+    }
+  ]
+}

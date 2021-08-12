@@ -1,47 +1,42 @@
+using System;
 using Frame.Utility;
 using Game.flag;
 using Photon.Pun;
 using UnityEngine;
-using Object = System.Object;
 
-public abstract class PointBase : MonoBehaviourPun,IPoint,PoolObject,IPunInstantiateMagicCallback
+public abstract class PointBase : MonoBehaviourPun,IPoint,IPunInstantiateMagicCallback
 {
     public abstract bool IsOccupied();
-    private int rowIndex;
-    private int columnIndex;
+    [NonSerialized]
+    public int rowIndex;
+    [NonSerialized]
+    public int columnIndex;
 
     public string GetOccupiedSign()
     {
         return gameObject.name;
     }
     
+    [PunRPC]
     public void ChangeOccupiedSign(string sign)
     {
-        ObjectPool.Instance.RecycleObj(gameObject);
-        Object[] data={transform.position,rowIndex,columnIndex};
-        ObjectPool.Instance.SpawnObj(sign, null, data);
+        ChangeTo(sign);
         PointJudge.Instance.Change(rowIndex,columnIndex,sign);
     }
 
-    public void OnSpawn(Object data)
+    public void Reset()
     {
-        //这里暂时没用了
-        /*Object[] datas = (Object[]) data;
-        transform.position = (Vector3)datas[0];
-        rowIndex = (int)datas[1];
-        columnIndex = (int)datas[2];*/
+        ChangeTo(FlagData.Instance.GetUnoccupiedSignName());
+        PointJudge.Instance.JustChange(rowIndex,columnIndex,FlagData.Instance.GetUnoccupiedSignName());
     }
 
-    public void OnRecycle()
+    private void ChangeTo(string sign)
     {
-    }
-
-    public void OnPause()
-    {
-    }
-
-    public void OnResume()
-    {
+        string path = ConfigurationManager.Instance.GetPathByName(sign);
+        GameObject point = PhotonNetwork.Instantiate(path,transform.position, Quaternion.identity, 0,
+            new object[] {rowIndex, columnIndex});
+        point.transform.parent = transform.parent;
+        PhotonNetwork.Destroy(gameObject);
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -50,6 +45,5 @@ public abstract class PointBase : MonoBehaviourPun,IPoint,PoolObject,IPunInstant
         object[] data = info.photonView.InstantiationData;
         rowIndex = (int)data[0];
         columnIndex = (int)data[1];
-        Debug.Log("point 初始化 row="+rowIndex+" column="+columnIndex);
     }
 }

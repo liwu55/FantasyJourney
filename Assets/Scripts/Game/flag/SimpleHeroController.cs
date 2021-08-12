@@ -1,59 +1,70 @@
 using System;
-using ExitGames.Client.Photon;
 using Frame.FSM;
 using Game.flag.State;
 using Photon.Pun;
 using UnityEngine;
 
-public class SimpleHeroController : MonoBehaviourPun
+public class SimpleHeroController : MonoBehaviourPunCallbacks
 {
-    [NonSerialized]
-    public Vector3 velocity;
-    [NonSerialized]
-    public bool isSkilling1 = false;
-    [NonSerialized]
-    public bool isSkilling2 = false;
-    [NonSerialized]
-    public bool occuping=false;
-    public float operationDistance = 3;
-    public string pointSign = "BluePoint";
+    [NonSerialized] public Vector3 velocity;
+    [NonSerialized] public bool isSkilling1 = false;
+    [NonSerialized] public bool isSkilling2 = false;
     private CharacterController cc;
-    //正在占领的据点
-    public PointBase occupingPoint;
-    //进度条
-    private Loading loading;
+    //状态机
+    protected StateMachine heroStateMachine;
+    protected NormalState normalState;
+    protected State skill1State;
+    protected State skill2State;
+    protected State overState;
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        InitPublic();
         if (!photonView.IsMine)
         {
             return;
         }
+
+        InitSelf();
+        BindCamera();
+    }
+
+    private void BindCamera()
+    {
+        Third.Instance.BindPlayer(transform);
+    }
+
+    private void InitSelf()
+    {
         cc = GetComponent<CharacterController>();
-        loading = transform.Find("Loading").GetComponent<Loading>();
         //状态机设置
-        StateMachine heroStateMachine = new StateMachine("HeroState");
-        State normalState = new NormalState("Normal",this);
-        State skill1State=new Skill1State("Skilling1",this);
-        State skill2State=new Skill2State("Skilling2",this);
-        State occupingState=new OccupingState("Occuping",this);
-        
+        heroStateMachine = new StateMachine("HeroState");
+        normalState = new NormalState("Normal", this);
+        skill1State = new Skill1State("Skilling1", this);
+        skill2State = new Skill2State("Skilling2", this);
+        overState = new OverState("Over");
+
         normalState.AddTransition("Skilling1", () => isSkilling1);
         normalState.AddTransition("Skilling2", () => isSkilling2);
-        normalState.AddTransition("Occuping", () => occuping);
-        
+        normalState.AddTransition("Over", () => FlagData.Instance.gameOver);
+
         skill1State.AddTransition("Normal", () => !isSkilling1);
-        
+
         skill2State.AddTransition("Normal", () => !isSkilling2);
-        
-        occupingState.AddTransition("Normal", () => !occuping);
-        
+
         heroStateMachine.AddState(normalState);
         heroStateMachine.AddState(skill1State);
         heroStateMachine.AddState(skill2State);
-        heroStateMachine.AddState(occupingState);
-        
+        heroStateMachine.AddState(overState);
+        //增加额外的状态
+        AddSelfState();
+
         heroStateMachine.EnterState();
+    }
+    
+    private void InitPublic()
+    {
+        
     }
 
     private void FixedUpdate()
@@ -62,6 +73,7 @@ public class SimpleHeroController : MonoBehaviourPun
         {
             return;
         }
+
         cc.SimpleMove(velocity);
     }
 
@@ -71,6 +83,7 @@ public class SimpleHeroController : MonoBehaviourPun
         {
             return;
         }
+
         isSkilling1 = false;
     }
 
@@ -80,26 +93,13 @@ public class SimpleHeroController : MonoBehaviourPun
         {
             return;
         }
+
         isSkilling2 = false;
     }
+   
 
-    //占领的进度改变了
-    public void OnOccupyProgressChange(float progress)
+    protected virtual void AddSelfState()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-        if (!loading.gameObject.activeSelf)
-        {
-            loading.gameObject.SetActive(true);
-        }
-        loading.ShowProgress(progress);
-        if (progress >= 1)
-        {
-            loading.gameObject.SetActive(false);
-            occuping = false;
-            occupingPoint.ChangeOccupiedSign(pointSign);
-        }
+        
     }
 }
