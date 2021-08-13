@@ -13,7 +13,7 @@ namespace Game
         private MySqlConnection _connection;
         private MySqlCommand _command;
         Dictionary<string, UserInfo> _dictionary = new Dictionary<string, UserInfo>();
-
+        private UserInfo _userCache;
         /// <summary>
         /// 保存UserInfo数据
         /// </summary>
@@ -34,7 +34,6 @@ namespace Game
             
             UpdateUserInfo(userId, username, password, money, honor, heroList);
         }
-
         /// <summary>
         /// Insert一个用户（此方法有bug，暂时不要调用）
         /// </summary>
@@ -68,7 +67,6 @@ namespace Game
             mySqlAccess = new MySqlAccess("10.9.72.192","3306","root","123456","dbcustomerinfo");
             _connection = mySqlAccess.mySqlConnection;
             _command = _connection.CreateCommand();
-
             SaveInDic();
         }
 
@@ -111,7 +109,6 @@ namespace Game
             }
             else //用户名存在
             {
-                //TODO sql防注入
                 //判断是否与密码匹配
                 UserInfo _user;
                 _dictionary.TryGetValue(name, out _user);
@@ -121,6 +118,7 @@ namespace Game
                     if (pwdIsSame)
                     {
                         Debug.Log("登陆成功");
+                        _userCache = _user;
                         return _user;
                     }
                     else
@@ -130,10 +128,17 @@ namespace Game
                     }
                 }
             }
-
             return null;
         }
-
+        
+        public UserInfo GetUserInfoByName(UserInfo _userInfo)
+        {
+            if (_dictionary.ContainsValue(_userInfo))
+            {
+                return _userInfo;
+            }
+            return null;
+        }
         /// <summary>
         /// 获取排行榜
         /// </summary>

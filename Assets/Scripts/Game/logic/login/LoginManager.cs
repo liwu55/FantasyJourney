@@ -22,14 +22,16 @@ namespace Game
             LoginResult result =new LoginResult();
             //查数据库
             UserInfo userInfo = _dataBaseManager.GetUserInfo(name, pwd);
+            
             //查到了
             bool check = userInfo!=null;
+            //且状态为未登录
             if(check){
                 result.suc = true;
                 result.userInfo = userInfo;
                 callBack(result);
             }else{
-                //没查到
+                //没查到 或者账号已登录
                 result.suc = false;
                 callBack(result);
             }

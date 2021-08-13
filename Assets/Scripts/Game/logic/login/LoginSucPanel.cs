@@ -1,6 +1,7 @@
 using System.ComponentModel.Design;
 using Frame.UI;
 using Game;
+using Game.bean;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -11,7 +12,6 @@ public class LoginSucPanel : UIModuleBase
 {
    private Button BtnCheck;
    private Text LoginMsg;
-   private string usernameStr;
    protected override void Awake()
    {
       base.Awake();
@@ -20,30 +20,21 @@ public class LoginSucPanel : UIModuleBase
       
       BtnCheck.onClick.AddListener(() =>
       {
-         UIManager.Instance.ShowModule("MainPanel");
+         UIEvent.ToMain();
       });
    }
 
    
    public void Init()
    {
-      LoginMsg.text = "亲爱的" + usernameStr + ",欢迎进入游戏！";
-      BtnCheck.onClick.AddListener(() =>
-      {
-         //进入游戏
-         
-      });
-      
-      
+      LoginMsg.text = "亲爱的" +  PhotonNetwork.NickName + ",欢迎进入游戏！";
    }
 
    public override void OnSpawn(Object obj)
    {
       base.OnSpawn(obj);
-      usernameStr = (string)obj;
       //设置photon昵称
-      PhotonNetwork.NickName = usernameStr;
-      Debug.Log("usernameStr="+usernameStr);
+      PhotonNetwork.NickName =  (string)obj;
       Init();
    }
 }

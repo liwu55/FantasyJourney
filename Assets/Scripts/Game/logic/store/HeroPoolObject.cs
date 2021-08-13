@@ -7,6 +7,7 @@ public class HeroPoolObject : MonoBehaviour,PoolObject
 
     public void OnSpawn(Object obj)
     {
+        
     }
 
     public void OnRecycle()

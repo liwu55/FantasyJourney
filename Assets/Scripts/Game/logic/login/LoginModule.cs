@@ -70,6 +70,10 @@ public class LoginModule : UIModuleBase
             }
             _system.SetSelectedGameObject(next.gameObject,new BaseEventData(_system));
         }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            UIEvent.LoginClick(inputName.text,inputPsw.text);
+        }
     }
 
  

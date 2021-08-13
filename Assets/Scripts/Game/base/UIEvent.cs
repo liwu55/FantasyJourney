@@ -14,6 +14,11 @@ namespace Game
         public static Action<String,String> LoginClick;
 
         /// <summary>
+        /// 登陆成功 ， 进入游戏按钮点击
+        /// </summary>
+        public static Action ToMain;
+
+        /// <summary>
         /// 仓库点击
         /// </summary>
         public static Action StoreClick;

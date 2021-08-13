@@ -32,7 +32,8 @@ public class RoomPanel : UIModuleBase
             //加载场景
             // PhotonNetwork.LoadLevel("Scene1");
             //PhotonNetwork.LoadLevel("Flag");
-            PhotonNetwork.LoadLevel("BattleForFlag");
+            //PhotonNetwork.LoadLevel("BattleForFlag");
+            PhotonNetwork.LoadLevel("DoOneFight");
             Debug.Log("游戏开始");
         });
 

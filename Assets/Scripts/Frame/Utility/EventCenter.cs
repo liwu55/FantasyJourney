@@ -6,11 +6,21 @@ namespace Frame.Utility
 {
     public enum EventType
     {
+        #region Room
         ShowEquip,
         PlayerEntered,
         PlayerLeft,
         UpdatePlayerReadyState,
-        JudgmentStartGame
+        JudgmentStartGame,
+        #endregion
+
+
+        #region DoOneFight
+        GetHurt
+            
+
+        #endregion
+        
     }
 
     public class EventCenter :  SingleTonMonoAuto<EventCenter>

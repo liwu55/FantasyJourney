@@ -9,8 +9,6 @@ using UnityEngine;
 public class MainModule : UIModuleBase
 {
    private ClientState previousState;
-   
-   
    private UIWidget lobbyButton;
    private UIWidget playerName;
 
@@ -18,7 +16,6 @@ public class MainModule : UIModuleBase
    {
       playerName = FW("PlayerName#");
       lobbyButton = FW("LobbyButton#");
-      
       lobbyButton.Button.onClick.AddListener(() =>
       {
          setNickName();

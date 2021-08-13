@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Frame.Constant;
 using Frame.Utility;
+using Photon.Pun;
 using UnityEngine;
 using Object = System.Object;
 
@@ -14,7 +15,7 @@ namespace Frame.UI
 
 
     [RequireComponent(typeof(CanvasGroup))]
-    public class UIModuleBase : MonoBehaviour,PoolObject
+    public class UIModuleBase : MonoBehaviourPun,PoolObject
     {
         private Dictionary<string, UIWidget> _uiWidgets;
         public ModuleShowType moduleShowType;

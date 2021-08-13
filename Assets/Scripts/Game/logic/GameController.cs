@@ -7,6 +7,7 @@ using Photon.Pun;
 //单例，待实现
 public class GameController: SingleTonObj<GameController>
 {
+    private MainPageInfo _mainPageInfoCache;
     private GameController(){}
     
     //具体的游戏逻辑控制，按功能分
@@ -46,6 +47,7 @@ public class GameController: SingleTonObj<GameController>
     private void BindUIEvent()
     {
         UIEvent.LoginClick += Login;
+        UIEvent.ToMain += ToMain;
         UIEvent.StoreClick += Store;
         UIEvent.SettingClick += Setting;
         UIEvent.MapClick += MapDetail;
@@ -53,6 +55,11 @@ public class GameController: SingleTonObj<GameController>
         UIEvent.QuickStartClick += QuickStart;
         UIEvent.HeroChange += HeroChange;
         UIEvent.GameStart += GameStart;
+    }
+
+    private void ToMain()
+    {
+        _uiController.ShowMain(_mainPageInfoCache);
     }
 
     private void GameStart(MapInfo mapInfo)
@@ -106,10 +113,11 @@ public class GameController: SingleTonObj<GameController>
         {
             if (loginResult.suc)
             {
-                MainPageInfo mainPageInfo = new MainPageInfo();
-                mainPageInfo.userInfo = loginResult.userInfo;
-                mainPageInfo.maps = _mapManager.GetAllMap();
-                _uiController.ShowLoginSuc(mainPageInfo);
+                _mainPageInfoCache = new MainPageInfo();
+                
+                _mainPageInfoCache.userInfo = loginResult.userInfo;
+                _mainPageInfoCache.maps = _mapManager.GetAllMap();
+                _uiController.ShowLoginSuc(_mainPageInfoCache.userInfo.username);
             }
             else
             {

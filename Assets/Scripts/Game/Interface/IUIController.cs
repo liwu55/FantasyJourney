@@ -12,8 +12,9 @@ namespace Game.Interface
         /// <summary>
         /// 主页面
         /// </summary>
-        void ShowLoginSuc(MainPageInfo mainPageInfo);
+        void ShowLoginSuc(string name);
 
+        void ShowMain(MainPageInfo mainPageInfo);
         /// <summary>
         /// 仓库
         /// </summary>

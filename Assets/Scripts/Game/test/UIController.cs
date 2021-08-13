@@ -11,12 +11,17 @@ namespace Game
             UIManager.Instance.ShowModule("Login");
         }
 
-        public void ShowLoginSuc(MainPageInfo mainPageInfo)
+        public void ShowLoginSuc(string name)
         {
-            UIManager.Instance.ShowModule("LoginSuc", mainPageInfo.userInfo.username);
+            UIManager.Instance.ShowModule("LoginSuc", name);
             Debug.Log("显示主页面");
         }
 
+        public void ShowMain(MainPageInfo mainPageInfo)
+        {
+            UIManager.Instance.ShowModule("MainPanel", mainPageInfo);
+        }
+        
         public void ShowStore()
         {
             UIManager.Instance.ShowModule("Store");
