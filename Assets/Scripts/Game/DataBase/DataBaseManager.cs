@@ -83,11 +83,12 @@ namespace Game
                 object money = _reader.GetValue(3);
                 object honor = _reader.GetValue(4);
                 object ownedHero = _reader.GetValue(5);
+                object isLogined = _reader.GetValue(6);
                 if (!_dictionary.ContainsKey((string) username))
                 {
                     _dictionary.Add((string) username,
                         new UserInfo(Convert.ToInt32(id), (string) username, (string) password, Convert.ToInt32(money),
-                            Convert.ToInt32(honor), (string) ownedHero));
+                            Convert.ToInt32(honor), (string) ownedHero ,Convert.ToInt32(isLogined)));
                 }
             }
             _reader.Close();
@@ -112,12 +113,15 @@ namespace Game
                 //判断是否与密码匹配
                 UserInfo _user;
                 _dictionary.TryGetValue(name, out _user);
-                if (_user != null)
+                if (_user != null && !CheckIsLogined(name))
                 {
                     bool pwdIsSame = _user.password == pwd ? true : false;
                     if (pwdIsSame)
                     {
                         Debug.Log("登陆成功");
+                        _user.isLogined = 1;
+                        _command.CommandText = "UPDATE customerinfo SET islogined = 1 WHERE username = " +"'" + name + "'";
+                        _command.ExecuteNonQuery();
                         _userCache = _user;
                         return _user;
                     }
@@ -130,15 +134,16 @@ namespace Game
             }
             return null;
         }
-        
-        public UserInfo GetUserInfoByName(UserInfo _userInfo)
+
+        private bool CheckIsLogined(string username)
         {
-            if (_dictionary.ContainsValue(_userInfo))
-            {
-                return _userInfo;
-            }
-            return null;
+            _command.CommandText = "SELECT islogined from customerinfo WHERE username =" + "'" + username + "'";
+            object obj = _command.ExecuteScalar();
+            bool isLogined = Convert.ToInt32(obj) == 1 ? true : false;
+            return isLogined;
         }
+        
+      
         /// <summary>
         /// 获取排行榜
         /// </summary>
@@ -170,6 +175,9 @@ namespace Game
             Debug.Log("关闭数据库连接");
             if (mySqlAccess.mySqlConnection!=null)
             {
+                _userCache.isLogined = 0; 
+                _command.CommandText = "UPDATE customerinfo SET islogined = 0 WHERE username = " +"'" + _userCache.username + "'";
+                _command.ExecuteNonQuery();
                 mySqlAccess.mySqlConnection.Close();
             }
         }

@@ -15,9 +15,10 @@
         public int honor;
         //已经拥有的英雄
         public string ownedHero;
+        public int isLogined;
       
 
-        public UserInfo(int id, string username, string password, int money, int honor, string ownedHero)
+        public UserInfo(int id, string username, string password, int money, int honor, string ownedHero,int isLogined)
         {
             this.id = id;
             this.username = username;
@@ -25,6 +26,7 @@
             this.money = money;
             this.honor = honor;
             this.ownedHero = ownedHero;
+            this.isLogined = isLogined;
         }
     }
 }

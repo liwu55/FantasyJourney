@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DoOneFight.unity
     guid: 0657cc1a4b707484b8aabd26d12297de
   - enabled: 0
