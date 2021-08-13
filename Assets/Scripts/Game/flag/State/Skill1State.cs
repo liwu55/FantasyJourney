@@ -3,15 +3,11 @@ using UnityEngine;
 
 namespace Game.flag.State
 {
-    public class Skill1State:Frame.FSM.State
+    public class Skill1State:BaseState
     {
-        private SimpleHeroController simpleHeroController;
-        private Animator animator;
         public Skill1State(string stateName, SimpleHeroController simpleHeroController) 
-            : base(stateName)
+            : base(stateName,simpleHeroController)
         {
-            this.simpleHeroController = simpleHeroController;
-            animator = simpleHeroController.GetComponentInChildren<Animator>();
             OnStateEnter += OnEnter;
         }
 

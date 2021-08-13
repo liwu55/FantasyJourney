@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.flag.State
 {
-    public class NormalState : Frame.FSM.State
+    public class NormalState : BaseState
     {
         private Animator animator;
         private CharacterController cc;
@@ -11,15 +11,13 @@ namespace Game.flag.State
         private Transform cameraTrans;
         private float gravity = 29.7f;
         private float y = 0;
-        private SimpleHeroController simpleHeroController;
         
         public Func<bool> OnMouseLeftClick;
         public Func<bool> OnMouseRightClick;
 
         public NormalState(string stateName, SimpleHeroController simpleHeroController)
-            : base(stateName)
+            : base(stateName,simpleHeroController)
         {
-            this.simpleHeroController = simpleHeroController;
             OnStateUpdate += OnUpdate;
             OnStateExit += OnExit;
             OnStateEnter += OnEnter;

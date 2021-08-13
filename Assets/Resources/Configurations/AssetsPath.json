@@ -137,6 +137,10 @@
     {
       "name": "FlagOver",
       "path": "UI/FlagOverModule"
+    },
+    {
+      "name": "NiuNiuHit",
+      "path": "Effects/CartoonyPunchHeavy"
     }
   ]  
 }

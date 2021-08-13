@@ -4,17 +4,15 @@ using UnityEngine;
 
 namespace Game.flag.State
 {
-    public class OccupingState:Frame.FSM.State
+    public class OccupingState:BaseState
     {
-        private SimpleHeroController simpleHeroController;
-        private Animator animator;
         private float enterTime;
         //TODO 占领需要的时间
-        private float occupyNeedTime = 2;
-        public OccupingState(string stateName, SimpleHeroController simpleHeroController) : base(stateName)
+        private float occupyNeedTime = 5;
+        private FlagHeroController heroController;
+        public OccupingState(string stateName, FlagHeroController heroController) : base(stateName,heroController)
         {
-            this.simpleHeroController = simpleHeroController;
-            animator = simpleHeroController.GetComponentInChildren<Animator>();
+            this.heroController = heroController;
             OnStateEnter += OnEnter;
             OnStateUpdate += OnUpdate;
             OnStateExit += OnExit;
@@ -27,6 +25,10 @@ namespace Game.flag.State
 
         private void OnUpdate(Frame.FSM.State obj)
         {
+            if (!heroController.occuping)
+            {
+                return;
+            }
             float duringTime = Time.time - enterTime;
             float progress = duringTime / occupyNeedTime;
             simpleHeroController.photonView.RPC("OnOccupyProgressChange",RpcTarget.All,new object[]{progress});

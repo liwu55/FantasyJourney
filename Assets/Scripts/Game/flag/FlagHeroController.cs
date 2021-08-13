@@ -1,5 +1,6 @@
 ﻿using System;
 using ExitGames.Client.Photon;
+using Frame.Utility;
 using Game.flag.State;
 using Photon.Pun;
 using Photon.Realtime;
@@ -19,10 +20,12 @@ namespace Game.flag
 
         //进度条
         private HeroUI heroUI;
-    
+
         //牛牛右键冲刺
         private float rushSpeed = 10;
         private float rotateSpeed = 180;
+
+        private Vector3 hitBackVelocity;
 
         protected override void Awake()
         {
@@ -33,6 +36,20 @@ namespace Game.flag
         private void Start()
         {
             heroUI.SetHeroName(photonView.Owner.NickName);
+        }
+
+        protected override void FixedUpdate()
+        {
+            if (!photonView.IsMine)
+            {
+                return;
+            }
+            base.FixedUpdate();
+            //被击退
+            if(hitBackVelocity.magnitude>0.1f){
+                cc.SimpleMove(hitBackVelocity);
+                hitBackVelocity = Vector3.Lerp(hitBackVelocity, Vector3.zero, Time.deltaTime * 2);
+            }
         }
 
         protected override void AddSelfState()
@@ -48,7 +65,8 @@ namespace Game.flag
 
         public string GetPointSign()
         {
-            return new PhotonPlayerWrap(photonView.Owner).GetTeam();
+            string teamName = new PhotonPlayerWrap(photonView.Owner).GetTeam();
+            return FlagData.Instance.GetPointSign(teamName);
         }
 
         //占领的进度改变了
@@ -68,8 +86,7 @@ namespace Game.flag
                 //房主同步一下
                 if (PhotonNetwork.IsMasterClient)
                 {
-                    string teamName = GetPointSign();
-                    string pointSign = FlagData.Instance.GetPointSign(teamName);
+                    string pointSign = GetPointSign();
                     if (pointSign != null)
                     {
                         occupingPoint.photonView.RPC("ChangeOccupiedSign",
@@ -161,12 +178,55 @@ namespace Game.flag
             occupingPoint = null;
             return false;
         }
-        
+
         private void OnSkill2Update(Frame.FSM.State state)
         {
             velocity = transform.forward * rushSpeed;
             float h = Input.GetAxis("Horizontal");
             transform.Rotate(Vector3.up * h * rotateSpeed * Time.deltaTime);
+        }
+
+        [PunRPC]
+        public override void BeAttack(Vector3 point,Vector3 dir, float damage,float hitBackFactor = 1)
+        {
+            base.BeAttack(point, dir,damage,hitBackFactor);
+            ShowHitEffect(point,dir);
+            SyncLifeShow();
+            //被攻击打断插旗动作
+            occuping = false;
+            heroUI.HideLoading();
+            
+            //击退，根据攻击力产生击退力
+            Vector3 hitBackDir = -dir;
+            hitBackDir.y = 0;
+            hitBackDir.Normalize();
+            hitBackVelocity += hitBackDir * damage * 0.1f * hitBackFactor;
+        }
+
+        private void ShowHitEffect(Vector3 point,Vector3 dir)
+        {
+            GameObject go = ObjectPool.Instance.SpawnObj("NiuNiuHit");
+            go.transform.position = point;
+            go.transform.forward = dir;
+            Destroy(go,2);
+        }
+
+        private void SyncLifeShow()
+        {
+            float lifePercent = life / 100f;
+            heroUI.SetLife(lifePercent);
+        }
+
+        public override void ResetBlood()
+        {
+            photonView.RPC("ResetBloodRPC", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void ResetBloodRPC()
+        {
+            life = 100;
+            SyncLifeShow();
         }
     }
 }
