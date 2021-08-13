@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.Design;
 using Frame.UI;
 using Game;
@@ -27,7 +28,7 @@ public class LoginSucPanel : UIModuleBase
    
    public void Init()
    {
-      LoginMsg.text = "亲爱的" +  PhotonNetwork.NickName + ",欢迎进入游戏！";
+      LoginMsg.text = "亲爱的"+"\n" +  PhotonNetwork.NickName +"\n"+ "欢迎进入游戏！";
    }
 
    public override void OnSpawn(Object obj)
@@ -36,5 +37,13 @@ public class LoginSucPanel : UIModuleBase
       //设置photon昵称
       PhotonNetwork.NickName =  (string)obj;
       Init();
+   }
+
+   private void Update()
+   {
+      if (Input.GetKeyDown(KeyCode.Return))
+      {
+         UIEvent.ToMain();
+      }
    }
 }

@@ -33,7 +33,6 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks
         InitSelf();
         BindCamera();
     }
-
     private void BindCamera()
     {
         Third.Instance.BindPlayer(transform);

@@ -31,9 +31,10 @@ public class LoginModule : UIModuleBase
             Debug.Log("点击了登录按钮 name=" + inputName.text + " psw=" + inputPsw.text);
             //调用UIEvent的事件
             UIEvent.LoginClick(inputName.text, inputPsw.text);
-        });
+        });    
     }
 
+    
     public void PlayMentionAnime()
     {
 
@@ -82,4 +83,8 @@ public class LoginModule : UIModuleBase
             UIEvent.LoginClick(inputName.text, inputPsw.text);
         }
     }
+    
+    
+    
+    
 }

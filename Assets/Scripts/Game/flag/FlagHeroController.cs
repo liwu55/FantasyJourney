@@ -47,7 +47,7 @@ namespace Game.flag
             {
                 return;
             }
-            base.FixedUpdate();
+            base. FixedUpdate();
             //被击退
             if(hitBackVelocity.magnitude>0.1f){
                 cc.SimpleMove(hitBackVelocity);

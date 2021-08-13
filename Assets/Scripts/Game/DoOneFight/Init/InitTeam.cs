@@ -14,7 +14,7 @@ public class InitTeam : MonoBehaviour
       {
          Player[] Players = PhotonNetwork.PlayerList;
          new CustomPlayerTeam(Players[0]).SetTeam("Blue");
-         new CustomPlayerTeam(Players[1]).SetTeam("Red");
+//         new CustomPlayerTeam(Players[1]).SetTeam("Red");
       }
    }
 }

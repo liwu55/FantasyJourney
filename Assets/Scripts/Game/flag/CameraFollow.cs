@@ -1,18 +1,20 @@
 using System;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : SingleTonMono<CameraFollow>
 {
     public GameObject target;
     private Vector3 targetToCamera;
     private void Awake()
     {
+        base.Awake();
         if (target == null)
         {
             return;
         }
         targetToCamera = transform.position - target.transform.position;
     }
+    
 
     private void Update()
     {

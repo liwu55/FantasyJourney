@@ -13,6 +13,7 @@ public class ChatInGame :UIModuleBase
    private List<string> ChatContent = new List<string>();
    private string chatMsg;
    private bool isOpenChatView;
+   
    protected override void Awake()
    {
       base.Awake();
@@ -30,8 +31,7 @@ public class ChatInGame :UIModuleBase
          photonView.RPC("Chat", RpcTarget.All, chatMsg);
          chatMsg = "";
          ChatInputField.text = "";
-         //自动进入激活状态
-         ChatInputField.ActivateInputField();
+        
       }
    }
 
@@ -83,13 +83,16 @@ public class ChatInGame :UIModuleBase
          {
             isOpenChatView = true;
             ChatInputField.transform.GetComponent<CanvasGroup>().alpha = 1;
+            ChatInputField.interactable = true;
+            //自动进入激活状态
+            ChatInputField.ActivateInputField();
          }
          else
          {
             isOpenChatView = false;
+            ChatInputField.interactable = false;
             //发送信息
             SendChatMsg();
-            
             ChatInputField.transform.GetComponent<CanvasGroup>().alpha = 0;
             
          }

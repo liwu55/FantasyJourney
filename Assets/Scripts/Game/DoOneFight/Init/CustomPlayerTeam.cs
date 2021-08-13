@@ -22,7 +22,7 @@ namespace Game.DoOneFight.Init
         {
             Hashtable teamProperty = new Hashtable();
             teamProperty[EProperty.team] = teamName;
-            _player.SetCustomProperties(teamProperty);
+            //_player.SetCustomProperties(teamProperty);
         }
         public string GetTeamName()
         {

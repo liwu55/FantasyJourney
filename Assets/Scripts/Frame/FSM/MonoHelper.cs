@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Frame.FSM
 {
-    public class MonoHelper : MonoBehaviour
+    public class MonoHelper : MonoBehaviourPun
     {
         /// <summary>
         /// 静态单例脚本

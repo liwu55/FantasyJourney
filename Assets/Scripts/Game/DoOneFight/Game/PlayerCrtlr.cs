@@ -30,9 +30,12 @@ namespace Game.DoOneFight.State
             _aniCtrler = gameObject.GetComponent<CharacterAniCtrler>();
             _aniCtrler.Init(_animator);*/
             //非战斗总状态机
+            if (!photonView.IsMine)
+                return;
             attackpoint = transform.Find("AttackPoint").position;
             _aniCtrler = gameObject.GetComponent<CharacterAniCtrler>();
             cc = transform.GetComponent<CharacterController>();
+            BindCamera();
             StateMachine playerStateMachine = new StateMachine("playerStateMachine");
             StateMachine attackStateMachine = new StateMachine("attackStateMachine");
             NormalState normalState = new NormalState("Normal", this);
@@ -71,6 +74,7 @@ namespace Game.DoOneFight.State
 
         void Start()
         {
+          
             InputMgr.Instance.InitInputDic();
         }
 
@@ -91,19 +95,17 @@ namespace Game.DoOneFight.State
 
         void FixedUpdate()
         {
-            if (photonView.IsMine)
+            if (!photonView.IsMine)
+                return;
+            if (cc.enabled)
             {
-                if (cc.enabled)
+                cc.SimpleMove(dir * speed);
+
+                if (!IsGrounded())
                 {
-                    cc.SimpleMove(dir * speed);
-
-                    if (!IsGrounded())
-                    {
-                        dir.y -= gravity * Time.deltaTime;
-                        isOnSkill_01 = false;
-                    }
+                    dir.y -= gravity * Time.deltaTime;
+                    isOnSkill_01 = false;
                 }
-
                 //Move();
                 //Action();
             }
@@ -148,11 +150,15 @@ namespace Game.DoOneFight.State
                 //播放动画
                 //_aniCtrler.PlayAnimation((int)CharacterAniId.NormalAttack);
             }
-
             //跳跃
         }
 
-
+        private void BindCamera()
+        {
+            print("CameraFollowTPS.Instance = "+CameraFollowTPS.Instance);
+            CameraFollowTPS.Instance.BindPlayer(transform);
+        }
+        
         #region 动画事件 取反bool值
 
         private void NormalAtkEnd()
@@ -200,6 +206,7 @@ namespace Game.DoOneFight.State
                     if (target != null)
                     {
                         target.TakeDamage(normalDamage);
+                        print("hp= "+(target as PlayerCrtlr).currentHp);
                     }
                 }
             }
@@ -212,7 +219,7 @@ namespace Game.DoOneFight.State
 
         public void TakeDamage(float damage)
         {
-            print(name+"受到了"+damage+"伤害 ，还剩 "+ currentHp+" 生命值");
+            print(name + "受到了" + damage + "伤害 ，还剩 " + currentHp + " 生命值");
             isHurt = true;
             MinusHp(damage);
         }
