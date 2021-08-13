@@ -1,3 +1,4 @@
+using System.Collections;
 using Frame.Utility;
 using Photon.Pun;
 using UnityEngine;
@@ -15,6 +16,16 @@ public class BFF_GameController : MonoBehaviour
         Vector3 p=new Vector3(0,0,z);
         PhotonNetwork.Instantiate(heroPath, p, Quaternion.identity);
     }
+    
+    
+    //每种物品有自己的点
+    //每隔一分钟刷新一次
+    //物品最多存在50s
+    //或许物品的点 然后随机生成
+    
+    
+    
+    
 
    
 }

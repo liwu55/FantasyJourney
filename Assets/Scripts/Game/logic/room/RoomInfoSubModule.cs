@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon.StructWrapping;
@@ -5,6 +6,7 @@ using Frame.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomInfoSubModule : UIModuleBase
 {
@@ -17,7 +19,7 @@ public class RoomInfoSubModule : UIModuleBase
    private UIWidget joinBtn;
 
    private object realPassword;
-
+   
    public void RoomInit(RoomInfo info)
    {
       //接受房间信息
@@ -32,11 +34,15 @@ public class RoomInfoSubModule : UIModuleBase
          
          joinBtn.Button.onClick.AddListener(() =>
          {
-            if (realPassword == null ||
-                passwordInput.InputField.text == realPassword.ToString())
+            
+            if (Equals("加入",FW("SureButtonText#").Text.text))
             {
-               //加入房间
-               PhotonNetwork.JoinRoom(info.Name);
+               if (realPassword == null ||
+                   passwordInput.InputField.text == realPassword.ToString())
+               {
+                  //加入房间
+                  PhotonNetwork.JoinRoom(info.Name);
+               }
             }
          });
       }
@@ -52,6 +58,7 @@ public class RoomInfoSubModule : UIModuleBase
          pwdobj.gameObject.SetActive(false);
       }
    }
+   
 
    public void UpdateRoomInfo(RoomInfo info)
    {
@@ -59,6 +66,16 @@ public class RoomInfoSubModule : UIModuleBase
       currentRoomInfo = info;
       //更新人数
       numText.Text.text = info.PlayerCount + "/" + info.MaxPlayers;
+      if (info.IsOpen)
+      {
+         FW("SureButtonText#").Text.text = "加入";
+      }
+      else
+      {
+         FW("SureButtonText#").Text.text = "游戏中";
+      }
+
+     
    }
 
    public void Dispose()

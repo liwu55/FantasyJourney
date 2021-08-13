@@ -31,7 +31,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks
             return;
         }
         InitSelf();
-        BindCamera();
+       // BindCamera();
     }
 
     private void BindCamera()
@@ -52,8 +52,12 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks
 
         normalState.AddTransition("Skilling1", () => isSkilling1);
         normalState.AddTransition("Skilling2", () => isSkilling2);
+
         normalState.AddTransition("Over", () => FlagData.Instance.gameOver);
         normalState.AddTransition("Dizzy", () => life<=0);
+
+       // normalState.AddTransition("Over", () => FlagData.Instance.gameOver);
+
 
         skill1State.AddTransition("Normal", () => !isSkilling1);
         skill1State.AddTransition("Dizzy", () => life<=0);

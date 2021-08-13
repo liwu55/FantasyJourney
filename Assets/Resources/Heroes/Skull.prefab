@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7758214442848595439
 Transform:
   m_ObjectHideFlags: 0
@@ -1528,9 +1528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9475864eb5a647c488f548598f85c737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operationDistance: 3
-  pointSign: BluePoint
-  occupingPoint: {fileID: 0}
 --- !u!114 &249285281472847931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,6 +1839,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpinningShadow
       objectReference: {fileID: 0}
+    - target: {fileID: 198682, guid: f0ae9903b00e5314c809306f337baea5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 498942, guid: f0ae9903b00e5314c809306f337baea5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1904,9 +1905,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: AuraRingShadow
       objectReference: {fileID: 0}
+    - target: {fileID: 171134, guid: 6faa3eed7e2c129489adbf91a75040ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 428082, guid: 6faa3eed7e2c129489adbf91a75040ee, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 428082, guid: 6faa3eed7e2c129489adbf91a75040ee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 428082, guid: 6faa3eed7e2c129489adbf91a75040ee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 428082, guid: 6faa3eed7e2c129489adbf91a75040ee, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 428082, guid: 6faa3eed7e2c129489adbf91a75040ee, type: 3}
       propertyPath: m_LocalPosition.x

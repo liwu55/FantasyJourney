@@ -23,6 +23,7 @@ public class RoomPanel : UIModuleBase
 
     protected override void Awake()
     {
+        
         base.Awake();
         cachePlayers = new Dictionary<int, GameObject>();
         playerListParent = FW("PlayersList#");
@@ -35,6 +36,11 @@ public class RoomPanel : UIModuleBase
             //PhotonNetwork.LoadLevel("BattleForFlag");
             PhotonNetwork.LoadLevel("DoOneFight");
             Debug.Log("游戏开始");
+
+            //FW("SureButtonText#").Text.text = "准备中";
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+
+
         });
 
         backButton = FW("BackButton#");
@@ -50,7 +56,7 @@ public class RoomPanel : UIModuleBase
             //cachePlayers[PhotonNetwork.LocalPlayer.ActorNumber].transform.Find("ReadySign#").gameObject.SetActive(true);
             _playerInfoModule = cachePlayers[PhotonNetwork.LocalPlayer.ActorNumber].GetComponent<PlayerInfoModule>();
             _playerInfoModule.OnChangeReady();
-           
+            
         });
 
         roomName = FW("RoomName#");
