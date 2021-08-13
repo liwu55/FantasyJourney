@@ -35,15 +35,15 @@ public class LoginModule : UIModuleBase
 
     public void PlayMentionAnime()
     {
-      Tweener _tweener = txtMention.DOFade(0,2);
+      Tweener _tweener = txtMention.DOFade(1,0.6f);
       _tweener.SetDelay(0);
       _tweener.SetEase(Ease.Linear);
       _tweener.SetAutoKill(true);
       _tweener.SetLoops(0);
-      Tweener tweener = txtMention.DOFade(0, 1.5f);
+      /*Tweener tweener = txtMention.DOFade(0, 1.5f);
       tweener.SetEase(Ease.Linear);
       tweener.SetLoops(0);
-      tweener.SetDelay(2.1f);
+      tweener.SetDelay(2.1f);*/
     }
     /*public string GetUsernameStr()
     {

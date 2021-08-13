@@ -2,20 +2,20 @@
   "heros": [
     {
       "id": 0,
-      "name": "燕双鹰",
-      "des": "你的枪里没有子弹",
-      "model": "NotSetHero1",
+      "name": "小骷髅",
+      "des": "骷髅兵",
+      "model": "Skull",
       "avatar": "avatar1",
       "skills": [
         {
           "icon":  "skills_0",
-          "name":"技能1" ,
-          "des":"技能1的描述"
+          "name":"二连砍" ,
+          "des":"大力连砍两刀"
         },
         {
           "icon":  "skills_1",
-          "name":"技能2" ,
-          "des":"技能2的描述"
+          "name":"致命打击" ,
+          "des":"先砍断你的腿，再敲爆你的头"
         }
       ],
       "price" : 3998

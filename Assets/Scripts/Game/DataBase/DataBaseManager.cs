@@ -11,7 +11,7 @@ namespace Game
         private MySqlAccess mySqlAccess;
         private string _connectionStr;
         private MySqlConnection _connection;
-        private MySqlCommand _command;
+        private MySqlCommand  _command;
         Dictionary<string, UserInfo> _dictionary = new Dictionary<string, UserInfo>();
         private UserInfo _userCache;
         /// <summary>
@@ -175,9 +175,11 @@ namespace Game
             Debug.Log("关闭数据库连接");
             if (mySqlAccess.mySqlConnection!=null)
             {
-                _userCache.isLogined = 0; 
-                _command.CommandText = "UPDATE customerinfo SET islogined = 0 WHERE username = " +"'" + _userCache.username + "'";
-                _command.ExecuteNonQuery();
+                if(_userCache!=null){
+                    _userCache.isLogined = 0; 
+                    _command.CommandText = "UPDATE customerinfo SET islogined = 0 WHERE username = " +"'" + _userCache.username + "'";
+                    _command.ExecuteNonQuery();
+                }
                 mySqlAccess.mySqlConnection.Close();
             }
         }

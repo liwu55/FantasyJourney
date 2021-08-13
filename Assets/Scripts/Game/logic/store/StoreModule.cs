@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Frame.UI;
 using Frame.Utility;
@@ -51,11 +52,11 @@ public class StoreModule : UIModuleBase
     {
         skill1.Button.onClick.AddListener(() =>
         {
-            checkingHero.animator.SetTrigger("skill1");
+            ShowSkillAction("Skill1");
         });
         skill2.Button.onClick.AddListener(() =>
         {
-            checkingHero.animator.SetTrigger("skill2");
+            ShowSkillAction("Skill2");
         });
         skill1.GetComponent<Skill>().OnEnter += () =>
         {
@@ -107,6 +108,18 @@ public class StoreModule : UIModuleBase
                 //TODO 替换英雄
             }
         });
+    }
+
+    private void ShowSkillAction(string skillName)
+    {
+        StartCoroutine(SetBoolDelayResume(skillName, 0.5f));
+    }
+
+    IEnumerator SetBoolDelayResume(string name,float time)
+    {
+        checkingHero.animator.SetBool(name,true);
+        yield return new WaitForSeconds(time);
+        checkingHero.animator.SetBool(name,false);
     }
 
     private void HideSkillDes()

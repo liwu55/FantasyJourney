@@ -19,7 +19,7 @@ namespace Game.flag.State
         private void OnExit(Frame.FSM.State obj)
         {
             animator.SetBool("Dizzy",false);
-            simpleHeroController.ResetBlood();
+            simpleHeroController.ResetState();
         }
 
         private void OnEnter(Frame.FSM.State obj)

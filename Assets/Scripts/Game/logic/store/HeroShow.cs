@@ -14,6 +14,8 @@ public class HeroShow : SingleTonMono<HeroShow>
     {
         RecycleAll();
         GameObject goHero = ObjectPool.Instance.SpawnObj(hero, heroesTrans);
+        //旋转237度
+        goHero.transform.rotation=Quaternion.Euler(0,237,0);
         Animator animator = goHero.GetComponent<Animator>();
         if (animator == null)
         {

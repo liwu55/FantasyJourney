@@ -141,6 +141,10 @@
     {
       "name": "NiuNiuHit",
       "path": "Effects/CartoonyPunchHeavy"
+    },
+    {
+      "name": "NiuNiuRun",
+      "path": "Effects/DustDirtyPoof"
     }
   ]  
 }

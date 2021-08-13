@@ -115,7 +115,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public virtual void BeAttack(Vector3 point,Vector3 dir, float damage,float hitBackFactor = 1)
+    public virtual void BeAttack(Vector3 point,Vector3 dir, string effectName,float damage,float hitBackFactor = 1)
     {
         life -= damage;
         if (life < 0)
@@ -131,8 +131,9 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks
         
     }
 
-    public virtual void ResetBlood()
+    public virtual void ResetState()
     {
-        
+        isSkilling1 = false;
+        isSkilling2 = false;
     }
 }

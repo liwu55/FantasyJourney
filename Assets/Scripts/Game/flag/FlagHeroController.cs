@@ -21,9 +21,6 @@ namespace Game.flag
         //进度条
         private HeroUI heroUI;
 
-        //牛牛右键冲刺
-        private float rushSpeed = 10;
-        private float rotateSpeed = 180;
 
         private Vector3 hitBackVelocity;
 
@@ -35,6 +32,12 @@ namespace Game.flag
 
         private void Start()
         {
+            //不是网络情况下就直接返回
+            if (photonView.Owner == null)
+            {
+                return;
+            }
+            heroUI.gameObject.SetActive(true);
             heroUI.SetHeroName(photonView.Owner.NickName);
         }
 
@@ -48,7 +51,7 @@ namespace Game.flag
             //被击退
             if(hitBackVelocity.magnitude>0.1f){
                 cc.SimpleMove(hitBackVelocity);
-                hitBackVelocity = Vector3.Lerp(hitBackVelocity, Vector3.zero, Time.deltaTime * 2);
+                hitBackVelocity = Vector3.Lerp(hitBackVelocity, Vector3.zero, Time.deltaTime * 6);
             }
         }
 
@@ -60,7 +63,7 @@ namespace Game.flag
             normalState.AddTransition("Occuping", () => occuping);
 
             normalState.OnMouseLeftClick += CheckClickPoint;
-            skill2State.OnStateUpdate += OnSkill2Update;
+            
         }
 
         public string GetPointSign()
@@ -179,18 +182,11 @@ namespace Game.flag
             return false;
         }
 
-        private void OnSkill2Update(Frame.FSM.State state)
-        {
-            velocity = transform.forward * rushSpeed;
-            float h = Input.GetAxis("Horizontal");
-            transform.Rotate(Vector3.up * h * rotateSpeed * Time.deltaTime);
-        }
-
         [PunRPC]
-        public override void BeAttack(Vector3 point,Vector3 dir, float damage,float hitBackFactor = 1)
+        public override void BeAttack(Vector3 point,Vector3 dir,string effectName, float damage,float hitBackFactor = 1)
         {
-            base.BeAttack(point, dir,damage,hitBackFactor);
-            ShowHitEffect(point,dir);
+            base.BeAttack(point, dir,effectName,damage,hitBackFactor);
+            ShowHitEffect(effectName,point,dir);
             SyncLifeShow();
             //被攻击打断插旗动作
             occuping = false;
@@ -200,12 +196,12 @@ namespace Game.flag
             Vector3 hitBackDir = -dir;
             hitBackDir.y = 0;
             hitBackDir.Normalize();
-            hitBackVelocity += hitBackDir * damage * 0.1f * hitBackFactor;
+            hitBackVelocity += hitBackDir * damage * 0.3f * hitBackFactor;
         }
 
-        private void ShowHitEffect(Vector3 point,Vector3 dir)
+        private void ShowHitEffect(string effectName,Vector3 point,Vector3 dir)
         {
-            GameObject go = ObjectPool.Instance.SpawnObj("NiuNiuHit");
+            GameObject go = ObjectPool.Instance.SpawnObj(effectName);
             go.transform.position = point;
             go.transform.forward = dir;
             Destroy(go,2);
@@ -217,13 +213,14 @@ namespace Game.flag
             heroUI.SetLife(lifePercent);
         }
 
-        public override void ResetBlood()
+        public override void ResetState()
         {
-            photonView.RPC("ResetBloodRPC", RpcTarget.All);
+            base.ResetState();
+            photonView.RPC("ResetRPC", RpcTarget.All);
         }
 
         [PunRPC]
-        public void ResetBloodRPC()
+        public void ResetRPC()
         {
             life = 100;
             SyncLifeShow();
