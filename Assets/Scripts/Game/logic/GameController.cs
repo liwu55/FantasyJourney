@@ -114,7 +114,6 @@ public class GameController: SingleTonObj<GameController>
             if (loginResult.suc)
             {
                 _mainPageInfoCache = new MainPageInfo();
-                
                 _mainPageInfoCache.userInfo = loginResult.userInfo;
                 _mainPageInfoCache.maps = _mapManager.GetAllMap();
                 _uiController.ShowLoginSuc(_mainPageInfoCache.userInfo.username);

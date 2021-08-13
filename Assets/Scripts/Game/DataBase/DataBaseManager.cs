@@ -175,12 +175,14 @@ namespace Game
             Debug.Log("关闭数据库连接");
             if (mySqlAccess.mySqlConnection!=null)
             {
+
                 if(_userCache!=null){
                     _userCache.isLogined = 0; 
                     _command.CommandText = "UPDATE customerinfo SET islogined = 0 WHERE username = " +"'" + _userCache.username + "'";
                     _command.ExecuteNonQuery();
                 }
                 mySqlAccess.mySqlConnection.Close();
+
             }
         }
     }
