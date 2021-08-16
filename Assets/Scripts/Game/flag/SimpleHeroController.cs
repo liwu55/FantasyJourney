@@ -31,7 +31,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks
             return;
         }
         InitSelf();
-       // BindCamera();
+        BindCamera();
     }
 
     private void BindCamera()
