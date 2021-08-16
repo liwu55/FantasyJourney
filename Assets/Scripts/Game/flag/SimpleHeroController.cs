@@ -52,7 +52,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks
         normalState.AddTransition("Skilling1", () => isSkilling1);
         normalState.AddTransition("Skilling2", () => isSkilling2);
 
-        normalState.AddTransition("Over", () => FlagData.Instance.gameOver);
+  //      normalState.AddTransition("Over", () => FlagData.Instance.gameOver);
         normalState.AddTransition("Dizzy", () => life<=0);
 
        // normalState.AddTransition("Over", () => FlagData.Instance.gameOver);

@@ -308,7 +308,8 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: Event Skill3End has a time (1.740820) outside the clip's
+      valid range (0.000000..1.700000). It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -404,7 +405,21 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6852273
+      - time: 0.21732023
+        functionName: Skill1Attack1
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.54673195
+        functionName: Skill1Attack2
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8075163
         functionName: Skill1End
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -469,7 +484,21 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.8284091
+      - time: 0.53529406
+        functionName: Skill2Attack2
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.17614377
+        functionName: Skill2Attack1
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.75718945
         functionName: Skill2End
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -536,6 +565,13 @@ ModelImporter:
       events:
       - time: 0.70573765
         functionName: Skill3End
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.24248363
+        functionName: Skill3Attack1
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
