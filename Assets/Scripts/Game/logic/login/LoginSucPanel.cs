@@ -22,7 +22,7 @@ public class LoginSucPanel : UIModuleBase
       {
          UIEvent.ToMain();
       });
-   }
+    }
 
    
    public void Init()

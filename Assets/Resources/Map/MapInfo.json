@@ -1,0 +1,28 @@
+{"mapInfo":[{
+	"mapID":"000",
+	"name":"testName1",
+	"introduce":"总之第一张图给武哥",
+	"preview":"testImage",
+	"introducePicture":"map_001_1"
+},
+{
+	"mapID":"001",
+	"name":"testName2",
+	"introduce":"第二张图",
+	"preview":"map_002_0",
+	"introducePicture":"map_002_1"
+},
+{
+	"mapID":"002",
+	"name":"testName3",
+	"introduce":"testintroduce",
+	"preview":"map_003_0",
+	"introducePicture":"map_003_1"
+},
+{
+	"mapID":"003",
+	"name":"testName4",
+	"introduce":"testintroduce",
+	"preview":"map_004_0",
+	"introducePicture":"map_004_1"
+}]}
