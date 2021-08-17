@@ -405,35 +405,21 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-<<<<<<< HEAD
-      - time: 0.21732023
-        functionName: Skill1Attack1
-=======
       - time: 0.23716797
         functionName: SkullAttack
->>>>>>> 38283d0 (英雄攻击改造)
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-<<<<<<< HEAD
-      - time: 0.54673195
-        functionName: Skill1Attack2
-=======
       - time: 0.5589287
         functionName: SkullAttack
->>>>>>> 38283d0 (英雄攻击改造)
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-<<<<<<< HEAD
-      - time: 0.8075163
-=======
       - time: 0.96416056
->>>>>>> 38283d0 (英雄攻击改造)
         functionName: Skill1End
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -498,35 +484,21 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-<<<<<<< HEAD
-      - time: 0.53529406
-        functionName: Skill2Attack2
-=======
       - time: 0.17432554
         functionName: SkullSkillAttack1
->>>>>>> 38283d0 (英雄攻击改造)
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-<<<<<<< HEAD
-      - time: 0.17614377
-        functionName: Skill2Attack1
-=======
       - time: 0.54326606
         functionName: SkullSkillAttack2
->>>>>>> 38283d0 (英雄攻击改造)
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-<<<<<<< HEAD
-      - time: 0.75718945
-=======
       - time: 0.97692394
->>>>>>> 38283d0 (英雄攻击改造)
         functionName: Skill2End
         data: 
         objectReferenceParameter: {instanceID: 0}
