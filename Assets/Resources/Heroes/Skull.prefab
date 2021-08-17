@@ -2213,11 +2213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0069492cbd55da24a9e18b94ec60d6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
---- !u!114 &-6613863923493053891
-=======
 --- !u!114 &8150128903152453817
->>>>>>> 38283d0 (英雄攻击改造)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2226,13 +2222,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7818488065283615062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 5246875396e4d2a45a551a4024705048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Score: 0
-  Hp: 100
-=======
   m_Script: {fileID: 11500000, guid: e9a28a61e1d84cd490440f11e0c7ae28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2257,7 +2246,6 @@ MonoBehaviour:
   skillDamage1: 35
   skillDamage2: 30
   dizzyTime: 2
->>>>>>> 38283d0 (英雄攻击改造)
 --- !u!1 &7818488065283615064
 GameObject:
   m_ObjectHideFlags: 0

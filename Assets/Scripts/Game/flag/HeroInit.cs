@@ -25,6 +25,7 @@ public class HeroInit : MonoBehaviour
                 heroPath = ConfigurationManager.Instance.GetPathByName("cat");
                 break;
         }
+        heroPath = ConfigurationManager.Instance.GetPathByName("Skull");
         float x = Random.Range(-10f,10f);
         float z = Random.Range(-10f,10f);
         Vector3 p=new Vector3(x,1,z);
