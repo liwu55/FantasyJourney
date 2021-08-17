@@ -6,7 +6,6 @@ namespace Game.DoOneFight.State
         private PlayerCrtlr _playerCrtlr;
         private Animator animator;
         private float checkFixTime = 2f;
-        
         public Skill_02_AttackState(string stateName,PlayerCrtlr _playerCrtlr) : base(stateName)
         {
             this._playerCrtlr = _playerCrtlr;
@@ -16,8 +15,6 @@ namespace Game.DoOneFight.State
             OnStateExit += OnExit;
             OnStateUpdate += OnUpdate;
         }
-
-        
         private void OnUpdate(Frame.FSM.State obj)
         {
             if (_playerCrtlr.isOnSkill_02)
@@ -38,7 +35,6 @@ namespace Game.DoOneFight.State
                 }
             }
         }
-        
         //进入该状态时播放动作
         private void OnEnter(Frame.FSM.State obj)
         {
@@ -48,7 +44,9 @@ namespace Game.DoOneFight.State
         }
         void OnExit(Frame.FSM.State obj)
         {
+            _playerCrtlr._aniCtrler.RestAction();
             _playerCrtlr.cc.enabled = true;
+            
         }
     }
 }

@@ -43,11 +43,11 @@ public class CharacterAniCtrler:MonoBehaviour
             return;
 
         int actionID = m_animator.GetInteger(STR_ACTION);
-        if (actionID > 0)
+        /*if (actionID > 0)
         {
             //将Action复位
             m_animator.SetInteger(STR_ACTION, 0);
-        }
+        }*/
         //将剩余队列的动作重新拿出来播放
         //PlayRemainAction();
 
@@ -75,6 +75,10 @@ public class CharacterAniCtrler:MonoBehaviour
         PlayAniImmediately(STR_DEATH);
     }
 
+    public void RestAction()
+    {
+        m_animator.SetInteger(STR_ACTION, 0);
+    }
     public void PlayAniImmediately(string name)
     {
         m_animator.Play(name, 0, 0.95f);

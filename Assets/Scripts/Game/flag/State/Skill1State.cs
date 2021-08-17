@@ -22,6 +22,5 @@ namespace Game.flag.State
             yield return new WaitForSeconds(0.2f);
             animator.SetBool("Skill1",false);
         }
-        
     }
 }

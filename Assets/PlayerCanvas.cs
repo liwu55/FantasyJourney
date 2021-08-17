@@ -7,8 +7,10 @@ public class PlayerCanvas:MonoBehaviour
 {
     private Text playerName;
     private Slider hpBar;
-    protected void Awake()
+
+    private void OnEnable()
     {
+        print("HeroUI OnEnable");
         playerName = transform.Find("Name").GetComponent<Text>();
         hpBar = transform.Find("Blood").GetComponent<Slider>();
     }

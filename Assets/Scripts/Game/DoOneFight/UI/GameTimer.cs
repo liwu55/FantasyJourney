@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Frame.UI;
+using Frame.Utility;
 using UnityEngine;
 using UnityEngine.UI;
+using EventType = Frame.Utility.EventType;
 
 public class GameTimer : UIModuleBase
 {
-    private int totalTime = 10;
+    private int totalTime = 90;
     private string minuteNum;
     private string secondsNum;
     private Text txtTimer;
@@ -16,6 +18,7 @@ public class GameTimer : UIModuleBase
     {
         base.Awake();
         txtTimer = FW("Timer#").Text;
+        
     }
 
     private void Start()
@@ -51,9 +54,13 @@ public class GameTimer : UIModuleBase
          }
          else
          {
+             secondsNum = totalTime >=60 ? "0"+(totalTime-60) : "0"+totalTime;
              if (totalTime <= 0)
+             {
                  totalTime = 0;
-             secondsNum = totalTime >=60 ? "0"+(totalTime-60).ToString() : "0"+totalTime.ToString();
+                 //调用游戏结束事件
+                 EventCenter.Instance.Call(EventType.GameOver);
+             }
          }
          string str = string.Format("{0}:{1}",minuteNum,secondsNum);
          txtTimer.text = str;

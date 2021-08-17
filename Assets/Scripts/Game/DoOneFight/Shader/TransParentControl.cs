@@ -4,12 +4,14 @@
  Created: 2017/07/23
  history: 23:7:2017 12:45 by puppet_master
 *********************************************************************/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
  
-public class TransParentControl : MonoBehaviour {
+public class TransParentControl : SingleTonMono<TransParentControl> {
  
     public class TransparentParam
     {
@@ -26,12 +28,18 @@ public class TransParentControl : MonoBehaviour {
     private int transparentLayer;           //需要遮挡半透的层级
     private Dictionary<Renderer, TransparentParam> transparentDic = new Dictionary<Renderer, TransparentParam>();
     private List<Renderer> clearList = new List<Renderer>();
- 
-	void Start ()
+
+    public void Init(Transform targetObject)
+    {
+        this.targetObject = targetObject;
+    }
+
+    void Start ()
     {
         transparentLayer = 1 << LayerMask.NameToLayer("Map");
 	}
 	
+    
 	void Update ()
     {
         if (targetObject == null)

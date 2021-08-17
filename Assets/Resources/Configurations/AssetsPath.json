@@ -33,6 +33,10 @@
       "path": "UI/MainPanel"
     },
     {
+      "name": "DoGameOverPanel",
+      "path": "UI/DoOneFight/GameOverPanel"
+    },
+    {
       "name": "HeroIconItem",
       "path": "UI/HeroIconItem"
     },

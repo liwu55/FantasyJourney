@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.DoOneFight.State;
+using UnityEditor;
 using UnityEngine;
 
 public class HurtState : Frame.FSM.State
@@ -19,6 +20,8 @@ public class HurtState : Frame.FSM.State
 
     void OnEnter(Frame.FSM.State obj)
     {
+        Debug.Log("hurt enter");
+        _playerCrtlr.cc.enabled = false;
         _playerCrtlr._aniCtrler.PlayAnimation((int)CharacterAniId.Hurt);
         //_animator.SetLayerWeight(1,0);
     }
@@ -26,8 +29,10 @@ public class HurtState : Frame.FSM.State
     void OnExit(Frame.FSM.State obj)
     {
         //_animator.SetLayerWeight(1,1);
+        _playerCrtlr._aniCtrler.RestAction();
         _playerCrtlr.isOnSkill_01 = false;
         _playerCrtlr.isOnSkill_02 = false;
         _playerCrtlr.isNrmAtk = false;
+        _playerCrtlr.cc.enabled = true;
     }
 }

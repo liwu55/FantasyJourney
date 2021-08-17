@@ -14,13 +14,12 @@ namespace Game.DoOneFight.State
             _playerCrtlr._aniCtrler.Init(animator);
             OnStateEnter += OnEnter;
             OnStateUpdate += OnUpdate;
+            OnStateExit += OnExit;
         }
-
         private void OnUpdate(Frame.FSM.State obj)
         {
             if (_playerCrtlr.isOnSkill_01)
             {
-                Debug.Log("OnUpdate Skill2");
                 checkFixTime -= Time.deltaTime;
                 if (checkFixTime<=0)
                 {
@@ -36,13 +35,15 @@ namespace Game.DoOneFight.State
                 }
             }
         }
-
         //进入该状态时播放动作
         private void OnEnter(Frame.FSM.State obj)
         {
-            Debug.Log("Skill_01_AttackState OnEnter");
             _playerCrtlr.cc.enabled = false;
             _playerCrtlr._aniCtrler.PlayAnimation((int) CharacterAniId.HeavyAttack);
+        }
+        void OnExit(Frame.FSM.State obj)
+        {
+            _playerCrtlr._aniCtrler.RestAction();
         }
     }
 }

@@ -16,9 +16,8 @@ namespace Frame.Utility
 
 
         #region DoOneFight
-        GetHurt
-            
-
+        GetHurt,
+        GameOver
         #endregion
         
     }
@@ -61,7 +60,6 @@ namespace Frame.Utility
                     return false;
                 }
             }
-
             return true;
         }
 

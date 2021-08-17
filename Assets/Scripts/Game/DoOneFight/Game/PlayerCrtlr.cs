@@ -13,6 +13,8 @@ namespace Game.DoOneFight.State
     {
         [HideInInspector] public CharacterController cc;
         [HideInInspector] public CharacterAniCtrler _aniCtrler;
+        private Camera _atkCamera;
+        private PlayerCanvas _playerCanvas;
         private float speed = 4f;
         public Vector3 dir;
         private Vector3 attackpoint;
@@ -23,6 +25,7 @@ namespace Game.DoOneFight.State
         public bool isOnSkill_01;
         public bool isOnSkill_02;
         public bool isHurt;
+        public bool isDead;
 
         private void Awake()
         {
@@ -30,6 +33,9 @@ namespace Game.DoOneFight.State
             _aniCtrler = gameObject.GetComponent<CharacterAniCtrler>();
             _aniCtrler.Init(_animator);*/
             //非战斗总状态机
+            _atkCamera = transform.Find("atkCamera").GetComponent<Camera>();
+            _playerCanvas = transform.Find("HeroUI").GetComponent<PlayerCanvas>();
+            TransParentControl.Instance.Init(transform);
             if (!photonView.IsMine)
                 return;
             attackpoint = transform.Find("AttackPoint").position;
@@ -43,17 +49,16 @@ namespace Game.DoOneFight.State
             Skill_01_AttackState skill01AttackState = new Skill_01_AttackState("Skill_01_AttackState", this);
             Skill_02_AttackState skill02AttackState = new Skill_02_AttackState("Skill_02_AttackState", this);
             HurtState hurtState = new HurtState("HurtState", this);
-
-
+            DeadState deadState = new DeadState("DeadState",this);
             //状态
             playerStateMachine.AddState(normalState);
             playerStateMachine.AddState(attackStateMachine);
             playerStateMachine.AddState(skill01AttackState);
             playerStateMachine.AddState(skill02AttackState);
             playerStateMachine.AddState(hurtState);
+            playerStateMachine.AddState(deadState);
             attackStateMachine.AddState(attackState);
-
-
+            //playerStateMachine.AddState();
             //正常 -> 攻击状态
             normalState.AddTransition("attackStateMachine", () => isNrmAtk);
             attackStateMachine.AddTransition("Normal", () => !isNrmAtk);
@@ -64,17 +69,18 @@ namespace Game.DoOneFight.State
             normalState.AddTransition("HurtState", () => isHurt);
             hurtState.AddTransition("Normal", () => !isHurt);
             attackStateMachine.AddTransition("HurtState", () => isHurt);
-
-
+            normalState.AddTransition("DeadState",()=>isDead);
+            attackStateMachine.AddTransition("DeadState",()=>isDead);
+            
             playerStateMachine.EnterState();
-
             //添加受伤事件
             EventCenter.Instance.AddListener<float>(Frame.Utility.EventType.GetHurt, MinusHp);
         }
 
         void Start()
         {
-          
+            _playerCanvas.gameObject.SetActive(true);
+            _playerCanvas.SetPlayerName(photonView.Owner.NickName);
             InputMgr.Instance.InitInputDic();
         }
 
@@ -155,27 +161,23 @@ namespace Game.DoOneFight.State
 
         private void BindCamera()
         {
-            print("CameraFollowTPS.Instance = "+CameraFollowTPS.Instance);
             CameraFollowTPS.Instance.BindPlayer(transform);
         }
         
         #region 动画事件 取反bool值
-
         private void NormalAtkEnd()
         {
             if (!cc.enabled)
             {
                 cc.enabled = true;
             }
-
+            _aniCtrler.RestAction();
             isNrmAtk = false;
         }
-
         private void NormalAtkStart()
         {
             isNrmAtk = true;
         }
-
         private void HeavyAttackEnd()
         {
             cc.enabled = true;
@@ -184,7 +186,6 @@ namespace Game.DoOneFight.State
 
         private void Skill02End()
         {
-            Debug.Log("Skill02End");
             isOnSkill_02 = false;
         }
 
@@ -195,9 +196,41 @@ namespace Game.DoOneFight.State
 
         #endregion
 
+
+        private void SkillAttackCheck()
+        {
+            
+        }
+
+        private void HeavyAttackCheck()
+        {
+            Ray _ray = _atkCamera.ScreenPointToRay(transform.forward);
+            RaycastHit info;
+            if ( Physics.Raycast(_ray,out info , 2.5f))
+            {
+                PlayerCrtlr _target = info.transform?.GetComponent<PlayerCrtlr>();
+                if (_target != null)
+                {
+                    _target.GetComponent<PhotonView>().RPC("TakeDamage",RpcTarget.All,5f);
+                }
+            }
+        }
+        
+        
         private void AttackCheck()
         {
-            Collider[] colliders = Physics.OverlapCapsule(transform.position, attackpoint, 5f);
+            Ray _ray = _atkCamera.ScreenPointToRay(transform.forward);
+            RaycastHit info;
+            if ( Physics.Raycast(_ray,out info , 1.5f))
+            {
+                PlayerCrtlr _target = info.transform?.GetComponent<PlayerCrtlr>();
+                if (_target != null)
+                {
+                    _target.GetComponent<PhotonView>().RPC("TakeDamage",RpcTarget.All,5f);
+                }
+            }
+                
+            /*Collider[] colliders = Physics.OverlapCapsule(transform.position, attackpoint, 5f);
             if (colliders.Length > 0)
             {
                 for (int i = 0; i < colliders.Length; i++)
@@ -205,11 +238,15 @@ namespace Game.DoOneFight.State
                     IHurtable target = colliders[i]?.GetComponent<IHurtable>();
                     if (target != null)
                     {
-                        target.TakeDamage(normalDamage);
-                        print("hp= "+(target as PlayerCrtlr).currentHp);
+                        if (target == this.GetComponent<IHurtable>())
+                            continue;
+                        PlayerCrtlr _target = (target as PlayerCrtlr);
+                        //target.TakeDamage(normalDamage);
+                        _target.GetComponent<PhotonView>().RPC("TakeDamage",RpcTarget.All,5f);
+                        //_target._playerCanvas.SetHpPercent((_target.currentHp)/(_target.maxHp));
                     }
                 }
-            }
+            }*/
         }
 
         public bool IsHurt()
@@ -217,11 +254,24 @@ namespace Game.DoOneFight.State
             return isHurt;
         }
 
+        [PunRPC]
         public void TakeDamage(float damage)
         {
             print(name + "受到了" + damage + "伤害 ，还剩 " + currentHp + " 生命值");
             isHurt = true;
             MinusHp(damage);
+            _playerCanvas.SetHpPercent((currentHp-damage)/maxHp);
+            if (currentHp <= 0)
+                isDead = true;
+
+        }
+        
+        private void ShowHitEffect(string effectName,Vector3 point,Vector3 dir)
+        {
+            GameObject go = ObjectPool.Instance.SpawnObj(effectName);
+            go.transform.position = point;
+            go.transform.forward = dir;
+            Destroy(go,2);
         }
     }
 }

@@ -21,7 +21,7 @@ public class AttackState : State
 
     void OnUpdate(Frame.FSM.State obj)
     {
-        _playerCrtlr.isHurt = Input.GetKeyDown(KeyCode.Z);
+        //_playerCrtlr.isHurt = Input.GetKeyDown(KeyCode.Z);
     }
     void OnEnter(Frame.FSM.State obj)
     {

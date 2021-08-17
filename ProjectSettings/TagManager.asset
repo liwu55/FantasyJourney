@@ -42,7 +42,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Player
   - Map
   m_SortingLayers:
   - name: Default

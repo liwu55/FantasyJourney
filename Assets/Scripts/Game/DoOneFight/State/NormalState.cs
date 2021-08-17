@@ -33,13 +33,8 @@ namespace Game.DoOneFight.State
             CheckIsNrmAtk();
             _playerCrtlr.isOnSkill_01 = ComboSystem.Instance.CheckSkill01();
             _playerCrtlr.isOnSkill_02 = ComboSystem.Instance.CheckSkill02();
-            _playerCrtlr.isHurt = Input.GetKeyDown(KeyCode.Z);
+            //_playerCrtlr.isHurt = Input.GetKeyDown(KeyCode.Z);
         }
-      
-        
-        
-        
-        
         
         /// <summary>
         /// 人物移动
