@@ -2,6 +2,7 @@ using Frame.FSM;
 using Frame.Utility;
 using Game.DoOneFight.HealthPoint;
 using Game.DoOneFight.Interface;
+using Game.flag;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -9,7 +10,7 @@ using EventType = UnityEngine.EventType;
 
 namespace Game.DoOneFight.State
 {
-    public class PlayerCrtlr : HealthSystem, IHurtable
+    public class PlayerCrtlr : HealthSystem, IHurtable ,IHeroController
     {
         [HideInInspector] public CharacterController cc;
         [HideInInspector] public CharacterAniCtrler _aniCtrler;
@@ -33,6 +34,7 @@ namespace Game.DoOneFight.State
             _aniCtrler = gameObject.GetComponent<CharacterAniCtrler>();
             _aniCtrler.Init(_animator);*/
             //非战斗总状态机
+            SceneHeroes.Instance.Add(this);
             _atkCamera = transform.Find("atkCamera").GetComponent<Camera>();
             _playerCanvas = transform.Find("HeroUI").GetComponent<PlayerCanvas>();
             TransParentControl.Instance.Init(transform);
@@ -249,6 +251,23 @@ namespace Game.DoOneFight.State
             }*/
         }
 
+        [PunRPC]
+        public virtual void BeAttack(Vector3 point, Vector3 dir, string effectName, float damage)
+        {
+            currentHp -= damage;
+            if (currentHp <= 0)
+            {
+                currentHp = 0;
+                isDead = true;
+                
+            }
+            
+            
+        }
+
+
+
+
         public bool IsHurt()
         {
             return isHurt;
@@ -272,6 +291,16 @@ namespace Game.DoOneFight.State
             go.transform.position = point;
             go.transform.forward = dir;
             Destroy(go,2);
+        }
+
+        public PhotonView GetPhotonView()
+        {
+            return photonView;
+        }
+
+        public Transform GetTransform()
+        {
+            return transform;
         }
     }
 }
