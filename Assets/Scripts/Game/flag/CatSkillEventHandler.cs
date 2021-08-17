@@ -3,7 +3,7 @@ using Game;
 using Game.flag;
 using UnityEngine;
 
-public class CatSkillEventHandler : BaseSkillEventHandler
+public class CatSkillEventHandler : BaseFlagSkillEventHandler
 {
     //普通攻击的参数
     public float attackLength = 3;

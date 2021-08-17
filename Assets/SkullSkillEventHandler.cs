@@ -2,7 +2,7 @@ using Game;
 using Game.flag;
 using Photon.Pun;
 
-public class SkullSkillEventHandler : BaseSkillEventHandler
+public class SkullSkillEventHandler : BaseFlagSkillEventHandler
 {
     //普通攻击的参数
     public float attackDamage = 25;

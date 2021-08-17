@@ -21,6 +21,24 @@ namespace Game.flag
         {
             return heroes;
         }
+        
+        /// <summary>
+        /// 获取所有敌人
+        /// </summary>
+        /// <returns></returns>
+        public List<IHeroController> GetOthers(Player player)
+        {
+            List<IHeroController> adversaries=new List<IHeroController>();
+            foreach (IHeroController ihc in heroes)
+            {
+                if (ihc.GetPhotonView().Owner != player)
+                {
+                    adversaries.Add(ihc);
+                }
+            }
+
+            return adversaries;
+        }
 
         /// <summary>
         /// 获取所有敌人

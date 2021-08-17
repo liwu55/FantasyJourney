@@ -193,6 +193,7 @@ namespace Game.flag
             base.BeAttack(point, dir,effectName,damage,hitBackFactor);
             ShowHitEffect(effectName,point,dir);
             SyncLifeShow();
+            
             //被攻击打断插旗动作
             occuping = false;
             heroUI.HideLoading();

@@ -4,8 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 
 namespace Game.flag
-{  
-    
+{
     public class BaseSkillEventHandler:MonoBehaviour
     {
         protected SimpleHeroController thisHeroController;
@@ -15,15 +14,14 @@ namespace Game.flag
             thisHeroController=GetComponent<SimpleHeroController>();
         }
 
-        protected void Check(float damage,string effectName,float hitBackRate,Func<IHeroController,bool> CheckIfInRange)
+        protected void Check(List<IHeroController> enemies,float damage,string effectName,float hitBackRate,Func<IHeroController,bool> CheckIfInRange)
         {
             //房主计算伤害
             if (!PhotonNetwork.IsMasterClient)
             {
                 return;
             }
-            List<IHeroController> heroes = SceneHeroes.Instance.GetAllAdversary(thisHeroController.photonView.Owner);
-            foreach (IHeroController hero in heroes)
+            foreach (IHeroController hero in enemies)
             {
                 if (!CheckIfInRange(hero))
                 {

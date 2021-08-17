@@ -6,7 +6,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class NiuNiuSkillEventHandler : BaseSkillEventHandler
+public class NiuNiuSkillEventHandler : BaseFlagSkillEventHandler
 {
     //普通攻击的参数
     public float attackLength = 3;
