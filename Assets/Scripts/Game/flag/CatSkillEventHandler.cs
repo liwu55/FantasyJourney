@@ -1,33 +1,35 @@
+using Frame.Utility;
+using Game;
 using Game.flag;
 using UnityEngine;
 
 public class CatSkillEventHandler : BaseSkillEventHandler
 {
     //普通攻击的参数
-    public float attackLength = 4;
+    public float attackLength = 3;
     public float attackAngle = 180;
+    //技能参数
+    public float skillRange = 5;
+    public float skillDamage = 50;
     
     public void CatAttack()
     {
-        Check(20,"NiuNiuHit",0.5f, (hero) =>
-        {
-            Vector3 i2Target = hero.transform.position - transform.position;
-            //超出攻击范围
-            if (i2Target.magnitude > attackLength)
-            {
-                return false;
-            }
+        Check(20,"CatHit",0.5f, 
+            (hero) => AttackJudge.SectorAttack(transform,
+                hero.GetTransform(), attackLength, attackAngle));
+    }
 
-            Vector3 forward = transform.forward;
-            i2Target.Normalize();
-            float cosValue = Vector3.Dot(forward, i2Target);
-            float angle = Mathf.Rad2Deg * Mathf.Acos(cosValue);
-            //超出角度
-            if (Mathf.Abs(angle) > attackAngle / 2)
-            {
-                return false;
-            }
-            return true;
-        });
+    public void CatSkill()
+    {
+        ShowCatSkillEffect();
+        Check(skillDamage,"CatHit",5f, 
+            (hero) => AttackJudge.CircleAttack(transform, 
+                hero.GetTransform(), skillRange));
+    }
+    
+    private void ShowCatSkillEffect()
+    {
+        GameObject skill = ObjectPool.Instance.SpawnObj("CatSkill");
+        skill.transform.position = transform.position;
     }
 }

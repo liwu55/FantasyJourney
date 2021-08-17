@@ -49,7 +49,6 @@
       "path": "Heroes/cat"
     },
     {
-
       "name": "Skull",
       "path": "Heroes/Skull"
     },
@@ -143,8 +142,24 @@
       "path": "Effects/CartoonyPunchHeavy"
     },
     {
+      "name": "CatHit",
+      "path": "Effects/SwordHitYellowCritical"
+    },
+    {
+      "name": "CatSkill",
+      "path": "Effects/MagicExplosionFire"
+    },
+    {
       "name": "NiuNiuRun",
       "path": "Effects/DustDirtyPoof"
+    },
+    {
+      "name": "Blood",
+      "path": "Effects/BloodSplatCritical"
+    },
+    {
+      "name": "Blunt",
+      "path": "Effects/SoftPunchExtreme"
     }
   ]  
 }

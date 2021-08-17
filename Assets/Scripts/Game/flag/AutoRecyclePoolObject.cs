@@ -1,11 +1,12 @@
 using Frame.Utility;
 using UnityEngine;
 
-public class FrogPoolObject : MonoBehaviour,PoolObject
+public class AutoRecyclePoolObject : MonoBehaviour,PoolObject
 {
+    public float lifeTime = 3;
     public void OnSpawn(object obj)
     {
-        Invoke("RecycleSelf",3);
+        Invoke("RecycleSelf",lifeTime);
     }
 
     private void RecycleSelf()

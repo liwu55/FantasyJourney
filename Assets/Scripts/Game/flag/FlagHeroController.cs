@@ -21,9 +21,8 @@ namespace Game.flag
         //进度条
         private HeroUI heroUI;
 
-
         private Vector3 hitBackVelocity;
-
+        
         protected override void Awake()
         {
             base.Awake();
@@ -58,10 +57,16 @@ namespace Game.flag
         protected override void AddSelfState()
         {
             Frame.FSM.State occupingState = new OccupingState("Occuping", this);
-            heroStateMachine.AddState(occupingState);
+            
             occupingState.AddTransition("Normal", () => !occuping);
             normalState.AddTransition("Occuping", () => occuping);
-
+            
+            Frame.FSM.State overState = new OverState("Over");
+            normalState.AddTransition("Over", () => FlagData.Instance.gameOver);
+            
+            heroStateMachine.AddState(overState);
+            heroStateMachine.AddState(occupingState);
+            
             normalState.OnMouseLeftClick += CheckClickPoint;
             
         }
@@ -213,9 +218,8 @@ namespace Game.flag
             heroUI.SetLife(lifePercent);
         }
 
-        public override void ResetState()
+        protected override void ResetBlood()
         {
-            base.ResetState();
             photonView.RPC("ResetRPC", RpcTarget.All);
         }
 

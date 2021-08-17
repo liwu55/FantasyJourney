@@ -7,9 +7,10 @@ namespace Game.flag.State
     /// </summary>
     public class DizzyState:BaseState
     {
-        private const float dizzyTime = 3;
+        public bool isDead = false;
+        public float dizzyTime = 5;
         private float dizzyStartTime;
-        public DizzyState(string stateName,SimpleHeroController simpleHeroController) 
+        public DizzyState(string stateName,SimpleHeroController simpleHeroController)
             : base(stateName,simpleHeroController)
         {
             OnStateEnter += OnEnter;
@@ -19,7 +20,7 @@ namespace Game.flag.State
         private void OnExit(Frame.FSM.State obj)
         {
             animator.SetBool("Dizzy",false);
-            simpleHeroController.ResetState();
+            simpleHeroController.ResetState(isDead);
         }
 
         private void OnEnter(Frame.FSM.State obj)

@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: cebca12bd48587c4eba6b77b1bee0735, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 111
     m_FontStyle: 0
     m_BestFit: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.13
   m_Text: "\u4EB2\u7231\u7684xx\uFF0C\n\u6B22\u8FCE\u8FDB\u5165\u6E38\u620F"
 --- !u!1 &1213695344001338455
 GameObject:

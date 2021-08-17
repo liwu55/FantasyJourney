@@ -22,7 +22,7 @@ public class NiuNiuSkillEventHandler : BaseSkillEventHandler
     {
         Debug.Log("牛牛普通攻击");
         Check(40f,"NiuNiuHit",1f,(hero)=>{
-            Vector3 i2Target = hero.transform.position - transform.position;
+            Vector3 i2Target = hero.GetTransform().position - transform.position;
             //超出攻击范围
             if (i2Target.magnitude > attackLength)
             {
@@ -96,7 +96,7 @@ public class NiuNiuSkillEventHandler : BaseSkillEventHandler
         Debug.Log("牛牛冲刺攻击");
         Check(rushDamageValue,"NiuNiuHit",3, (hero) =>
         {
-            Vector3 i2Target = hero.transform.position - transform.position;
+            Vector3 i2Target = hero.GetTransform().position - transform.position;
             //超出冲刺攻击范围
             if (i2Target.magnitude > rushDamageRange)
             {

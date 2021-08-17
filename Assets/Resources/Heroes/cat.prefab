@@ -1139,7 +1139,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!114 &-3001011401173550218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,6 +1227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackLength: 4
   attackAngle: 180
+  skillRange: 5
+  skillDamage: 50
 --- !u!1 &9041649017033261109
 GameObject:
   m_ObjectHideFlags: 0

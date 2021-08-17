@@ -9603,7 +9603,7 @@ GameObject:
   - component: {fileID: 468322}
   - component: {fileID: 19822996}
   - component: {fileID: 19956506}
-  - component: {fileID: 2635984322492492662}
+  - component: {fileID: -7371637164446289776}
   m_Layer: 0
   m_Name: CartoonyPunchHeavy
   m_TagString: Untagged
@@ -14392,7 +14392,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &2635984322492492662
+--- !u!114 &-7371637164446289776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14401,9 +14401,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 183892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0069492cbd55da24a9e18b94ec60d6ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 23765fd4e429e174a8492f3b6b35e552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 3
 --- !u!1 &197306
 GameObject:
   m_ObjectHideFlags: 0

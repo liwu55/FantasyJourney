@@ -15,32 +15,32 @@ namespace Game.flag
             thisHeroController=GetComponent<SimpleHeroController>();
         }
 
-        protected void Check(float damage,string effectName,float hitBackRate,Func<SimpleHeroController,bool> CheckIfInRange)
+        protected void Check(float damage,string effectName,float hitBackRate,Func<IHeroController,bool> CheckIfInRange)
         {
             //房主计算伤害
             if (!PhotonNetwork.IsMasterClient)
             {
                 return;
             }
-            List<SimpleHeroController> heroes = FlagHeroes.Instance.GetAllAdversary(thisHeroController.photonView.Owner);
-            foreach (SimpleHeroController hero in heroes)
+            List<IHeroController> heroes = SceneHeroes.Instance.GetAllAdversary(thisHeroController.photonView.Owner);
+            foreach (IHeroController hero in heroes)
             {
                 if (!CheckIfInRange(hero))
                 {
                     continue;
                 }
                 Vector3[] data = FindHitPoint(hero);
-                hero.photonView.RPC("BeAttack",RpcTarget.All,
+                hero.GetPhotonView().RPC("BeAttack",RpcTarget.All,
                     new object[]{data[0],data[1],effectName,damage,hitBackRate});
             }
         }
         
-        private Vector3[] FindHitPoint(SimpleHeroController hero)
+        private Vector3[] FindHitPoint(IHeroController hero)
         {
             Vector3[] data=new Vector3[2];
             Ray ray = new Ray();
             ray.origin = transform.position+Vector3.up*1;
-            ray.direction = (hero.transform.position + Vector3.up * 1) - ray.origin;
+            ray.direction = (hero.GetTransform().position + Vector3.up * 1) - ray.origin;
             RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
             for (int i = 0; i < raycastHits.Length; i++)
             {

@@ -20,7 +20,7 @@ namespace Game.flag.State
 
         IEnumerator ResetSkillState()
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.5f);
             animator.SetBool("Skill2",false);
         }
     }
