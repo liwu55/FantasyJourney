@@ -4,17 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: e2e1c653d3ae98346b3677ea4876fc0a
-  - enabled: 1
-    path: Assets/Scenes/DoOneFight.unity
-    guid: 0657cc1a4b707484b8aabd26d12297de
-  - enabled: 1
-    path: Assets/Scenes/Flag.unity
-    guid: c7e30918eef4a244f9603e0363f04e0e
-  - enabled: 1
-    path: Assets/Scenes/BattleForFlag.unity
-    guid: 865d30126f1679f4cb761d0719515f85
+  m_Scenes: []
   m_configObjects: {}

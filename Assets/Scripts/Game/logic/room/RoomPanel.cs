@@ -34,7 +34,8 @@ public class RoomPanel : UIModuleBase
             // PhotonNetwork.LoadLevel("Scene1");
             PhotonNetwork.LoadLevel("Flag");
             //PhotonNetwork.LoadLevel("BattleForFlag");
-            // PhotonNetwork.LoadLevel("DoOneFight");
+
+            //PhotonNetwork.LoadLevel("DoOneFight");
             Debug.Log("游戏开始");
 
             //FW("SureButtonText#").Text.text = "准备中";

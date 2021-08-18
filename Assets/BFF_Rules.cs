@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,7 @@ public class BFF_Rules : MonoBehaviour
 
     public int Score = 0;
     public int Hp = 100;
+
 
    
     private void OnTriggerEnter(Collider other)
