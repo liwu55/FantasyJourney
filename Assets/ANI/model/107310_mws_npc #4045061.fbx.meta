@@ -418,14 +418,14 @@ ModelImporter:
       curves: []
       events:
       - time: 0.21258187
-        functionName: CatAttack
+        functionName: CatAttack1
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.3442402
-        functionName: CatAttack
+        functionName: CatAttack2
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -560,7 +560,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.40035483
+        functionName: CatSkill
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9626129
+        functionName: Skill2End
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

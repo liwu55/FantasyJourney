@@ -308,8 +308,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: Event Skill3End has a time (1.740820) outside the clip's
-      valid range (0.000000..1.700000). It will never be fired
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -406,14 +405,14 @@ ModelImporter:
       curves: []
       events:
       - time: 0.23716797
-        functionName: SkullAttack
+        functionName: SkullAttack1
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.5589287
-        functionName: SkullAttack
+        functionName: SkullAttack2
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -543,7 +542,7 @@ ModelImporter:
       takeName: atk05
       internalID: 0
       firstFrame: 0
-      lastFrame: 74
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -563,15 +562,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.70573765
-        functionName: Skill3End
+      - time: 0.33081916
+        functionName: SkullSkill2DamageStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.24248363
-        functionName: Skill3Attack1
+      - time: 0.8943089
+        functionName: SkullSkill2DamageEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9754346
+        functionName: Skill2End
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.flag.State
 {
@@ -11,6 +12,12 @@ namespace Game.flag.State
         {
             this.simpleHeroController = simpleHeroController;
             animator = simpleHeroController.GetComponentInChildren<Animator>();
+            OnStateEnter += PrintState;
+        }
+
+        private void PrintState(Frame.FSM.State obj)
+        {
+            Debug.Log("Enter "+obj.GetType().Name);
         }
     }
 }

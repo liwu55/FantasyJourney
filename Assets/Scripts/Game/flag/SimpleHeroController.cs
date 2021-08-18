@@ -88,7 +88,6 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
             return;
         }
 
-        Debug.Log("v=" + velocity);
         //simpleMove没有y轴速度，自带重力
         // cc.SimpleMove(velocity);
         cc.Move(velocity * Time.deltaTime);

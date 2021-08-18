@@ -20,16 +20,10 @@ namespace Game.flag.State
         {
             OnStateUpdate += OnUpdate;
             OnStateExit += OnExit;
-            OnStateEnter += OnEnter;
 
             cameraTrans = Camera.main.transform;
             animator = simpleHeroController.GetComponentInChildren<Animator>();
             cc = simpleHeroController.GetComponent<CharacterController>();
-        }
-
-        private void OnEnter(Frame.FSM.State obj)
-        {
-            Debug.Log("Enter NormalState");
         }
         
         private void OnExit(Frame.FSM.State obj)

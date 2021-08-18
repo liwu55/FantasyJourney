@@ -164,6 +164,26 @@
     {
       "name": "Blunt",
       "path": "Effects/SoftPunchExtreme"
+    },
+    {
+      "name": "SwordSlashYellow",
+      "path": "Effects/SwordSlashYellow"
+    },
+    {
+      "name": "SwordSlashYellowReverse",
+      "path": "Effects/SwordSlashYellowReverse"
+    },
+    {
+      "name": "SkullAttack1",
+      "path": "Effects/SkullAttack1"
+    },
+    {
+      "name": "SkullAttack2",
+      "path": "Effects/SkullAttack2"
+    },
+    {
+      "name": "SkullSkill",
+      "path": "Effects/SkullSkill"
     }
   ]  
 }

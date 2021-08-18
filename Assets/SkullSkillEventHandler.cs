@@ -1,6 +1,9 @@
+using System.Collections;
+using Frame.Utility;
 using Game;
 using Game.flag;
 using Photon.Pun;
+using UnityEngine;
 
 public class SkullSkillEventHandler : BaseFlagSkillEventHandler
 {
@@ -9,27 +12,54 @@ public class SkullSkillEventHandler : BaseFlagSkillEventHandler
     public float attackLength = 3;
     public float attackAngle = 180;
     //技能攻击的参数
-    public float skillAttackLength = 3.5f;
-    public float skillAttackAngle = 180;
-    public float skillDamage1 = 35;
-    public float skillDamage2 = 30;
-    public float dizzyTime = 2;
+    private bool skill2DoingDamage = false;
+    public float skillRange = 5f;
+    public float skillDamage = 5;
+    public float skillDamageRate = 0.1f;
+
+    private GameObject skillEffect;
     
-    public void SkullAttack()
+    public void SkullAttack1()
     {
+        ShowEffect("SkullAttack1");
         Check(attackDamage,"Blood",0.5f, 
             (hero) => AttackJudge.SectorAttack(transform,
             hero.GetTransform(), attackLength, attackAngle));
     }
-
-    public void SkullSkillAttack1()
+    
+    public void SkullAttack2()
     {
-        Check(skillDamage1,"Blood",0.2f, 
+        ShowEffect("SkullAttack2");
+        Check(attackDamage,"Blood",0.5f, 
             (hero) => AttackJudge.SectorAttack(transform,
-                hero.GetTransform(), skillAttackLength, skillAttackAngle)); 
+                hero.GetTransform(), attackLength, attackAngle));
     }
 
-    public void SkullSkillAttack2()
+    public void SkullSkill2DamageStart()
+    {
+        skillEffect = ShowEffect("SkullSkill");
+        skill2DoingDamage = true;
+        StartCoroutine(Skill2Damage());
+    }
+
+    public void SkullSkill2DamageEnd()
+    {
+        //ObjectPool.Instance.RecycleObj(skillEffect);
+        skill2DoingDamage = false;
+    }
+
+    IEnumerator Skill2Damage()
+    {
+        while (skill2DoingDamage)
+        {
+            yield return new WaitForSeconds(skillDamageRate);
+            Check(skillDamage,"Blood",0f, 
+                (hero) => AttackJudge.CircleAttack(transform,
+                    hero.GetTransform(), skillRange)); 
+        }
+    }
+
+    /*public void SkullSkillAttack2()
     {
         Check(skillDamage2,"Blunt",0f,
             (hero) =>
@@ -43,5 +73,5 @@ public class SkullSkillEventHandler : BaseFlagSkillEventHandler
 
                 return inRange;
             });
-    }
+    }*/
 }

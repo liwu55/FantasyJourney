@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Frame.Utility;
 using Photon.Pun;
 using UnityEngine;
 
@@ -54,6 +55,14 @@ namespace Game.flag
             }
             Debug.Log("没找到");
             return default;
+        }
+
+        protected GameObject ShowEffect(string name)
+        {
+            GameObject go = ObjectPool.Instance.SpawnObj(name);
+            go.transform.position = transform.position;
+            go.transform.forward = transform.forward;
+            return go;
         }
     }
 }

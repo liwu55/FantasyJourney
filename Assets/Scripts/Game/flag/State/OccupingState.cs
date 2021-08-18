@@ -1,10 +1,9 @@
 ﻿using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine;
 
 namespace Game.flag.State
 {
-    public class OccupingState:BaseState
+    public class OccupingState:BaseInteruptState
     {
         private float enterTime;
         //TODO 占领需要的时间
@@ -38,6 +37,12 @@ namespace Game.flag.State
         {
             enterTime = Time.time;
             animator.SetBool("Loading",true);
+        }
+        
+        protected override void IsMoveDo()
+        {
+            if(simpleHeroController is FlagHeroController flagController)
+                flagController.occuping = false;
         }
         
     }
