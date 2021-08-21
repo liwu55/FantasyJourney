@@ -21,7 +21,6 @@ public class MainModule : UIModuleBase
     private UIWidget playerLevelText;
 
     private MainPageInfo info;
-    private UserInfo userInfo;
 
     protected override void Awake()
     {
@@ -64,7 +63,7 @@ public class MainModule : UIModuleBase
         });
         playerLevelText.Text.text = "0/100";
         playerNowLevleFA.Img.fillAmount = 0.0f;
-        UIEvent.RefreshMainPageHero += setMainNum;
+        UIEvent.RefreshMainPageHero += showMainMoney;
     }
 
     public override void OnSpawn(object obj)
@@ -75,16 +74,18 @@ public class MainModule : UIModuleBase
         {
             return;
         }
-        userInfo = info.userInfo;
+        UserInfo userInfo = info.userInfo;
         moneyText.Text.text = userInfo.money.ToString();
         crownText.Text.text = userInfo.honor.ToString();
     }
 
-    public void setMainNum()
+    public void showMainMoney()
     {
+        UserInfo userInfo = info.userInfo;
         moneyText.Text.text = userInfo.money.ToString();
         crownText.Text.text = userInfo.honor.ToString();
     }
+
 
     private void Update()
     {
