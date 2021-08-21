@@ -210,7 +210,8 @@ namespace Game.flag
                 sb.Append("\n");
                 sb.Append("\n");
                 
-                //TODO 存到数据库
+                //保存数据到数据库
+                DataBaseManager.Instance.AddMoneyAndHonor(flagDataInfo.name,money,honor);
             }
             
             FlagData.Instance.photonView.RPC("OnReward",
@@ -247,6 +248,13 @@ namespace Game.flag
                     return 1;
                 default:
                     return 0;
+            }
+        }
+
+        public void Clear()
+        {
+            if(infos!=null){
+                infos.Clear();
             }
         }
     }

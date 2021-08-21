@@ -66,11 +66,11 @@
     },
     {
       "name": "avatar_cat",
-      "path": "Avatar/Skull"
+      "path": "Avatar/cat"
     },
     {
       "name": "avatar_skull",
-      "path": "Avatar/cat"
+      "path": "Avatar/Skull"
     },
     {
       "name": "avatar1",
@@ -203,6 +203,10 @@
     {
       "name": "fish",
       "path": "Heroes/fish"
+    },
+    {
+      "name": "DamageNumber",
+      "path": "UI/DamageNumber"
     }
   ]  
 }

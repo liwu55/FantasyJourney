@@ -1,4 +1,7 @@
+using Frame.FSM;
 using Frame.UI;
+using Frame.Utility;
+using Game.flag;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,8 +18,13 @@ public class FlagOverModule : UIModuleBase
         reward=FW("Reward#").Text;
         FW("Back#").Button.onClick.AddListener(()=>
         {
+            SceneHeroes.Instance.Clear();
+            UIManager.Instance.Clear();
+            ObjectPool.Instance.Clear();
+            FlagData.Instance.Clear();
+            MonoHelper.Instance.Clear();
             PhotonNetwork.LeaveRoom();
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("SampleScene");
         });
         FlagData.Instance.Reward += ShowReward;
     }

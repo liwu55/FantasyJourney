@@ -41,6 +41,7 @@ namespace Game.flag.State
         {
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
+            //Debug.Log("NormalState OnUpdate h="+h+" v="+v);
             Vector3 velocityH = Vector3.zero;
             if (h != 0 || v != 0)
             {

@@ -201,7 +201,7 @@ namespace Frame.FSM
             }
             
             //TODO：开启持续执行更新事件
-            MonoHelper.instance.AddUpdateEventState(this);
+            MonoHelper.Instance.AddUpdateEventState(this);
             
             //设置已启动状态
             isRun = true;
@@ -213,7 +213,7 @@ namespace Frame.FSM
         public virtual void ExitState()
         {
             //TODO:停止持续执行更新事件
-            MonoHelper.instance.RemoveUpdateEventState(this);
+            MonoHelper.Instance.RemoveUpdateEventState(this);
 
             if (OnStateExit != null)
             {

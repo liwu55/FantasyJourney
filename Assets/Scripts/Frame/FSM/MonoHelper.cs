@@ -11,20 +11,23 @@ namespace Frame.FSM
         /// <summary>
         /// 静态单例脚本
         /// </summary>
-        public static MonoHelper instance;
+        private static MonoHelper instance;
 
-        static MonoHelper()
+        public static MonoHelper Instance
         {
-            if (instance == null)
+            get
             {
-                instance = new GameObject(
-                    "MonoHelper").
-                    AddComponent<MonoHelper>();
-                //New
-                instance.needUpdateEventStates = new List<State>();
+                if (instance == null)
+                {
+                    instance = new GameObject(
+                        "MonoHelper").AddComponent<MonoHelper>();
+                    //New
+                    instance.needUpdateEventStates = new List<State>();
+                }
+                return instance;
             }
         }
-        
+
         private float invokeInterval = -1;
 
         public float InvokeInterval
@@ -44,9 +47,11 @@ namespace Frame.FSM
         /// <param name="state"></param>
         public void AddUpdateEventState(State state)
         {
+            Debug.Log("MonoHelper AddUpdateEventState");
             if (!needUpdateEventStates.Contains(state))
             {
                 needUpdateEventStates.Add(state);
+                Debug.Log("MonoHelper Add count=" + needUpdateEventStates.Count);
             }
         }
 
@@ -76,13 +81,13 @@ namespace Frame.FSM
                     //间隔一帧
                     yield return 0;
                 }
-                
+
                 // foreach (var state in needUpdateEventStates)
                 // {
                 //     //执行更新事件
                 //     state.OnStateUpdate(state);
                 // }
-                
+
                 //TODO:执行方法
                 for (int i = 0; i < needUpdateEventStates.Count; i++)
                 {
@@ -93,6 +98,16 @@ namespace Frame.FSM
                     }
                 }
             }
+        }
+
+        public void Clear()
+        {
+            if (needUpdateEventStates != null)
+            {
+                needUpdateEventStates.Clear();
+            }
+
+            instance = null;
         }
     }
 }

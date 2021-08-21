@@ -36,6 +36,8 @@ public class RoomPanel : UIModuleBase
         start1Button.Button.onClick.AddListener(() =>
         {
             SceneHeroes.Instance.Clear();
+            UIManager.Instance.Clear();
+            ObjectPool.Instance.Clear();
             //加载场景
             PhotonNetwork.LoadLevel("Flag");
             PhotonNetwork.CurrentRoom.IsOpen = false;

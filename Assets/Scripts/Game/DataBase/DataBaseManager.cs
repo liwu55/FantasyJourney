@@ -18,6 +18,17 @@ namespace Game
         private string host = "172.20.177.212";
         //课室的
         //private string host = "10.9.72.192";
+
+        public void AddMoneyAndHonor(string name,int money,int honor)
+        {
+            if (_dictionary.ContainsKey(name))
+            {
+                UserInfo userInfo = _dictionary[name];
+                userInfo.money += money;
+                userInfo.honor += honor;
+                SaveInfo(userInfo);
+            }
+        }
         
         /// <summary>
         /// 保存UserInfo数据
