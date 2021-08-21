@@ -104,10 +104,10 @@ public class UIManager : SingleTonMonoAuto<UIManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             //最少留一个
             PopModule();
-        }
+        }*/
     }
 }

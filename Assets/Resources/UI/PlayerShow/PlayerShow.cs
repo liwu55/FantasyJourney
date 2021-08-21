@@ -22,6 +22,7 @@ public class PlayerShow : MonoBehaviour
         if (obj == null) return player;
         if(player!=null)Destroy(player);
         GameObject playerClone = Instantiate<GameObject>(obj, playerParents);
+        playerClone.transform.rotation=Quaternion.Euler(0,210,0);
         return playerClone;
     }
     private void Awake()

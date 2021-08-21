@@ -54,6 +54,7 @@ public class StoreModule : UIModuleBase
     {
         back.onClick.AddListener(() =>
         {
+            UIEvent.RefreshMainPageHero();
             UIManager.Instance.PopModule();
         });
         skill1.Button.onClick.AddListener(() =>
