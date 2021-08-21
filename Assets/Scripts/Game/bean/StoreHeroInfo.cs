@@ -9,5 +9,6 @@ namespace Game.bean
         public int index;
         public bool choose;
         public Animator animator;
+        public SimpleHeroController heroController;
     }
 }

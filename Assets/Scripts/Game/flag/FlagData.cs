@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Frame.SingleTon;
 using Frame.Utility;
+using Game.flag;
 using Photon.Pun;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
     private FlagConfiguration flagConfig;
     private List<TeamData> teamDatas;
     public Action<int, int> OnScoreChange;
+    public Action<string> OnDamageShowChange;
     [NonSerialized]
     public bool gameOver = false;
 
@@ -27,6 +29,12 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
             teamData.color = team.color;
             teamDatas.Add(teamData);
         }
+    }
+
+    [PunRPC]
+    public void OnDamageChange(string show)
+    {
+        OnDamageShowChange(show);
     }
     
     [PunRPC]

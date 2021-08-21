@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using Frame.UI;
 using Frame.Utility;
+using Game.flag;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class RoomPanel : UIModuleBase
         startButton = FW("StartButton#");
         startButton.Button.onClick.AddListener(() =>
         {
+            SceneHeroes.Instance.Clear();
             //加载场景
             // PhotonNetwork.LoadLevel("Scene1");
             PhotonNetwork.LoadLevel("Flag");

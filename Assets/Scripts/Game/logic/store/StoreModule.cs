@@ -33,7 +33,7 @@ public class StoreModule : UIModuleBase
 
     private void InitViews()
     {
-        _heroManager = new HeroManager();
+        _heroManager = HeroManager.Instance;
         heroListTrans = FW("HeroList#").transform;
         tg = FW("HeroList#").Tg;
         heroName = FW("name#").Text;
@@ -103,16 +103,16 @@ public class StoreModule : UIModuleBase
                     chooseHero = checkingHero;
                     SyncIconStatus(checkingHero);
                     SyncShowHeroInfo(null);
+                    PlayerInfo.Instance.SetChooseHero(chooseHero.hero.id);
                 }
-
-                //TODO 替换英雄
             }
         });
     }
 
     private void ShowSkillAction(string skillName)
     {
-        StartCoroutine(SetBoolDelayResume(skillName, 0.5f));
+        checkingHero.animator.SetBool(skillName,true);
+        //StartCoroutine(SetBoolDelayResume(skillName, 0.5f));
     }
 
     IEnumerator SetBoolDelayResume(string name,float time)
@@ -151,7 +151,7 @@ public class StoreModule : UIModuleBase
             storeHeroInfo.owned = CheckIfOwn(hero);
             storeHeroInfo.index = i;
             //测试代码，第二个设为选中
-            if (i == 1)
+            if (PlayerInfo.Instance.IsChoose(hero.id))
             {
                 storeHeroInfo.choose = true;
                 chooseHero = storeHeroInfo;
@@ -178,7 +178,7 @@ public class StoreModule : UIModuleBase
 
     private bool CheckIfOwn(HeroInfos.Hero hero)
     {
-        return hero.id != 0;
+        return PlayerInfo.Instance._userInfo.CheckIfHas(hero.id);
     }
 
     void SyncShowHeroInfo(StoreHeroInfo storeHero)

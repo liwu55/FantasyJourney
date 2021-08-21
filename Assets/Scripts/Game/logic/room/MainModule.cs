@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Frame.UI;
 using Game;
 using Game.bean;
@@ -24,8 +21,15 @@ public class MainModule : UIModuleBase
     private UIWidget playerLevelText;
     private UIController _uiController;
 
-    private void Start()
+    private MainPageInfo info;
+
+    protected override void Awake()
     {
+        base.Awake();
+    /*}
+
+    private void Start()
+    {*/
         playerName = FW("PlayerName#");
         lobbyButton = FW("LobbyButton#");
         bagButton = FW("BagButton#");
@@ -38,7 +42,6 @@ public class MainModule : UIModuleBase
 
         playerName.Text.text = PhotonNetwork.LocalPlayer.NickName;
         
-
         lobbyButton.Button.onClick.AddListener(() =>
         {
             setNickName();
@@ -47,7 +50,8 @@ public class MainModule : UIModuleBase
         //背包
         bagButton.Button.onClick.AddListener(() =>
         {
-            UIManager.Instance.ShowModule("Store");
+            UIEvent.StoreClick();
+            //UIManager.Instance.ShowModule("Store");
         });
         //设置
         settingButton.Button.onClick.AddListener(() =>
@@ -63,6 +67,21 @@ public class MainModule : UIModuleBase
         crownText.Text.text = "";//当前皇冠数
         playerLevelText.Text.text = "0/100";
         playerNowLevleFA.Img.fillAmount = 0.0f;
+    }
+
+    public override void OnSpawn(object obj)
+    {
+        base.OnSpawn(obj);
+        info=obj as MainPageInfo;
+        if (info == null)
+        {
+            return;
+        }
+        UserInfo userInfo = info.userInfo;
+        PlayerInfo.Instance.Init();
+        PlayerInfo.Instance._userInfo = info.userInfo;
+        moneyText.Text.text = userInfo.money.ToString();
+        crownText.Text.text = userInfo.honor.ToString();
     }
 
     private void Update()

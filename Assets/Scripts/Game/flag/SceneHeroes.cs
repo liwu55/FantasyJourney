@@ -59,5 +59,12 @@ namespace Game.flag
 
             return adversaries;
         }
+
+        public void Clear()
+        {
+            if(heroes!=null){
+                heroes.Clear();
+            }
+        }
     }
 }

@@ -14,6 +14,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
     [NonSerialized] public bool isDizzy = false;
 
     protected CharacterController cc;
+    protected Animator anim;
 
     //状态机
     protected StateMachine heroStateMachine;
@@ -79,6 +80,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
 
     private void InitPublic()
     {
+        anim = GetComponent<Animator>();
     }
 
     protected virtual void FixedUpdate()
@@ -95,22 +97,14 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
 
     public void Skill1End()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-
         isSkilling1 = false;
+        anim.SetBool("Skill1",false);
     }
 
     public void Skill2End()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
-
         isSkilling2 = false;
+        anim.SetBool("Skill2",false);
     }
 
     [PunRPC]
@@ -170,5 +164,10 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
     public Transform GetTransform()
     {
         return transform;
+    }
+
+    public float GetLifeCur()
+    {
+        return life;
     }
 }

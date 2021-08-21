@@ -7,13 +7,18 @@ namespace Game.flag.State
     {
         private Animator animator;
         private CharacterController cc;
-        public float speed = 12;
+        public float speed = 8;
         private Transform cameraTrans;
         private float gravity = 29.7f;
         private float y = 0;
         
         public Func<bool> OnMouseLeftClick;
         public Func<bool> OnMouseRightClick;
+        
+        private float leftClickCoolDown=0.7f;
+        private float lastLeftTrigger=0; 
+        private float rightClickCoolDown=5f;
+        private float lastRightTrigger=0;
 
         public NormalState(string stateName, SimpleHeroController simpleHeroController)
             : base(stateName,simpleHeroController)
@@ -83,7 +88,11 @@ namespace Game.flag.State
                 }
                 else
                 {
-                    simpleHeroController.isSkilling1 = true;
+                    if(Time.time-lastLeftTrigger>leftClickCoolDown)
+                    {
+                        lastLeftTrigger = Time.time;
+                        simpleHeroController.isSkilling1 = true;
+                    }
                 }
             }
             else if (Input.GetMouseButtonDown(1))
@@ -93,8 +102,12 @@ namespace Game.flag.State
                     Debug.Log("OnMouseRightClick Intercept");
                 }
                 else
-                {
-                    simpleHeroController.isSkilling2 = true;
+                { 
+                    if(Time.time-lastRightTrigger>rightClickCoolDown)
+                    {
+                        lastRightTrigger = Time.time;
+                        simpleHeroController.isSkilling2 = true;
+                    }
                 }
             }
         }

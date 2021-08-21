@@ -6,12 +6,14 @@ public class FlagGamingModule : UIModuleBase
 {
     private Text ourPoint;
     private Text adversarysPoint;
+    private Text damage;
     private bool isFirst = false;
     protected override void Awake()
     {
         base.Awake();
         ourPoint=FW("OurPoint#").Text;
         adversarysPoint=FW("AdversarysPoint#").Text;
+        damage=FW("Damage#").Text;
     }
 
     public override void OnSpawn(object obj)
@@ -23,6 +25,12 @@ public class FlagGamingModule : UIModuleBase
         ourPoint.color = ourColor;
         adversarysPoint.color = adversarysColor;
         FlagData.Instance.OnScoreChange += ScoreChange;
+        FlagData.Instance.OnDamageShowChange += DamageChange;
+    }
+
+    private void DamageChange(string show)
+    {
+        damage.text = show;
     }
 
     private void ScoreChange(int firstTeamScore, int secondTeamScore)

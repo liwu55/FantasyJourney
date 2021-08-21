@@ -1,4 +1,7 @@
-﻿namespace Game.bean
+﻿using System;
+using UnityEngine;
+
+namespace Game.bean
 {
     /// <summary>
     /// 用户信息，需要存储在数据库的信息
@@ -14,7 +17,10 @@
         //奖杯数
         public int honor;
         //已经拥有的英雄
+        public int[] ownedHeroes;
+
         public string ownedHero;
+        
         public int isLogined;
       
 
@@ -26,7 +32,38 @@
             this.money = money;
             this.honor = honor;
             this.ownedHero = ownedHero;
+            try
+            {
+                string[] heroesStr = ownedHero.Split(',');
+                ownedHeroes = new int[heroesStr.Length];
+                for (int i = 0; i < heroesStr.Length; i++)
+                {
+                    ownedHeroes[i] = Int32.Parse(heroesStr[i]);
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
             this.isLogined = isLogined;
+            
+        }
+
+        public bool CheckIfHas(int heroId)
+        {
+            if (ownedHeroes == null)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < ownedHeroes.Length; i++)
+            {
+                if (heroId == ownedHeroes[i])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

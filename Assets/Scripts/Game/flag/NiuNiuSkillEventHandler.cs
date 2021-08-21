@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using Frame.Utility;
+using Game;
 using Game.flag;
 using Photon.Pun;
 using UnityEngine;
@@ -21,24 +21,10 @@ public class NiuNiuSkillEventHandler : BaseFlagSkillEventHandler
     public void NiuNiuAttack()
     {
         Debug.Log("牛牛普通攻击");
-        Check(40f,"NiuNiuHit",1f,(hero)=>{
-            Vector3 i2Target = hero.GetTransform().position - transform.position;
-            //超出攻击范围
-            if (i2Target.magnitude > attackLength)
-            {
-                return false;
-            }
-
-            Vector3 forward = transform.forward;
-            i2Target.Normalize();
-            float cosValue = Vector3.Dot(forward, i2Target);
-            float angle = Mathf.Rad2Deg * Mathf.Acos(cosValue);
-            //超出角度
-            if (Mathf.Abs(angle) > attackAngle / 2)
-            {
-                return false;
-            }
-            return true;
+        ShowEffect("NiuNiuAttack");
+        Check(40f,"NiuNiuHit",1f,(hero)=>
+        {
+            return AttackJudge.SectorAttack(transform, hero.GetTransform(), attackLength, attackAngle);
         });
     }
 

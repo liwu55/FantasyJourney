@@ -412,7 +412,7 @@ ModelImporter:
       name: atk01
       takeName: atk01
       internalID: 0
-      firstFrame: 0
+      firstFrame: 6
       lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
@@ -433,7 +433,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.33718115
+      - time: 0.18694642
         functionName: NiuNiuAttack
         data: 
         objectReferenceParameter: {instanceID: 0}

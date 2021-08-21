@@ -2,26 +2,6 @@
   "heros": [
     {
       "id": 0,
-      "name": "小骷髅",
-      "des": "骷髅兵",
-      "model": "Skull",
-      "avatar": "avatar1",
-      "skills": [
-        {
-          "icon":  "skills_0",
-          "name":"二连砍" ,
-          "des":"大力连砍两刀"
-        },
-        {
-          "icon":  "skills_1",
-          "name":"致命打击" ,
-          "des":"先砍断你的腿，再敲爆你的头"
-        }
-      ],
-      "price" : 3998
-    },
-    {
-      "id": 1,
       "name": "牛牛",
       "des": "强壮的牛牛",
       "model": "niuniu",
@@ -41,6 +21,26 @@
       "price" : 3998
     },
     {
+      "id": 1,
+      "name": "小骷髅",
+      "des": "骷髅兵",
+      "model": "Skull",
+      "avatar": "avatar1",
+      "skills": [
+        {
+          "icon":  "skills_0",
+          "name":"二连砍" ,
+          "des":"大力连砍两刀"
+        },
+        {
+          "icon":  "skills_1",
+          "name":"致命打击" ,
+          "des":"先砍断你的腿，再敲爆你的头"
+        }
+      ],
+      "price" : 3998
+    },
+    {
       "id": 2,
       "name": "猫人",
       "des": "猫变成了人？还拿着剑？",
@@ -55,6 +55,26 @@
         {
           "icon":  "skills_5",
           "name":"醉剑" ,
+          "des":"猫人喝了假酒，上头一剑"
+        }
+      ],
+      "price" : 3998
+    },
+    {
+      "id": 3,
+      "name": "鱼",
+      "des": "",
+      "model": "fish",
+      "avatar": "avatar3",
+      "skills": [
+        {
+          "icon":  "skills_6",
+          "name":"鱼技能1" ,
+          "des":"猫人的剑术出神入化"
+        },
+        {
+          "icon":  "skills_7",
+          "name":"鱼技能2" ,
           "des":"猫人喝了假酒，上头一剑"
         }
       ],

@@ -184,6 +184,14 @@
     {
       "name": "SkullSkill",
       "path": "Effects/SkullSkill"
+    },
+    {
+      "name": "NiuNiuAttack",
+      "path": "Effects/NiuNiuAttack"
+    },
+    {
+      "name": "fish",
+      "path": "Heroes/fish"
     }
   ]  
 }

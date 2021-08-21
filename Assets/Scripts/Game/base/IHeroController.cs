@@ -7,5 +7,6 @@ namespace Game
     {
         public PhotonView GetPhotonView();
         public Transform GetTransform();
+        public float GetLifeCur();
     }
 }
