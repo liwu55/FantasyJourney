@@ -99,6 +99,7 @@ namespace Frame.UI
 
         public virtual void OnRecycle()
         {
+            Debug.Log(gameObject.name+" OnRecycle");
             cg.alpha = 0;
             cg.blocksRaycasts = false;
         }

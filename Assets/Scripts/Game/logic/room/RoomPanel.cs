@@ -35,6 +35,7 @@ public class RoomPanel : UIModuleBase
         start1Button.gameObject.SetActive(false);
         start1Button.Button.onClick.AddListener(() =>
         {
+            EventCenter.Instance.Clear();
             SceneHeroes.Instance.Clear();
             UIManager.Instance.Clear();
             ObjectPool.Instance.Clear();

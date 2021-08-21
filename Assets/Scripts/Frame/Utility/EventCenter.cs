@@ -363,5 +363,10 @@ namespace Frame.Utility
                 allEvent.Remove(eventType);
             }
         }
+
+        public void Clear()
+        {
+            allEvent.Clear();
+        }
     }
 }

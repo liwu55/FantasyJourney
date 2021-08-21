@@ -237,7 +237,7 @@ public class StoreModule : UIModuleBase
         }
         else
         {
-            actionText.text = "购买";
+            actionText.text = "购买("+checkingHero.hero.price+")";
         }
     }
 

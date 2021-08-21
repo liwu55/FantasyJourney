@@ -39,10 +39,6 @@ public class MainModule : UIModuleBase
     protected override void Awake()
     {
         base.Awake();
-    /*}
-
-    private void Start()
-    {*/
         playerName = FW("PlayerName#");
         lobbyButton = FW("LobbyButton#");
         bagButton = FW("BagButton#");

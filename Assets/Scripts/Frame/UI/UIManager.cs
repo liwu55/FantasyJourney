@@ -105,12 +105,16 @@ public class UIManager : SingleTonMonoAuto<UIManager>
     {
         foreach (var kvp in _uiModuleBases)
         {
-            kvp.Value.OnRecycle();
+            if(kvp.Value!=null){
+                kvp.Value.OnRecycle();
+            }
         }
         _uiModuleBases.Clear();
         foreach (var v in uiModuleStack)
         {
-            v.OnRecycle();
+            if(v!=null){
+                v.OnRecycle();
+            }
         }
         uiModuleStack.Clear();
     }
