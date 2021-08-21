@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using Frame.Utility;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Game.flag.State
@@ -6,7 +7,6 @@ namespace Game.flag.State
     public class OccupingState:BaseInteruptState
     {
         private float enterTime;
-        //TODO 占领需要的时间
         private float occupyNeedTime = 5;
         private FlagHeroController heroController;
         public OccupingState(string stateName, FlagHeroController heroController) : base(stateName,heroController)
@@ -15,6 +15,7 @@ namespace Game.flag.State
             OnStateEnter += OnEnter;
             OnStateUpdate += OnUpdate;
             OnStateExit += OnExit;
+            occupyNeedTime = ConfigurationManager.Instance.GetFlagConfig().occupyTime;
         }
 
         private void OnExit(Frame.FSM.State obj)

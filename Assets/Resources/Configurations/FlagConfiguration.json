@@ -1,5 +1,6 @@
 ﻿{
-  "winScore": 3,
+  "winScore": 1,
+  "occupyTime": 1,
   "unoccupiedPoint": "GreyPoint",
   "Teams": [
     {

@@ -12,8 +12,11 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
     private List<TeamData> teamDatas;
     public Action<int, int> OnScoreChange;
     public Action<string> OnDamageShowChange;
+    public Action<string> Reward;
     [NonSerialized]
     public bool gameOver = false;
+
+    private TeamData winTeam;
 
     public void Awake()
     {
@@ -36,6 +39,12 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
     {
         OnDamageShowChange(show);
     }
+
+    [PunRPC]
+    public void OnReward(string reward)
+    {
+        Reward(reward);
+    }
     
     [PunRPC]
     public void GotScore(string sign)
@@ -55,6 +64,8 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
             if (t.score >= flagConfig.winScore)
             {
                 gameOver = true;
+                winTeam = t;
+                Invoke("calc",1);
                 break;
             }
         }
@@ -64,6 +75,14 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
         }
     }
 
+    private void calc()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            FlagShowData.Instance.CalcReward(winTeam);
+        }
+    }
+    
     public string GetFirstTeam()
     {
         return teamDatas[0].name;
@@ -74,7 +93,7 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
         return teamDatas[1].name;
     }
 
-    private class TeamData
+    public class TeamData
     {
         public string name;
         public int score;
@@ -96,6 +115,18 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
             }
         }
         return Color.white;
+    }
+
+    public string GetColorStr(string teamName)
+    {
+        foreach (var teamData in teamDatas)
+        {
+            if (teamData.name == teamName)
+            {
+                return teamData.color;
+            }
+        }
+        return "#ffffff";
     }
 
     public Color GetAdversaryColor(string teamName)
