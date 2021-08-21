@@ -101,6 +101,19 @@ public class UIManager : SingleTonMonoAuto<UIManager>
         }
     }
 
+    public void Clear()
+    {
+        foreach (var kvp in _uiModuleBases)
+        {
+            kvp.Value.OnRecycle();
+        }
+        _uiModuleBases.Clear();
+        foreach (var v in uiModuleStack)
+        {
+            v.OnRecycle();
+        }
+        uiModuleStack.Clear();
+    }
 
     private void Update()
     {

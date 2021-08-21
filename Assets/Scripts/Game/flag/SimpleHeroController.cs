@@ -1,12 +1,14 @@
 using System;
 using Frame.FSM;
+using Frame.Utility;
 using Game;
 using Game.flag;
 using Game.flag.State;
 using Photon.Pun;
 using UnityEngine;
+using Object = System.Object;
 
-public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
+public class SimpleHeroController : MonoBehaviourPunCallbacks, IHeroController
 {
     [NonSerialized] public Vector3 velocity;
     [NonSerialized] public bool isSkilling1 = false;
@@ -27,6 +29,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
 
     protected virtual void Awake()
     {
+        Debug.Log("SimpleHeroController Awake");
         SceneHeroes.Instance.Add(this);
 
         InitPublic();
@@ -34,7 +37,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
         {
             return;
         }
-
+        
         InitSelf();
         BindCamera();
     }
@@ -46,6 +49,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
 
     private void InitSelf()
     {
+        Debug.Log("SimpleHeroController InitSelf");
         cc = GetComponent<CharacterController>();
         //状态机设置
         heroStateMachine = new StateMachine("HeroState");
@@ -57,7 +61,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
 
         normalState.AddTransition("Skilling1", () => isSkilling1);
         normalState.AddTransition("Skilling2", () => isSkilling2);
-        
+
         normalState.AddTransition("Dizzy", () => life <= 0 || isDizzy);
 
         skill1State.AddTransition("Normal", () => !isSkilling1);
@@ -92,19 +96,20 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
 
         //simpleMove没有y轴速度，自带重力
         // cc.SimpleMove(velocity);
+        //Debug.Log("SimpleHeroController FixedUpdate v="+velocity);
         cc.Move(velocity * Time.deltaTime);
     }
 
     public void Skill1End()
     {
         isSkilling1 = false;
-        anim.SetBool("Skill1",false);
+        anim.SetBool("Skill1", false);
     }
 
     public void Skill2End()
     {
         isSkilling2 = false;
-        anim.SetBool("Skill2",false);
+        anim.SetBool("Skill2", false);
     }
 
     [PunRPC]
@@ -122,7 +127,14 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
             }
         }
 
+        ShowDamageNumber(damage);
         Debug.Log("被攻击,伤害" + damage + ",剩余血量:" + life);
+    }
+
+    private void ShowDamageNumber(float damage)
+    {
+        ObjectPool.Instance.SpawnObj("DamageNumber",
+            data: new Object[] {damage, transform.position + Vector3.up * 1});
     }
 
     [PunRPC]
@@ -147,7 +159,8 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks,IHeroController
         isSkilling1 = false;
         isSkilling2 = false;
         isDizzy = false;
-        if(resetBlood){
+        if (resetBlood)
+        {
             ResetBlood();
         }
     }

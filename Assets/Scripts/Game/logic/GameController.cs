@@ -134,7 +134,15 @@ public class GameController: SingleTonObj<GameController>
     /// </summary>
     public void Entrance()
     {
-        _uiController.ShowLogin();
+        if (PlayerInfo.Instance._userInfo != null)
+        {
+            _mainPageInfoCache = new MainPageInfo();
+            _mainPageInfoCache.userInfo = PlayerInfo.Instance._userInfo;
+            _mainPageInfoCache.maps = _mapManager.GetAllMap();
+            _uiController.ShowMain(_mainPageInfoCache);
+        }else{
+            _uiController.ShowLogin();
+        }
         // _uiController.ShowStore();
 
         //_uiController.ShowRoomInfo();

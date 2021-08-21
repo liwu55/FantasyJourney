@@ -65,5 +65,10 @@ namespace Frame.Utility
 
             objPools[name].Push(obj);
         }
+
+        public void Clear()
+        {
+            objPools.Clear();
+        }
     }
 }

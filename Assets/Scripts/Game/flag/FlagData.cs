@@ -171,4 +171,11 @@ public class FlagData : SingleTonMonoPhoton<FlagData>
     {
         return flagConfig.winScore;
     }
+
+    public void Clear()
+    {
+        gameOver = false;
+        winTeam = null;
+        FlagShowData.Instance.Clear();
+    }
 }
