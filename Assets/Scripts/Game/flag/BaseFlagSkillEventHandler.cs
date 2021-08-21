@@ -17,7 +17,16 @@ namespace Game.flag
             {
                 return;
             }
-            List<IHeroController> enemies = SceneHeroes.Instance.GetAllAdversary(thisHeroController.photonView.Owner);
+
+            bool inFlag = GetComponent<ControllerInit>().inFlag;
+            List<IHeroController> enemies;
+            if(inFlag){
+                enemies = SceneHeroes.Instance.GetAllAdversary(GetHeroController().photonView.Owner);
+            }
+            else
+            {
+                enemies = SceneHeroes.Instance.GetOthers(GetHeroController().photonView.Owner);
+            }
             base.Check(enemies,damage, effectName, hitBackRate, CheckIfInRange);
         }
     }

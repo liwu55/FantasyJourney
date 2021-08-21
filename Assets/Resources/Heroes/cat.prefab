@@ -1049,12 +1049,12 @@ GameObject:
   - component: {fileID: 9041649017032842259}
   - component: {fileID: 9041649017042662389}
   - component: {fileID: -8238297154851960679}
-  - component: {fileID: -8290571381555220730}
   - component: {fileID: 9191129304554696422}
   - component: {fileID: -3001011401173550218}
   - component: {fileID: -8640855014971053826}
   - component: {fileID: -3938992466467371654}
   - component: {fileID: 1698278545533733529}
+  - component: {fileID: -5078322783896156387}
   m_Layer: 0
   m_Name: cat
   m_TagString: Untagged
@@ -1109,19 +1109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0069492cbd55da24a9e18b94ec60d6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8290571381555220730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9041649017033261107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a28a61e1d84cd490440f11e0c7ae28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  operationDistance: 3
 --- !u!143 &9191129304554696422
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1229,6 +1216,18 @@ MonoBehaviour:
   attackAngle: 180
   skillRange: 5
   skillDamage: 50
+--- !u!114 &-5078322783896156387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041649017033261107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c47667059e5404681ee5444d251d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9041649017033261109
 GameObject:
   m_ObjectHideFlags: 0

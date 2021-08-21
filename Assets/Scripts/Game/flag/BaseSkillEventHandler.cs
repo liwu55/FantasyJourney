@@ -15,6 +15,16 @@ namespace Game.flag
             thisHeroController = GetComponent<SimpleHeroController>();
         }
 
+        protected SimpleHeroController GetHeroController()
+        {
+            if (thisHeroController == null)
+            {
+                thisHeroController = GetComponent<SimpleHeroController>();
+            }
+
+            return thisHeroController;
+        }
+
         protected void Check(List<IHeroController> enemies, float damage, string effectName, float hitBackRate,
             Func<IHeroController, bool> CheckIfInRange)
         {
@@ -26,13 +36,20 @@ namespace Game.flag
                 }
 
                 Vector3[] data = FindHitPoint(hero);
-                float lifeCur = hero.GetLifeCur();
-                bool dead = lifeCur > 0 && lifeCur <= damage;
-                FlagShowData.Instance.DamageSave(thisHeroController.photonView.Owner,
-                    hero.GetPhotonView().Owner, damage, dead);
+                if(IsInFlag()){
+                    float lifeCur = hero.GetLifeCur();
+                    bool dead = lifeCur > 0 && lifeCur <= damage;
+                    FlagShowData.Instance.DamageSave(thisHeroController.photonView.Owner,
+                        hero.GetPhotonView().Owner, damage, dead);
+                }
                 hero.GetPhotonView().RPC("BeAttack", RpcTarget.All,
                     new object[] {data[0], data[1], effectName, damage, hitBackRate});
             }
+        }
+
+        private bool IsInFlag()
+        {
+            return GetComponent<ControllerInit>().inFlag;
         }
 
         private Vector3[] FindHitPoint(IHeroController hero)

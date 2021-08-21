@@ -2064,7 +2064,7 @@ GameObject:
   - component: {fileID: 1911208206}
   - component: {fileID: -8423546797596373970}
   - component: {fileID: -9024142097824657032}
-  - component: {fileID: 5883213628220683738}
+  - component: {fileID: -6350515057760355293}
   m_Layer: 0
   m_Name: Skull
   m_TagString: Untagged
@@ -2231,7 +2231,7 @@ MonoBehaviour:
   skillRange: 5
   skillDamage: 5
   skillDamageRate: 0.1
---- !u!114 &5883213628220683738
+--- !u!114 &-6350515057760355293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2240,7 +2240,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7818488065283615062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9475864eb5a647c488f548598f85c737, type: 3}
+  m_Script: {fileID: 11500000, guid: b7c47667059e5404681ee5444d251d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7818488065283615064

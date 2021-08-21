@@ -35,10 +35,7 @@ public class RoomPanel : UIModuleBase
         start1Button.gameObject.SetActive(false);
         start1Button.Button.onClick.AddListener(() =>
         {
-            EventCenter.Instance.Clear();
-            SceneHeroes.Instance.Clear();
-            UIManager.Instance.Clear();
-            ObjectPool.Instance.Clear();
+            ClearData();
             //加载场景
             PhotonNetwork.LoadLevel("Flag");
             PhotonNetwork.CurrentRoom.IsOpen = false;
@@ -47,7 +44,7 @@ public class RoomPanel : UIModuleBase
         start2Button.gameObject.SetActive(false);
         start2Button.Button.onClick.AddListener(() =>
         {
-            SceneHeroes.Instance.Clear();
+            ClearData();
             //加载场景
             PhotonNetwork.LoadLevel("BattleForFlag");
             PhotonNetwork.CurrentRoom.IsOpen = false;
@@ -56,7 +53,7 @@ public class RoomPanel : UIModuleBase
         start3Button.gameObject.SetActive(false);
         start3Button.Button.onClick.AddListener(() =>
         {
-            SceneHeroes.Instance.Clear();
+            ClearData();
             //加载场景
             PhotonNetwork.LoadLevel("DoOneFight");
             PhotonNetwork.CurrentRoom.IsOpen = false;
@@ -82,6 +79,14 @@ public class RoomPanel : UIModuleBase
 
         roomName = FW("RoomName#");
         roomName.Text.text = PhotonNetwork.CurrentRoom.Name;
+    }
+
+    private void ClearData()
+    {
+        EventCenter.Instance.Clear();
+        SceneHeroes.Instance.Clear();
+        UIManager.Instance.Clear();
+        ObjectPool.Instance.Clear();
     }
     
     private void OnPlayerEntered(Player player)
