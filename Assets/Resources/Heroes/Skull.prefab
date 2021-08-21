@@ -2063,8 +2063,8 @@ GameObject:
   - component: {fileID: 1911208205}
   - component: {fileID: 1911208206}
   - component: {fileID: -8423546797596373970}
-  - component: {fileID: 8150128903152453817}
   - component: {fileID: -9024142097824657032}
+  - component: {fileID: 5883213628220683738}
   m_Layer: 0
   m_Name: Skull
   m_TagString: Untagged
@@ -2213,19 +2213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0069492cbd55da24a9e18b94ec60d6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8150128903152453817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7818488065283615062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a28a61e1d84cd490440f11e0c7ae28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  operationDistance: 3
 --- !u!114 &-9024142097824657032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2244,6 +2231,18 @@ MonoBehaviour:
   skillRange: 5
   skillDamage: 5
   skillDamageRate: 0.1
+--- !u!114 &5883213628220683738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818488065283615062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9475864eb5a647c488f548598f85c737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7818488065283615064
 GameObject:
   m_ObjectHideFlags: 0

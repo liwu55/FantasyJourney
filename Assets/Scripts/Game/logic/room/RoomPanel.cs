@@ -15,7 +15,9 @@ public class RoomPanel : UIModuleBase
     private Dictionary<int, GameObject> cachePlayers;
     
     private UIWidget playerListParent;
-    private UIWidget startButton;
+    private UIWidget start1Button;
+    private UIWidget start2Button;
+    private UIWidget start3Button;
     private UIWidget roomName;
     private UIWidget backButton;
     private UIWidget readyButton;
@@ -28,28 +30,42 @@ public class RoomPanel : UIModuleBase
         base.Awake();
         cachePlayers = new Dictionary<int, GameObject>();
         playerListParent = FW("PlayersList#");
-        startButton = FW("StartButton#");
-        startButton.Button.onClick.AddListener(() =>
+        
+        start1Button = FW("Start1Button#");
+        start1Button.gameObject.SetActive(false);
+        start1Button.Button.onClick.AddListener(() =>
         {
             SceneHeroes.Instance.Clear();
             //加载场景
-            // PhotonNetwork.LoadLevel("Scene1");
             PhotonNetwork.LoadLevel("Flag");
-            //PhotonNetwork.LoadLevel("BattleForFlag");
-
-            //PhotonNetwork.LoadLevel("DoOneFight");
-            Debug.Log("游戏开始");
-
-            //FW("SureButtonText#").Text.text = "准备中";
             PhotonNetwork.CurrentRoom.IsOpen = false;
-
-
         });
+        start2Button = FW("Start2Button#");
+        start2Button.gameObject.SetActive(false);
+        start2Button.Button.onClick.AddListener(() =>
+        {
+            SceneHeroes.Instance.Clear();
+            //加载场景
+            PhotonNetwork.LoadLevel("BattleForFlag");
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        });
+        start3Button = FW("Start3Button#");
+        start3Button.gameObject.SetActive(false);
+        start3Button.Button.onClick.AddListener(() =>
+        {
+            SceneHeroes.Instance.Clear();
+            //加载场景
+            PhotonNetwork.LoadLevel("DoOneFight");
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        });
+        
 
         backButton = FW("BackButton#");
         backButton.Button.onClick.AddListener(() =>
         {
             PhotonNetwork.LeaveRoom();
+            
+            
         });
 
         readyButton = FW("ReadyButton#");
@@ -139,8 +155,17 @@ public class RoomPanel : UIModuleBase
 
     private void SetStartGameBtnShowOrHide()
     {
-        startButton.gameObject.SetActive(CanStartGame());
+        if (PhotonNetwork.CurrentRoom.PlayerCount % 2 == 0)
+        {
+            start1Button.gameObject.SetActive(CanStartGame());
+        }
+      
+        start2Button.gameObject.SetActive(CanStartGame());
         
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            start3Button.gameObject.SetActive(CanStartGame());
+        }
     }
 
 

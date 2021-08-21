@@ -106,16 +106,16 @@ public class RoomlistPanel : UIModuleBase
 
    public override void OnPause()
    {
-     //  base.OnPause();
-     //  PhotonCallBackManager.instance.RemoveOnRoomListUpdateEvevt(OnRoomListUpdate);
-     //  RecycleRoomItems();
+    //  base.OnPause();
+    //  PhotonCallBackManager.instance.RemoveOnRoomListUpdateEvevt(OnRoomListUpdate);
+    //  RecycleRoomItems();
    }
 
    public override void OnResume()
    {
-   //  base.OnResume();
-   //  PhotonCallBackManager.instance.AddOnRoomListUpdateEvevt(OnRoomListUpdate);
-   //  PhotonNetwork.JoinLobby();
+   // base.OnResume();
+   // PhotonCallBackManager.instance.AddOnRoomListUpdateEvevt(OnRoomListUpdate);
+   // PhotonNetwork.JoinLobby();
    }
 
    public override void OnRecycle()
