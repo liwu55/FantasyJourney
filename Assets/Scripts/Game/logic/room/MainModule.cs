@@ -19,9 +19,9 @@ public class MainModule : UIModuleBase
     private UIWidget crownText;//皇冠
     private UIWidget playerNowLevleFA;
     private UIWidget playerLevelText;
-    private UIController _uiController;
 
     private MainPageInfo info;
+    private UserInfo userInfo;
 
     protected override void Awake()
     {
@@ -51,7 +51,6 @@ public class MainModule : UIModuleBase
         bagButton.Button.onClick.AddListener(() =>
         {
             UIEvent.StoreClick();
-            //UIManager.Instance.ShowModule("Store");
         });
         //设置
         settingButton.Button.onClick.AddListener(() =>
@@ -63,10 +62,9 @@ public class MainModule : UIModuleBase
         {
             UIManager.Instance.ShowModule("");
         });
-        moneyText.Text.text = "";//当前金币
-        crownText.Text.text = "";//当前皇冠数
         playerLevelText.Text.text = "0/100";
         playerNowLevleFA.Img.fillAmount = 0.0f;
+        UIEvent.RefreshMainPageHero += setMainNum;
     }
 
     public override void OnSpawn(object obj)
@@ -77,7 +75,13 @@ public class MainModule : UIModuleBase
         {
             return;
         }
-        UserInfo userInfo = info.userInfo;
+        userInfo = info.userInfo;
+        moneyText.Text.text = userInfo.money.ToString();
+        crownText.Text.text = userInfo.honor.ToString();
+    }
+
+    public void setMainNum()
+    {
         moneyText.Text.text = userInfo.money.ToString();
         crownText.Text.text = userInfo.honor.ToString();
     }
