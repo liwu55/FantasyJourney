@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Text;
 using Frame.UI;
 using Game;
 using Game.bean;
@@ -19,6 +21,18 @@ public class MainModule : UIModuleBase
     private UIWidget crownText;//皇冠
     private UIWidget playerNowLevleFA;
     private UIWidget playerLevelText;
+    
+    private UIWidget rankingList;
+    [SerializeField]
+    private GameObject rankingListImage;
+    private UIWidget listName1;
+    private UIWidget listName2;
+    private UIWidget listName3;
+    private UIWidget listName4;
+    private UIWidget listName5;
+    private List<UIWidget> listName=new List<UIWidget>();
+    private StringBuilder str=new StringBuilder();
+    private bool showBool=false;
 
     private MainPageInfo info;
 
@@ -38,7 +52,19 @@ public class MainModule : UIModuleBase
         crownText = FW("CrownText#");
         playerNowLevleFA = FW("PlayerNowLevleFA#");
         playerLevelText = FW("PlayerLevelText#");
-
+        
+        rankingList = FW("RankingList#");
+        listName1 = FW("ListName1#");
+        listName2 = FW("ListName2#");
+        listName3 = FW("ListName3#");
+        listName4 = FW("ListName4#");
+        listName5 = FW("ListName5#");
+        listName.Add(listName1);
+        listName.Add(listName2);
+        listName.Add(listName3);
+        listName.Add(listName4);
+        listName.Add(listName5);
+        
         playerName.Text.text = PhotonNetwork.LocalPlayer.NickName;
         
         lobbyButton.Button.onClick.AddListener(() =>
@@ -61,10 +87,16 @@ public class MainModule : UIModuleBase
         {
             UIManager.Instance.ShowModule("");
         });
+        //排名
+        rankingList.Button.onClick.AddListener(() =>
+        {
+            showList();
+        });
         playerLevelText.Text.text = "0/100";
         playerNowLevleFA.Img.fillAmount = 0.0f;
         UIEvent.RefreshMainPageHero += showMainMoney;
     }
+    
 
     public override void OnSpawn(object obj)
     {
@@ -86,6 +118,35 @@ public class MainModule : UIModuleBase
         crownText.Text.text = userInfo.honor.ToString();
     }
 
+    public void showList()
+    {
+        if (!showBool)
+        {
+            rankingListImage.SetActive(true);
+            writeList();
+            showBool = true;
+        }
+        else
+        {
+            rankingListImage.SetActive(false);
+            showBool = false;
+        }
+    }
+
+    public void writeList()
+    {
+        List<UserInfo> userInfos = DataBaseManager.Instance.GetRankList(5);
+        for (int i = 0; i < 5; i++)
+        {
+            str.Clear();
+            str.Append((i+1).ToString());
+            str.Append(" ， ");
+            str.Append(userInfos[i].username);
+            str.Append(" ， ");
+            str.Append(userInfos[4-i].money);
+            listName[i].Text.text = str.ToString();
+        }
+    }
 
     private void Update()
     {
