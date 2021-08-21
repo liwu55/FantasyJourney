@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 62570447898994719}
   - component: {fileID: 62570447898994718}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Money#
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1449,7 +1449,7 @@ GameObject:
   - component: {fileID: 62570449205845339}
   - component: {fileID: 62570449205845338}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Honor#
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

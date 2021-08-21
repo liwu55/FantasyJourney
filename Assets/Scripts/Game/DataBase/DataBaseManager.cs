@@ -26,8 +26,6 @@ namespace Game
         public void SaveInfo(UserInfo userinfo)
         {
             int userId = userinfo.id;
-            string username = userinfo.username;
-            string password = userinfo.password;
             int money = userinfo.money;
             int honor = userinfo.honor;
             string heroList = userinfo.ownedHero;
@@ -37,10 +35,10 @@ namespace Game
                 _dictionary.Add(userinfo.username, userinfo);
             }
             
-            UpdateUserInfo(userId, username, password, money, honor, heroList);
+            UpdateUserInfo(userId, money, honor, heroList);
         }
         /// <summary>
-        /// Insert一个用户（此方法有bug，暂时不要调用）
+        /// 修改用户信息
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="username"></param>
@@ -48,15 +46,11 @@ namespace Game
         /// <param name="money"></param>
         /// <param name="honor"></param>
         /// <param name="ownedHero"></param>
-        private void  UpdateUserInfo(int @ID,string @username,string @password,int @money,int @honor,string @ownedHero)
+        private void  UpdateUserInfo(int @ID,int @money,int @honor,string @ownedHero)
         {
-            _command.Parameters.Add(new MySqlParameter("@ID", @ID));
-            _command.Parameters.Add(new MySqlParameter("@username", @username));
-            _command.Parameters.Add(new MySqlParameter("@password", @password));
-            _command.Parameters.Add(new MySqlParameter("@money", @money));
-            _command.Parameters.Add(new MySqlParameter("@honor", @honor));
-            _command.Parameters.Add(new MySqlParameter("@ownedHero", @ownedHero));
-            _command.CommandText = "Insert INTO CustomerInfo VALUES(@ID,@username,@password, @money,@honor, @ownedHero)";
+            _command.CommandText = "Update CustomerInfo Set money=\'"
+                                   +money+"\', honor=\'"+honor+"\', ownedHero=\'"
+                                   +ownedHero+"\' where ID="+ID;
             int i = _command.ExecuteNonQuery();
             Debug.Log("产生影响"+ i);
         }

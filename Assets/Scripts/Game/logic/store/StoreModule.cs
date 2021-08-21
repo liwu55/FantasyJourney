@@ -24,6 +24,8 @@ public class StoreModule : UIModuleBase
     private UIWidget skillShow;
     private Text skillName;
     private Text skillDes;
+    private Text money;
+    private Text honor;
 
     private void Start()
     {
@@ -46,8 +48,16 @@ public class StoreModule : UIModuleBase
         skillName = FW("SkillName#").Text;
         skillDes = FW("SkillDes#").Text;
         back = FW("BackButton#").Button;
-        
+        money = FW("Money#").Text;
+        honor = FW("Honor#").Text;
+        ShowMoney();
         HideSkillDes();
+    }
+
+    private void ShowMoney()
+    {
+        money.text = PlayerInfo.Instance._userInfo.money.ToString();
+        honor.text = PlayerInfo.Instance._userInfo.honor.ToString();
     }
 
     private void InitListener()
@@ -88,9 +98,17 @@ public class StoreModule : UIModuleBase
             {
                 return;
             }
+            
             //购买
             if (!checkingHero.owned)
             {
+                if (PlayerInfo.Instance._userInfo.money < checkingHero.hero.price)
+                {
+                    return;
+                }
+                PlayerInfo.Instance._userInfo.money -= checkingHero.hero.price;
+                PlayerInfo.Instance._userInfo.BuyHero(checkingHero.hero.id);
+                ShowMoney();
                 checkingHero.owned = true;
                 SyncShowHeroInfo(checkingHero);
                 SyncIconStatus(checkingHero);

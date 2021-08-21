@@ -152,14 +152,15 @@ namespace Game.flag
             {
                 honorDetail.Clear();
                 moneyDetail.Clear();
+                FlagDataInfo flagDataInfo = infos[i];
                 
                 sb.Append("第");
                 sb.Append((i + 1).ToString());
                 sb.Append("：");
                 sb.Append("<color=");
-                sb.Append(infos[i].color);
+                sb.Append(flagDataInfo.color);
                 sb.Append(">");
-                sb.Append(infos[i].name);
+                sb.Append(flagDataInfo.name);
                 sb.Append("</color>");
                 sb.Append("\n");
                 sb.Append("\t奖励荣誉：");
@@ -170,7 +171,7 @@ namespace Game.flag
                 honorDetail.Append("+");
                 honorDetail.Append(honor);
                 
-                if (infos[i].win)
+                if (flagDataInfo.win)
                 {
                     honor += 1;
                     honorDetail.Append(" 获胜+1）");
@@ -194,7 +195,7 @@ namespace Game.flag
                 moneyDetail.Append("+");
                 moneyDetail.Append(money);
                 
-                if (infos[i].win)
+                if (flagDataInfo.win)
                 {
                     money += 1000;
                     moneyDetail.Append(" 获胜+1000）");
@@ -208,6 +209,8 @@ namespace Game.flag
                 
                 sb.Append("\n");
                 sb.Append("\n");
+                
+                //TODO 存到数据库
             }
             
             FlagData.Instance.photonView.RPC("OnReward",

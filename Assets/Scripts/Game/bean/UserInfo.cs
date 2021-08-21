@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.bean
@@ -17,7 +18,7 @@ namespace Game.bean
         //奖杯数
         public int honor;
         //已经拥有的英雄
-        public int[] ownedHeroes;
+        public List<int> ownedHeroes;
 
         public string ownedHero;
         
@@ -35,10 +36,10 @@ namespace Game.bean
             try
             {
                 string[] heroesStr = ownedHero.Split(',');
-                ownedHeroes = new int[heroesStr.Length];
+                ownedHeroes = new List<int>();
                 for (int i = 0; i < heroesStr.Length; i++)
                 {
-                    ownedHeroes[i] = Int32.Parse(heroesStr[i]);
+                    ownedHeroes.Add(Int32.Parse(heroesStr[i]));
                 }
             }
             catch (Exception e)
@@ -56,7 +57,7 @@ namespace Game.bean
                 return false;
             }
 
-            for (int i = 0; i < ownedHeroes.Length; i++)
+            for (int i = 0; i < ownedHeroes.Count; i++)
             {
                 if (heroId == ownedHeroes[i])
                 {
@@ -64,6 +65,14 @@ namespace Game.bean
                 }
             }
             return false;
+        }
+
+        public void BuyHero(int heroId)
+        {
+            ownedHero += ",";
+            ownedHero += heroId.ToString();
+            ownedHeroes.Add(heroId);
+            DataBaseManager.Instance.SaveInfo(this);
         }
     }
 }

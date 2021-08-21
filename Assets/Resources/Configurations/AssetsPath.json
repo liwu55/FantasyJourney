@@ -60,7 +60,18 @@
       "name": "RedLoli",
       "path": "Heroes/RedLoli"
     },
-
+    {
+      "name": "avatar_niuniu",
+      "path": "Avatar/niuniu"
+    },
+    {
+      "name": "avatar_cat",
+      "path": "Avatar/Skull"
+    },
+    {
+      "name": "avatar_skull",
+      "path": "Avatar/cat"
+    },
     {
       "name": "avatar1",
       "path": "Avatar/avatar1"
