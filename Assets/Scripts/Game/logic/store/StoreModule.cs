@@ -17,6 +17,7 @@ public class StoreModule : UIModuleBase
     private UIWidget skill1;
     private UIWidget skill2;
     private Button actionButton;
+    private Button back;
     private Text actionText;
     private StoreHeroInfo checkingHero;
     private StoreHeroInfo chooseHero;
@@ -44,12 +45,17 @@ public class StoreModule : UIModuleBase
         skillShow = FW("SkillShow#");
         skillName = FW("SkillName#").Text;
         skillDes = FW("SkillDes#").Text;
+        back = FW("BackButton#").Button;
         
         HideSkillDes();
     }
 
     private void InitListener()
     {
+        back.onClick.AddListener(() =>
+        {
+            UIManager.Instance.PopModule();
+        });
         skill1.Button.onClick.AddListener(() =>
         {
             ShowSkillAction("Skill1");

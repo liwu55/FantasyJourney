@@ -38,8 +38,8 @@ public class GameController: SingleTonObj<GameController>
     private void InitObj()
     {
         _uiController=new UIController();
-        // _loginManager=new LoginManager();
-        _loginManager = new FakeLoginManager();
+        _loginManager=new LoginManager();
+        // _loginManager = new FakeLoginManager();
         _mapManager= new TestMapManager();
         _photonWrapper=new TestPhotonWrapper();
         _playerInfo=new PlayerInfo();

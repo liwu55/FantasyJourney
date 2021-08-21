@@ -14,6 +14,10 @@ namespace Game
         private MySqlCommand  _command;
         Dictionary<string, UserInfo> _dictionary = new Dictionary<string, UserInfo>();
         private UserInfo _userCache;
+        //宿舍的ip
+        private string host = "172.20.177.212";
+        //课室的
+        //private string host = "10.9.72.192";
         /// <summary>
         /// 保存UserInfo数据
         /// </summary>
@@ -64,7 +68,7 @@ namespace Game
         //初始化数据库
         private void InitDataBase()
         {
-            mySqlAccess = new MySqlAccess("10.9.72.192","3306","root","123456","dbcustomerinfo");
+            mySqlAccess = new MySqlAccess(host,"3306","root","123456","dbcustomerinfo");
             _connection = mySqlAccess.mySqlConnection;
             _command = _connection.CreateCommand();
             SaveInDic();

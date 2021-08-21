@@ -52,6 +52,10 @@ namespace Game
         /// 点击了游戏开始
         /// </summary>
         public static Action<MapInfo> GameStart;
-        
+
+        /// <summary>
+        /// 刷新主页显示英雄
+        /// </summary>
+        public static Action RefreshMainPageHero;
     }
 }

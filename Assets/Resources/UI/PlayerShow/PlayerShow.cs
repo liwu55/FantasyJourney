@@ -39,7 +39,7 @@ public class PlayerShow : MonoBehaviour
     {
         if (!IsRotate) return;
         if (!Input.GetMouseButton(0)) return;
-        float OffsetX = Input.GetAxis("Mouse X");//»ñÈ¡Êó±êxÖáµÄÆ«ÒÆÁ¿
+        float OffsetX = Input.GetAxis("Mouse X");//è·å–é¼ æ ‡xè½´çš„åç§»é‡
         player.transform.Rotate(new Vector3(0, -OffsetX, 0) * speed, Space.World);
     }
     public void isRotate()
