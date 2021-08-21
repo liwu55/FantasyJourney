@@ -33,6 +33,10 @@
       "path": "UI/MainPanel"
     },
     {
+      "name": "BFFGameOverPanel",
+      "path": "UI/BFFGameOverPanel"
+    },
+    {
       "name": "DoGameOverPanel",
       "path": "UI/DoOneFight/GameOverPanel"
     },

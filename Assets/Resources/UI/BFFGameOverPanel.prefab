@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6552544740694296087}
   - component: {fileID: 6552544740694296084}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player
+  m_Text: 
 --- !u!1 &6552544740923873009
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 6552544740923873008}
   - component: {fileID: 6552544740923873010}
   - component: {fileID: 6552544740923873011}
+  - component: {fileID: 2273562576006686964}
   m_Layer: 5
   m_Name: BFFGameOverPanel
   m_TagString: Untagged
@@ -157,6 +158,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2273562576006686964
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552544740923873009}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6552544741324598308
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6552544742092478137
 RectTransform:
   m_ObjectHideFlags: 0
@@ -426,7 +439,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6700\u4F73\u5F97\u5206\u738B\uFF1A"
+  m_Text: "\u6700\u7EC8\u5F97\u5206\uFF1A"
 --- !u!1 &6552544742397593996
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 600, y: -400}
+  m_AnchoredPosition: {x: 0, y: -386}
   m_SizeDelta: {x: 456.3833, y: 140.0853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6552544742397593984
