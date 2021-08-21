@@ -116,6 +116,9 @@ public class GameController: SingleTonObj<GameController>
             {
                 _mainPageInfoCache = new MainPageInfo();
                 _mainPageInfoCache.userInfo = loginResult.userInfo;
+                
+                PlayerInfo.Instance.Init();
+                PlayerInfo.Instance._userInfo = loginResult.userInfo;
                 _mainPageInfoCache.maps = _mapManager.GetAllMap();
                 _uiController.ShowLoginSuc(_mainPageInfoCache.userInfo.username);
             }
@@ -136,7 +139,7 @@ public class GameController: SingleTonObj<GameController>
 
         //_uiController.ShowRoomInfo();
         //_uiController.ShowMain(null);
-        
+
         
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.AutomaticallySyncScene = true;

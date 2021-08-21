@@ -1,3 +1,5 @@
+using Game;
+using Game.bean;
 using UnityEngine;
 
 public class PlayerShow : MonoBehaviour
@@ -24,7 +26,9 @@ public class PlayerShow : MonoBehaviour
     }
     private void Awake()
     {
+        UIEvent.RefreshMainPageHero+=setPlayerClone;
         Instance = this;
+        setPlayerClone();
     }
     void  Start()
     {
@@ -34,6 +38,11 @@ public class PlayerShow : MonoBehaviour
     {
         isRotate();
         rotatePlayerClone();
+    }
+
+    public void setPlayerClone()
+    {
+        Player=Resources.Load<GameObject>(PlayerInfo.Instance.GetChooseHeroPath());
     }
     public void rotatePlayerClone()
     {

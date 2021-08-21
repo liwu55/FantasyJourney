@@ -78,8 +78,6 @@ public class MainModule : UIModuleBase
             return;
         }
         UserInfo userInfo = info.userInfo;
-        PlayerInfo.Instance.Init();
-        PlayerInfo.Instance._userInfo = info.userInfo;
         moneyText.Text.text = userInfo.money.ToString();
         crownText.Text.text = userInfo.honor.ToString();
     }
