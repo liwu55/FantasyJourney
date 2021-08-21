@@ -10,7 +10,6 @@ namespace Game.DoOneFight.State
         private Animator _animator;
         private CharacterAniCtrler _aniCtrler;
         private float smooth = 2f;
-        public bool isNormalAttack;
         private bool isSkillAttack;
         private float jumpForce = 0.1f;
         public NormalState(string stateName,PlayerCrtlr _playerCrtlr) : base(stateName)
@@ -33,9 +32,12 @@ namespace Game.DoOneFight.State
             CheckIsNrmAtk();
             _playerCrtlr.isOnSkill_01 = ComboSystem.Instance.CheckSkill01();
             _playerCrtlr.isOnSkill_02 = ComboSystem.Instance.CheckSkill02();
-            //_playerCrtlr.isHurt = Input.GetKeyDown(KeyCode.Z);
         }
-        
+
+        private void ResetAction()
+        {
+            _playerCrtlr._aniCtrler.RestAction();
+        }
         /// <summary>
         /// 人物移动
         /// </summary>
@@ -77,7 +79,8 @@ namespace Game.DoOneFight.State
         {
             if (Input.GetKeyDown(InputMgr.Instance.inputDic[EKeyName.normalAttack]))
             {
-                _playerCrtlr._aniCtrler.PlayAnimation((int)CharacterAniId.NormalAttack);                
+                _playerCrtlr.isNrmAtk = true;
+                //_playerCrtlr._aniCtrler.PlayAnimation((int)CharacterAniId.NormalAttack);                
             }
         }
         /// <summary>
@@ -95,6 +98,4 @@ namespace Game.DoOneFight.State
                 return 360 - Vector3.Angle(from_, to_);
         }
     }
-
-   
 }

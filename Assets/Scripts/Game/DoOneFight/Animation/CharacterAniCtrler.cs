@@ -41,22 +41,6 @@ public class CharacterAniCtrler:MonoBehaviour
             mClips = m_animator.GetCurrentAnimatorClipInfo(0);
         if (null == mClips || mClips.Length == 0)
             return;
-
-        int actionID = m_animator.GetInteger(STR_ACTION);
-        /*if (actionID > 0)
-        {
-            //将Action复位
-            m_animator.SetInteger(STR_ACTION, 0);
-        }*/
-        //将剩余队列的动作重新拿出来播放
-        //PlayRemainAction();
-
-        /*
-        if (IsPlayRunAction)
-        {
-            IsPlayRunAction = false;
-            PlayRun();
-        }*/
     }
 
     /// <summary>
@@ -77,6 +61,7 @@ public class CharacterAniCtrler:MonoBehaviour
 
     public void RestAction()
     {
+        print(m_animator.name);
         m_animator.SetInteger(STR_ACTION, 0);
     }
     public void PlayAniImmediately(string name)

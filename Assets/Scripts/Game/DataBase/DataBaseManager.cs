@@ -15,9 +15,9 @@ namespace Game
         Dictionary<string, UserInfo> _dictionary = new Dictionary<string, UserInfo>();
         private UserInfo _userCache;
         //宿舍的ip
-        private string host = "172.20.177.212";
+        //private string host = "172.20.177.212";
         //课室的
-        //private string host = "10.9.72.192";
+        private string host = "10.9.72.192";
 
         public void AddMoneyAndHonor(string name,int money,int honor)
         {

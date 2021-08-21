@@ -5,8 +5,8 @@ namespace Game.DoOneFight.HealthPoint
 {
     public class HealthSystem:MonoBehaviourPun 
     {
-        public float maxHp = 20;
-        public float currentHp = 20;
+        public float maxHp = 10;
+        public float currentHp = 10;
         public bool isHealing;
 
         
@@ -29,5 +29,11 @@ namespace Game.DoOneFight.HealthPoint
         {
             return 1f / maxHp * currentHp;
         }
+
+        public virtual void BeAttack(Vector3 point, Vector3 dir, string effectName, float damage,float f)
+        {
+            
+        }
+             
     }
 }

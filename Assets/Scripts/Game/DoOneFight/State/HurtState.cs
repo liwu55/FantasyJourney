@@ -12,7 +12,8 @@ public class HurtState : Frame.FSM.State
     public HurtState(string stateName ,PlayerCrtlr _playerCrtlr) : base(stateName)
     {
         this._playerCrtlr = _playerCrtlr;
-        _animator = _playerCrtlr.transform.GetComponent<Animator>();
+        _animator = _playerCrtlr.GetComponent<Animator>();
+        Debug.Log("HurtState _animator = "+_animator);
         _playerCrtlr._aniCtrler.Init(_animator);
         OnStateEnter += OnEnter;
         OnStateExit += OnExit;
@@ -20,8 +21,8 @@ public class HurtState : Frame.FSM.State
 
     void OnEnter(Frame.FSM.State obj)
     {
-        Debug.Log("hurt enter");
         _playerCrtlr.cc.enabled = false;
+        Debug.Log("Enter HurtState");
         _playerCrtlr._aniCtrler.PlayAnimation((int)CharacterAniId.Hurt);
         //_animator.SetLayerWeight(1,0);
     }

@@ -77,6 +77,10 @@
       "path": "Avatar/Skull"
     },
     {
+      "name": "Monster",
+      "path": "Heroes/Monster"
+    },
+    {
       "name": "avatar1",
       "path": "Avatar/avatar1"
     },
@@ -211,6 +215,18 @@
     {
       "name": "DamageNumber",
       "path": "UI/DamageNumber"
+    },
+    {
+      "name": "MonsSlash",
+      "path": "Effects/EarthSlash"
+    },
+    {
+      "name": "MonsPillarBlast",
+      "path": "Effects/EarthPillarBlast"
+    },
+    {
+      "name": "MonsSphereBlast",
+      "path": "Effects/EarthSphereBlast"
     }
   ]  
 }

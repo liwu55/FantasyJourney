@@ -21,11 +21,11 @@ namespace Game.flag
             bool inFlag = GetComponent<ControllerInit>().inFlag;
             List<IHeroController> enemies;
             if(inFlag){
-                enemies = SceneHeroes.Instance.GetAllAdversary(GetHeroController().photonView.Owner);
+                enemies = SceneHeroes.Instance.GetAllAdversary(GetHeroController().GetPhotonView().Owner);
             }
             else
             {
-                enemies = SceneHeroes.Instance.GetOthers(GetHeroController().photonView.Owner);
+                enemies = SceneHeroes.Instance.GetOthers(GetHeroController().GetPhotonView().Owner);
             }
             base.Check(enemies,damage, effectName, hitBackRate, CheckIfInRange);
         }

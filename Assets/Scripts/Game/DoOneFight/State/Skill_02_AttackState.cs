@@ -19,18 +19,18 @@ namespace Game.DoOneFight.State
         {
             if (_playerCrtlr.isOnSkill_02)
             {
-                Debug.Log("OnUpdate Skill2");
+                Debug.Log("正在Skill2 State中");
                 checkFixTime -= Time.deltaTime;
                 if (checkFixTime<=0)
                 {
                     if (_playerCrtlr.isOnSkill_02)
                     {
                         _playerCrtlr.isOnSkill_02 = false;
-                        checkFixTime = 2f;
+                        checkFixTime = 1.5f;
                     }
                     else
                     {
-                        checkFixTime = 2f;
+                        checkFixTime = 1.5f;
                     }
                 }
             }
@@ -38,7 +38,6 @@ namespace Game.DoOneFight.State
         //进入该状态时播放动作
         private void OnEnter(Frame.FSM.State obj)
         {
-            Debug.Log("Skill_02_AttackState OnEnter");
             _playerCrtlr.cc.enabled = false;
             _playerCrtlr._aniCtrler.PlayAnimation((int) CharacterAniId.Skill_2);
         }
@@ -46,7 +45,6 @@ namespace Game.DoOneFight.State
         {
             _playerCrtlr._aniCtrler.RestAction();
             _playerCrtlr.cc.enabled = true;
-            
         }
     }
 }

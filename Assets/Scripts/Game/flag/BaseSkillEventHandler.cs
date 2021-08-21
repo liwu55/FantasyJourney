@@ -8,14 +8,14 @@ namespace Game.flag
 {
     public class BaseSkillEventHandler : MonoBehaviour
     {
-        protected SimpleHeroController thisHeroController;
+        protected IHeroController thisHeroController;
 
         protected virtual void Awake()
         {
-            thisHeroController = GetComponent<SimpleHeroController>();
+            thisHeroController=GetComponent<IHeroController>();
         }
 
-        protected SimpleHeroController GetHeroController()
+        protected IHeroController GetHeroController()
         {
             if (thisHeroController == null)
             {
@@ -39,7 +39,7 @@ namespace Game.flag
                 if(IsInFlag()){
                     float lifeCur = hero.GetLifeCur();
                     bool dead = lifeCur > 0 && lifeCur <= damage;
-                    FlagShowData.Instance.DamageSave(thisHeroController.photonView.Owner,
+                    FlagShowData.Instance.DamageSave(thisHeroController.GetPhotonView().Owner,
                         hero.GetPhotonView().Owner, damage, dead);
                 }
                 hero.GetPhotonView().RPC("BeAttack", RpcTarget.All,

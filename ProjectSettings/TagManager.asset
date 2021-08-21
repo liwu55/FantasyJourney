@@ -11,6 +11,7 @@ TagManager:
   - Dice
   - Gift
   - Wine
+  - SpawnPointOther
   layers:
   - Default
   - TransparentFX

@@ -66,89 +66,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2627945931336606763
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6321595577488911320}
-  - component: {fileID: 6863913979996918682}
-  - component: {fileID: 8303322478121648281}
-  m_Layer: 30
-  m_Name: atkCamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6321595577488911320
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2627945931336606763}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.351, y: 1.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7943547104871068611}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &6863913979996918682
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2627945931336606763}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 0.1
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 7
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &8303322478121648281
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2627945931336606763}
-  m_Enabled: 0
 --- !u!1 &6016520838250200808
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +340,7 @@ RectTransform:
   - {fileID: 7534273379388907668}
   - {fileID: 6213257745539343365}
   m_Father: {fileID: 7943547104871068611}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -532,6 +449,7 @@ GameObject:
   - component: {fileID: 79929410}
   - component: {fileID: 3084765339051938964}
   - component: {fileID: -4524652676289539243}
+  - component: {fileID: -2652391750183637912}
   m_Layer: 30
   m_Name: RedLoli
   m_TagString: Untagged
@@ -552,7 +470,6 @@ Transform:
   m_Children:
   - {fileID: 7943547104797217959}
   - {fileID: 2012830539}
-  - {fileID: 6321595577488911320}
   - {fileID: 5144209562207500943}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -588,11 +505,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a45a53c7f97a847bfd401792b9b190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
-  currentHp: 20
+  maxHp: 80
+  currentHp: 80
   isHealing: 0
   cc: {fileID: 0}
   _aniCtrler: {fileID: 0}
+  _animator: {fileID: 0}
+  speed: 3.5
   dir: {x: 0, y: 0, z: 0}
   isNrmAtk: 0
   isOnSkill_01: 0
@@ -708,6 +627,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-2652391750183637912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943547104871068600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf310b629d3248d1b357b81e4a8c4e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8446398784277842604
 GameObject:
   m_ObjectHideFlags: 0
