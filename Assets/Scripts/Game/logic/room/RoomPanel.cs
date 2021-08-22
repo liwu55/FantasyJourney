@@ -78,6 +78,15 @@ public class RoomPanel : UIModuleBase
 
         roomName = FW("RoomName#");
         roomName.Text.text = PhotonNetwork.CurrentRoom.Name;
+        
+        //注册有玩家进入的回调函数
+        EventCenter.Instance.AddListener<Player>(EventType.PlayerEntered,OnPlayerEntered);
+        //注册有玩家离开的回调函数
+        EventCenter.Instance.AddListener<Player>(EventType.PlayerLeft,OnPlayerLeft);
+        //注册玩家属性更新的回调
+        EventCenter.Instance.AddListener<Player,bool>(EventType.UpdatePlayerReadyState,updatePlayerReadyState);
+        //注册判断游戏开始的事件
+        EventCenter.Instance.AddListener(EventType.JudgmentStartGame,SetStartGameBtnShowOrHide);
     }
 
     private void ClearData()
@@ -182,14 +191,7 @@ public class RoomPanel : UIModuleBase
     {
         base.OnSpawn(obj);
         SetStartGameBtnShowOrHide();
-        //注册有玩家进入的回调函数
-        EventCenter.Instance.AddListener<Player>(EventType.PlayerEntered,OnPlayerEntered);
-        //注册有玩家离开的回调函数
-        EventCenter.Instance.AddListener<Player>(EventType.PlayerLeft,OnPlayerLeft);
-        //注册玩家属性更新的回调
-        EventCenter.Instance.AddListener<Player,bool>(EventType.UpdatePlayerReadyState,updatePlayerReadyState);
-        //注册判断游戏开始的事件
-        EventCenter.Instance.AddListener(EventType.JudgmentStartGame,SetStartGameBtnShowOrHide);
+        
         
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
@@ -200,14 +202,7 @@ public class RoomPanel : UIModuleBase
     public override void OnRecycle()
     {
         base.OnRecycle();
-        //取消注册有玩家进入的回调函数
-        EventCenter.Instance.RemoveListener<Player>(EventType.PlayerEntered,OnPlayerEntered);
-        //取消注册有玩家离开的回调函数
-        EventCenter.Instance.RemoveListener<Player>(EventType.PlayerLeft,OnPlayerLeft);
-        //取消注册玩家属性更新的回调
-        EventCenter.Instance.RemoveListener<Player,bool>(EventType.UpdatePlayerReadyState,updatePlayerReadyState);
-        //取消注册判断游戏开始的事件
-        EventCenter.Instance.RemoveListener(EventType.JudgmentStartGame,SetStartGameBtnShowOrHide);
+        
         
         foreach (var item in cachePlayers)
         {
@@ -217,6 +212,18 @@ public class RoomPanel : UIModuleBase
         
         //清空列表
         cachePlayers.Clear();
+    }
+
+    private void OnDestroy()
+    {
+        //取消注册有玩家进入的回调函数
+        EventCenter.Instance.RemoveListener<Player>(EventType.PlayerEntered,OnPlayerEntered);
+        //取消注册有玩家离开的回调函数
+        EventCenter.Instance.RemoveListener<Player>(EventType.PlayerLeft,OnPlayerLeft);
+        //取消注册玩家属性更新的回调
+        EventCenter.Instance.RemoveListener<Player,bool>(EventType.UpdatePlayerReadyState,updatePlayerReadyState);
+        //取消注册判断游戏开始的事件
+        EventCenter.Instance.RemoveListener(EventType.JudgmentStartGame,SetStartGameBtnShowOrHide);
     }
 
     #endregion

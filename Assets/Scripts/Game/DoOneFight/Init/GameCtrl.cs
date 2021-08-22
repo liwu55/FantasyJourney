@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Frame.Utility;
 using Game.DoOneFight.State;
@@ -46,8 +47,9 @@ public class GameCtrl : SingleTonMono<GameCtrl>
         UIManager.Instance.ShowModule("DoGameOverPanel");
     }
 
-    private void OnApplicationQuit()
+    private void OnDestroy()
     {
         EventCenter.Instance.RemoveListener(EventType.GameOver, GameOver);
     }
+
 }

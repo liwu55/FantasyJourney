@@ -23,7 +23,7 @@ namespace Game.flag
         }
         
         /// <summary>
-        /// 获取所有敌人
+        /// 获取所有非自己的英雄
         /// </summary>
         /// <returns></returns>
         public List<IHeroController> GetOthers(Player player)
@@ -41,7 +41,7 @@ namespace Game.flag
         }
 
         /// <summary>
-        /// 获取所有敌人
+        /// 获取所有对方队伍的人，插旗用
         /// </summary>
         /// <returns></returns>
         public List<IHeroController> GetAllAdversary(Player player)
