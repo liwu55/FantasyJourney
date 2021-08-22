@@ -23,8 +23,7 @@ public class MainModule : UIModuleBase
     private UIWidget playerLevelText;
     
     private UIWidget rankingList;
-    [SerializeField]
-    private GameObject rankingListImage;
+    [SerializeField] private GameObject rankingListImage;
     private UIWidget listName1;
     private UIWidget listName2;
     private UIWidget listName3;
@@ -32,8 +31,20 @@ public class MainModule : UIModuleBase
     private UIWidget listName5;
     private List<UIWidget> listName=new List<UIWidget>();
     private StringBuilder str=new StringBuilder();
-    private bool showBool=false;
-
+    private bool rankingListBool=false;
+    
+    [SerializeField]private GameObject settingPanel;
+    private bool settingPanelBool=true;
+    private UIWidget settingBack1;
+    private UIWidget settingBack2;
+    
+    private GameObject quitPanel;
+    private bool quitPanelBool=true;
+    private UIWidget quitBack1;
+    private UIWidget quitBack2;
+    private UIWidget quitBack3;
+    private UIWidget quit;
+    
     private MainPageInfo info;
 
     protected override void Awake()
@@ -61,6 +72,15 @@ public class MainModule : UIModuleBase
         listName.Add(listName4);
         listName.Add(listName5);
         
+        settingBack1 = FW("SettingBack1#");
+        settingBack2 = FW("SettingBack2#");
+
+        quitPanel = FW("QuitPanel#").gameObject;
+        quitBack1 = FW("QuitBack1#");
+        quitBack2 = FW("QuitBack2#");
+        quitBack3 = FW("QuitBack3#");
+        quit = FW("Quit#");
+
         playerName.Text.text = PhotonNetwork.LocalPlayer.NickName;
         
         lobbyButton.Button.onClick.AddListener(() =>
@@ -76,12 +96,36 @@ public class MainModule : UIModuleBase
         //设置
         settingButton.Button.onClick.AddListener(() =>
         {
-            UIManager.Instance.ShowModule("");
+            showSetting();
+        });
+        settingBack1.Button.onClick.AddListener(() =>
+        {
+            showSetting();
+        });
+        settingBack2.Button.onClick.AddListener(() =>
+        {
+            showSetting();
         });
         //退出
         quitButton.Button.onClick.AddListener(() =>
         {
-            UIManager.Instance.ShowModule("");
+            showQuit();
+        });
+        quitBack1.Button.onClick.AddListener(() =>
+        {
+            showQuit();
+        });
+        quitBack2.Button.onClick.AddListener(() =>
+        {
+            showQuit();
+        });
+        quitBack3.Button.onClick.AddListener(() =>
+        {
+            showQuit();
+        });
+        quit.Button.onClick.AddListener(() =>
+        {
+            Application.Quit();
         });
         //排名
         rankingList.Button.onClick.AddListener(() =>
@@ -91,6 +135,9 @@ public class MainModule : UIModuleBase
         playerLevelText.Text.text = "0/100";
         playerNowLevleFA.Img.fillAmount = 0.0f;
         UIEvent.RefreshMainPageHero += showMainMoney;
+        showSetting();
+        showQuit();
+        
     }
     
 
@@ -114,18 +161,52 @@ public class MainModule : UIModuleBase
         crownText.Text.text = userInfo.honor.ToString();
     }
 
+    public void showSetting()
+    {
+        if (!settingPanelBool)
+        {
+            settingPanel.SetActive(true);
+            settingPanelBool = true;
+        }
+        else
+        {
+            settingPanel.SetActive(false);
+            settingPanelBool = false;
+        }
+    }
+
+    public void showQuit()
+    {
+        if (!quitPanelBool)
+        {
+            quitPanel.SetActive(true);
+            quitPanelBool = true;
+        }
+        else
+        {
+            quitPanel.SetActive(false);
+            quitPanelBool = false;
+        }
+    }
+    //判断范围，未使用
+    public void isRotate(RectTransform rectTransform)
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+        if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition)) return;
+    }
+
     public void showList()
     {
-        if (!showBool)
+        if (!rankingListBool)
         {
             rankingListImage.SetActive(true);
             writeList();
-            showBool = true;
+            rankingListBool = true;
         }
         else
         {
             rankingListImage.SetActive(false);
-            showBool = false;
+            rankingListBool = false;
         }
     }
 
