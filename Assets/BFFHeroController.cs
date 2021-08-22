@@ -39,13 +39,13 @@ public class BFFHeroController : SimpleHeroController
         
         if (IbffItem.CompareTag("Dice"))
         {
-            Score += Random.Range(1,7);
+            Score += 4;
             PhotonNetwork.Destroy(IbffItem.gameObject);
         }
         
         if (IbffItem.CompareTag("Gift"))
         {
-            Score += 20;
+            Score += 10;
             PhotonNetwork.Destroy(IbffItem.gameObject);
         }
         
