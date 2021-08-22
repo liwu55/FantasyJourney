@@ -139,7 +139,7 @@ public class MainModule : UIModuleBase
             str.Append(" ， ");
             str.Append(userInfos[i].username);
             str.Append(" ， ");
-            str.Append(userInfos[4-i].money);
+            str.Append(userInfos[i].honor);
             listName[i].Text.text = str.ToString();
         }
     }

@@ -97,6 +97,10 @@ namespace Game.flag
                     string pointSign = GetPointSign();
                     if (pointSign != null)
                     {
+                        if (occupingPoint == null)
+                        {
+                            return;
+                        }
                         occupingPoint.photonView.RPC("ChangeOccupiedSign",
                             RpcTarget.MasterClient, new object[] {pointSign});
                     }
