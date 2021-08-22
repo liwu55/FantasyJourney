@@ -1,5 +1,6 @@
 ﻿using Frame.Utility;
 using Game.flag;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Game.DoOneFight.State
@@ -10,6 +11,7 @@ namespace Game.DoOneFight.State
         private float attackAngle = 180f;
         private void AttackCheck()
         {
+            
             Check(SceneHeroes.Instance.GetOthers(thisHeroController.GetPhotonView().Owner),5f,"CatHit",0.5f, 
                 (hero) => AttackJudge.SectorAttack(transform,
                     hero.GetTransform(), attackLength, attackAngle));
@@ -22,6 +24,7 @@ namespace Game.DoOneFight.State
         }
         private void HeavySkillCheck()
         {
+        
             Check(SceneHeroes.Instance.GetOthers(thisHeroController.GetPhotonView().Owner),10f,"CatHit",0.5f, 
                 (hero) => AttackJudge.SectorAttack(transform,
                     hero.GetTransform(), attackLength, attackAngle));

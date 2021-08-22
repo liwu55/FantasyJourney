@@ -28,6 +28,11 @@ namespace Game.flag
         protected void Check(List<IHeroController> enemies, float damage, string effectName, float hitBackRate,
             Func<IHeroController, bool> CheckIfInRange)
         {
+            //房主计算伤害
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                return;
+            }
             foreach (IHeroController hero in enemies)
             {
                 if (!CheckIfInRange(hero))
@@ -42,6 +47,8 @@ namespace Game.flag
                     FlagShowData.Instance.DamageSave(thisHeroController.GetPhotonView().Owner,
                         hero.GetPhotonView().Owner, damage, dead);
                 }
+                print("hero = " + hero);
+                print("hero.GetPhotonView() = "+ hero.GetPhotonView());
                 hero.GetPhotonView().RPC("BeAttack", RpcTarget.All,
                     new object[] {data[0], data[1], effectName, damage, hitBackRate});
             }
@@ -49,7 +56,9 @@ namespace Game.flag
 
         private bool IsInFlag()
         {
-            return GetComponent<ControllerInit>().inFlag;
+            if (GetComponent<ControllerInit>())
+                return GetComponent<ControllerInit>().inFlag;
+            return false;
         }
 
         private Vector3[] FindHitPoint(IHeroController hero)

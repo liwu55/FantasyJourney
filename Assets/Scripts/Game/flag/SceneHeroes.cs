@@ -36,10 +36,8 @@ namespace Game.flag
                     adversaries.Add(ihc);
                 }
             }
-
             return adversaries;
         }
-
         /// <summary>
         /// 获取所有对方队伍的人，插旗用
         /// </summary>

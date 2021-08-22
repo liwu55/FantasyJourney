@@ -20,7 +20,9 @@ public class GameOverPanel : UIModuleBase
 
     private void Update()
     {
-        Time.timeScale -= Time.deltaTime * 10f;
+        Time.timeScale -= Time.deltaTime;
+        if (Time.timeScale <= 0)
+            Time.timeScale = 0;
     }
 
     public override void OnSpawn(object obj)
@@ -30,13 +32,13 @@ public class GameOverPanel : UIModuleBase
         print("count = "+SceneHeroes.Instance.GetOthers(_player).Count);
         if (GameTimer.instance.totalTime <= 0)
         {
-            if (SceneHeroes.Instance.GetOthers(_player)[0].GetTransform().GetComponent<HealthSystem>().currentHp < SceneHeroes.Instance.GetAll()[0].GetTransform().GetComponent<HealthSystem>().currentHp)
+            if (SceneHeroes.Instance.GetAll()[0].GetTransform().GetComponent<HealthSystem>().currentHp < SceneHeroes.Instance.GetAll()[1].GetTransform().GetComponent<HealthSystem>().currentHp)
             {
-                SetOverMsg(SceneHeroes.Instance.GetAll()[0].GetPhotonView().Owner.NickName + "胜利");
+                SetOverMsg(SceneHeroes.Instance.GetAll()[1].GetPhotonView().Owner.NickName + "胜利");
             }
             else
             {
-                SetOverMsg(SceneHeroes.Instance.GetOthers(_player)[0].GetPhotonView().Owner.NickName + "胜利");
+                SetOverMsg(SceneHeroes.Instance.GetAll()[0].GetPhotonView().Owner.NickName + "胜利");
             }
         }
         else

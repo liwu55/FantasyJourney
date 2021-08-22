@@ -159,7 +159,7 @@ namespace Frame.Utility
             {
                 Debug.LogWarning("无该类型的事件存在，无法移除！");
                 return false;
-            }
+            }    
 
             if (allEvent[eventType] == null)
             {
