@@ -65,9 +65,10 @@
       "name": "红萝莉",
       "des": "",
       "model": "RedLoli",
-      "avatar": "avatar_cat",
+      "avatar": "avatar_redloli",
       "skills": [
         {
+
           "icon":  "skills_11",
           "name":"猫剑术" ,
           "des":"猫人的剑术出神入化"
@@ -76,26 +77,36 @@
           "icon":  "skills_6",
           "name":"醉剑" ,
           "des":"猫人跳得很高"
+        },
+        {
+          "icon":  "skills_22",
+          "name":"火箭冲拳" ,
+          "des":"一拳给你打趴下"
+        },
+        {
+          "icon":  "skills_23",
+          "name":"爆轰上勾拳" ,
+          "des":"充满炸裂能量的一拳"
         }
       ],
       "price" : 99999999
     },
     {
       "id": 4,
-      "name": "怪物",
+      "name": "芒斯特",
       "des": "",
       "model": "Monster",
-      "avatar": "avatar_cat",
+      "avatar": "avatar_monster",
       "skills": [
         {
-          "icon":  "skills_8",
-          "name":"猫剑术" ,
-          "des":"猫人的剑术出神入化"
+          "icon":  "skills_21",
+          "name":"裂地一击" ,
+          "des":"十吨怪物的猛敲地板"
         },
         {
-          "icon":  "skills_9",
-          "name":"醉剑" ,
-          "des":"猫人喝了假酒，上头一剑"
+          "icon":  "skills_20",
+          "name":"对花祈祷" ,
+          "des":"圈内除花与怪物外无活物"
         }
       ],
       "price" : 99999999

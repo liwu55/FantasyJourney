@@ -126,6 +126,7 @@ public class StoreModule : UIModuleBase
         else
         {
             checkingHero.animator.SetInteger("Action",1002);
+            Invoke("ResetAction",0.5f);
         }
     }
 
@@ -138,9 +139,14 @@ public class StoreModule : UIModuleBase
         else
         {
             checkingHero.animator.SetInteger("Action",1001);
+            Invoke("ResetAction",.5f);
         }
     }
 
+    private void ResetAction()
+    {
+        checkingHero.animator.SetInteger("Action",0);
+    }
     private void ShowSkillAction(string skillName)
     {
         checkingHero.animator.SetBool(skillName, true);

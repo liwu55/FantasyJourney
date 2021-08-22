@@ -73,6 +73,14 @@
       "path": "Avatar/cat"
     },
     {
+      "name": "avatar_redloli",
+      "path": "Avatar/redloli"
+    },
+    {
+      "name": "avatar_monster",
+      "path": "Avatar/monster"
+    },
+    {
       "name": "avatar_skull",
       "path": "Avatar/Skull"
     },
@@ -155,6 +163,22 @@
     {
       "name": "SkullSkill2",
       "path": "Skills/Samurai_Flower vortex"
+    },
+    {
+      "name": "skills_20",
+      "path": "Skills/skills_20"
+    },
+    {
+      "name": "skills_21",
+      "path": "Skills/skills_21"
+    },
+    {
+      "name": "skills_22",
+      "path": "Skills/skills_22"
+    },
+    {
+      "name": "skills_23",
+      "path": "Skills/skills_23"
     },
     {
       "name": "LoginSuc",
