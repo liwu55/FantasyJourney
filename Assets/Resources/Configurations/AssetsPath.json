@@ -133,6 +133,30 @@
       "path": "Skills/skills_9"
     },
     {
+      "name": "skills_10",
+      "path": "Skills/skills_10"
+    },
+    {
+      "name": "skills_11",
+      "path": "Skills/skills_11"
+    },
+    {
+      "name": "skills_12",
+      "path": "Skills/skills_12"
+    },
+    {
+      "name": "skills_13",
+      "path": "Skills/skills_13"
+    },
+    {
+      "name": "skills_14",
+      "path": "Skills/skills_14"
+    },
+    {
+      "name": "SkullSkill2",
+      "path": "Skills/Samurai_Flower vortex"
+    },
+    {
       "name": "LoginSuc",
       "path": "UI/LoginSucPanel"
     },

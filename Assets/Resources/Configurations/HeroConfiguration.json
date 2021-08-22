@@ -8,12 +8,12 @@
       "avatar": "avatar_niuniu",
       "skills": [
         {
-          "icon":  "skills_2",
+          "icon":  "skills_4",
           "name":"牛牛一锤" ,
           "des":"牛牛给你来一锤"
         },
         {
-          "icon":  "skills_3",
+          "icon":  "skills_14",
           "name":"牛牛冲刺" ,
           "des":"牛牛冲刺了！都让开点！"
         }
@@ -28,14 +28,14 @@
       "avatar": "avatar_skull",
       "skills": [
         {
-          "icon":  "skills_0",
-          "name":"二连砍" ,
+          "icon":  "skills_7",
+          "name":"残忍血刀" ,
           "des":"大力连砍两刀"
         },
         {
-          "icon":  "skills_1",
-          "name":"致命打击" ,
-          "des":"先砍断你的腿，再敲爆你的头"
+          "icon":  "SkullSkill2",
+          "name":"血色绞肉机" ,
+          "des":"血！血!!"
         }
       ],
       "price" : 1998
@@ -48,14 +48,14 @@
       "avatar": "avatar_cat",
       "skills": [
         {
-          "icon":  "skills_4",
+          "icon":  "skills_11",
           "name":"猫剑术" ,
           "des":"猫人的剑术出神入化"
         },
         {
-          "icon":  "skills_5",
-          "name":"醉剑" ,
-          "des":"猫人喝了假酒，上头一剑"
+          "icon":  "skills_6",
+          "name":"猫跳高" ,
+          "des":"猫肯定跳得很高啊"
         }
       ],
       "price" : 2998
@@ -68,14 +68,14 @@
       "avatar": "avatar_cat",
       "skills": [
         {
-          "icon":  "skills_6",
+          "icon":  "skills_11",
           "name":"猫剑术" ,
           "des":"猫人的剑术出神入化"
         },
         {
-          "icon":  "skills_7",
+          "icon":  "skills_6",
           "name":"醉剑" ,
-          "des":"猫人喝了假酒，上头一剑"
+          "des":"猫人跳得很高"
         }
       ],
       "price" : 99999999
