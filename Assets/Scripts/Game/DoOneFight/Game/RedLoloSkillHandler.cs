@@ -33,7 +33,7 @@ namespace Game.DoOneFight.State
         {
             GameObject go = ObjectPool.Instance.SpawnObj("NiuNiuHit");
             go.transform.position = thisHeroController.GetTransform().position;
-            go.transform.Rotate(Vector3.up,90f);
+            go.transform.forward = Vector3.up;
             go.transform.localScale = new Vector3(5f,5f,5f);
             Check(SceneHeroes.Instance.GetOthers(thisHeroController.GetPhotonView().Owner),5f,"CatHit",0.5f, 
                 (hero) => AttackJudge.CircleAttack(transform,
