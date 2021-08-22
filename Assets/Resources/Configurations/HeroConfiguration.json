@@ -68,17 +68,6 @@
       "avatar": "avatar_redloli",
       "skills": [
         {
-
-          "icon":  "skills_11",
-          "name":"猫剑术" ,
-          "des":"猫人的剑术出神入化"
-        },
-        {
-          "icon":  "skills_6",
-          "name":"醉剑" ,
-          "des":"猫人跳得很高"
-        },
-        {
           "icon":  "skills_22",
           "name":"火箭冲拳" ,
           "des":"一拳给你打趴下"

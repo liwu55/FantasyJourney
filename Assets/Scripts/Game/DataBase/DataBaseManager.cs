@@ -53,7 +53,6 @@ namespace Game
                 //把用户数据存入字典
                 _dictionary.Add(userinfo.username, userinfo);
             }
-            
             UpdateUserInfo(userId, money, honor, heroList);
         }
         /// <summary>
@@ -78,8 +77,6 @@ namespace Game
         {
             //Debug.Log("DataBaseManager实例化");
             InitDataBase();
-           
-            
         }
 
         //初始化数据库
