@@ -17,7 +17,7 @@ public class MapInit : SingleTonMono<MapInit>
         base.Awake();
         if (!PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            return;
+            return;    w
         }
 
         transPoints = GameObject.Find("Points").transform;
