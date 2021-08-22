@@ -8,7 +8,7 @@ using EventType = Frame.Utility.EventType;
 
 public class GameTimer : UIModuleBase 
 {
-    public int totalTime = 10;
+    public int totalTime = 80;
     private string minuteNum;
     private string secondsNum;
     private Text txtTimer;
