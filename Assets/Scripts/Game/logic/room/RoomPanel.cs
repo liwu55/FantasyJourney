@@ -171,11 +171,11 @@ public class RoomPanel : UIModuleBase
 
     private void SetStartGameBtnShowOrHide()
     {
-        if (PhotonNetwork.CurrentRoom.PlayerCount % 2 == 0)
+        /*if (PhotonNetwork.CurrentRoom.PlayerCount % 2 == 0)
         {
-            start1Button.gameObject.SetActive(CanStartGame());
-        }
+        }*/
       
+        start1Button.gameObject.SetActive(CanStartGame());
         start2Button.gameObject.SetActive(CanStartGame());
         
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)

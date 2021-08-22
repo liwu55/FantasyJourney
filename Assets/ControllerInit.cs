@@ -15,18 +15,19 @@ public class ControllerInit : MonoBehaviour,IPunInstantiateMagicCallback
         //插旗游戏
         if (inFlag)
         {
+            FlagHeroController controller = gameObject.AddComponent<FlagHeroController>();
             if (PlayerInfo.Instance.chooseHero.id == 0)
             {
-                gameObject.AddComponent<NiuNiuHeroController>();
-            }
-            else
-            {
-                gameObject.AddComponent<FlagHeroController>();
+                controller.AddExtra(new NiuNiuHeroExtra());
             }
         }
         else
         {
-            gameObject.AddComponent<BFFHeroController>();
+            BFFHeroController controller = gameObject.AddComponent<BFFHeroController>();
+            if (PlayerInfo.Instance.chooseHero.id == 0)
+            {
+                controller.AddExtra(new NiuNiuHeroExtra());
+            }
         }
        
     }

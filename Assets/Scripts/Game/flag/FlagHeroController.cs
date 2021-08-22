@@ -18,27 +18,8 @@ namespace Game.flag
         //正在占领的据点
         [NonSerialized] public PointBase occupingPoint;
 
-        //进度条
-        private HeroUI heroUI;
 
         private Vector3 hitBackVelocity;
-        
-        protected override void Awake()
-        {
-            base.Awake();
-            heroUI = transform.Find("HeroUI").GetComponent<HeroUI>();
-        }
-
-        private void Start()
-        {
-            //不是网络情况下就直接返回
-            if (photonView.Owner == null)
-            {
-                return;
-            }
-            heroUI.gameObject.SetActive(true);
-            heroUI.SetHeroName(photonView.Owner.NickName);
-        }
 
         protected override void FixedUpdate()
         {
@@ -195,8 +176,6 @@ namespace Game.flag
         public override void BeAttack(Vector3 point,Vector3 dir,string effectName, float damage,float hitBackFactor = 1)
         {
             base.BeAttack(point, dir,effectName,damage,hitBackFactor);
-            ShowHitEffect(effectName,point,dir);
-            SyncLifeShow();
             
             //被攻击打断插旗动作
             occuping = false;
@@ -207,32 +186,6 @@ namespace Game.flag
             hitBackDir.y = 0;
             hitBackDir.Normalize();
             hitBackVelocity += hitBackDir * damage * 0.3f * hitBackFactor;
-        }
-
-        private void ShowHitEffect(string effectName,Vector3 point,Vector3 dir)
-        {
-            GameObject go = ObjectPool.Instance.SpawnObj(effectName);
-            go.transform.position = point;
-            go.transform.forward = dir;
-            Destroy(go,2);
-        }
-
-        private void SyncLifeShow()
-        {
-            float lifePercent = life / 100f;
-            heroUI.SetLife(lifePercent);
-        }
-
-        protected override void ResetBlood()
-        {
-            photonView.RPC("ResetRPC", RpcTarget.All);
-        }
-
-        [PunRPC]
-        public void ResetRPC()
-        {
-            life = 100;
-            SyncLifeShow();
         }
     }
 }

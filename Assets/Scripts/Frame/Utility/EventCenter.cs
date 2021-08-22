@@ -157,19 +157,19 @@ namespace Frame.Utility
         {
             if (!allEvent.ContainsKey(eventType))
             {
-                Debug.LogError("无该类型的事件存在，无法移除！");
+                Debug.LogWarning("无该类型的事件存在，无法移除！");
                 return false;
             }
 
             if (allEvent[eventType] == null)
             {
-                Debug.LogError("该类型的事件内容为空，无法移除！");
+                Debug.LogWarning("该类型的事件内容为空，无法移除！");
                 return false;
             }
 
             if (allEvent[eventType].GetType() != dlg.GetType())
             {
-                Debug.LogError("事件类型与方法类型不匹配，无法移除！");
+                Debug.LogWarning("事件类型与方法类型不匹配，无法移除！");
                 return false;
             }
 

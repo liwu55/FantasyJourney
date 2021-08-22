@@ -26,6 +26,9 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks, IHeroController
     [NonSerialized] public DizzyState dizzyState;
 
     [NonSerialized] public float life = 100;
+    
+    //进度条和血条
+    protected HeroUI heroUI;
 
     protected virtual void Awake()
     {
@@ -40,6 +43,17 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks, IHeroController
         
         InitSelf();
         BindCamera();
+    }
+
+    private void Start()
+    {
+        //不是网络情况下就直接返回
+        if (photonView.Owner == null)
+        {
+            return;
+        }
+        heroUI.gameObject.SetActive(true);
+        heroUI.SetHeroName(photonView.Owner.NickName);
     }
 
     private void BindCamera()
@@ -85,6 +99,7 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks, IHeroController
     private void InitPublic()
     {
         anim = GetComponent<Animator>();
+        heroUI = transform.Find("HeroUI").GetComponent<HeroUI>();
     }
 
     protected virtual void FixedUpdate()
@@ -128,9 +143,25 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks, IHeroController
         }
 
         ShowDamageNumber(damage);
+        ShowHitEffect(effectName,point,dir);
+        SyncLifeShow();
         Debug.Log("被攻击,伤害" + damage + ",剩余血量:" + life);
     }
+    
+    private void SyncLifeShow()
+    {
+        float lifePercent = life / 100f;
+        heroUI.SetLife(lifePercent);
+    }
 
+    private void ShowHitEffect(string effectName,Vector3 point,Vector3 dir)
+    {
+        GameObject go = ObjectPool.Instance.SpawnObj(effectName);
+        go.transform.position = point;
+        go.transform.forward = dir;
+        Destroy(go,2);
+    }
+    
     private void ShowDamageNumber(float damage)
     {
         ObjectPool.Instance.SpawnObj("DamageNumber",
@@ -164,9 +195,17 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks, IHeroController
             ResetBlood();
         }
     }
-
-    protected virtual void ResetBlood()
+    
+    private void ResetBlood()
     {
+        photonView.RPC("ResetRPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void ResetRPC()
+    {
+        life = 100;
+        SyncLifeShow();
     }
 
     public PhotonView GetPhotonView()
@@ -182,5 +221,17 @@ public class SimpleHeroController : MonoBehaviourPunCallbacks, IHeroController
     public float GetLifeCur()
     {
         return life;
+    }
+
+    /// <summary>
+    /// 牛牛特殊的
+    /// </summary>
+    private NiuNiuHeroExtra extra;
+    public void AddExtra(NiuNiuHeroExtra extra)
+    {
+        if(photonView.IsMine){
+            extra.SetController(this);
+            skill2State.OnStateUpdate += extra.OnSkill2Update;
+        }
     }
 }
