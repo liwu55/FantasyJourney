@@ -1,21 +1,36 @@
 using System;
 using System.Collections.Generic;
+using Frame.FSM;
 using Frame.UI;
+using Frame.Utility;
 using Game;
 using Game.DoOneFight.HealthPoint;
 using Game.flag;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverPanel : UIModuleBase
 {
     private Text OverMsg;
     private Player _player;
+    private Button _backToMenu;
+    private bool loadScene;
     protected override void Awake()
     {
         base.Awake();
         OverMsg = FW("OverMsg#").Text;
+        _backToMenu = FW("_backToMenu#").Button;
+        _backToMenu.onClick.AddListener(() =>
+        {
+            SceneHeroes.Instance.Clear();
+            UIManager.Instance.Clear();
+            ObjectPool.Instance.Clear();
+            MonoHelper.Instance.Clear();
+            PhotonNetwork.LeaveRoom();
+        });
     }
 
     private void Update()
@@ -23,6 +38,11 @@ public class GameOverPanel : UIModuleBase
         Time.timeScale -= Time.deltaTime;
         if (Time.timeScale <= 0)
             Time.timeScale = 0;
+        if (!loadScene && PhotonNetwork.NetworkClientState == ClientState.ConnectedToMasterServer)
+        {
+            loadScene = true;
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 
     public override void OnSpawn(object obj)
