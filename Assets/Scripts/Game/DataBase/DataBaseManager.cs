@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Frame.Utility;
 using Game.bean;
 using Game.Interface;
 using MySql.Data.MySqlClient;
 using UnityEngine;
+using EventType = Frame.Utility.EventType;
+
 namespace Game
 {
     public class DataBaseManager : SingleTonMonoAuto<DataBaseManager>, IDataBaseManager
@@ -18,6 +21,11 @@ namespace Game
         //private string host = "172.20.177.212";
         //课室的
         private string host = "10.9.72.192";
+
+        private void OnEnable()
+        {
+            EventCenter.Instance.AddListener(EventType.ResetLogin,ResetLogin);
+        }
 
         public void AddMoneyAndHonor(string name,int money,int honor)
         {
@@ -65,10 +73,13 @@ namespace Game
             int i = _command.ExecuteNonQuery();
             Debug.Log("产生影响"+ i);
         }
+        
         private DataBaseManager()
         {
             Debug.Log("DataBaseManager实例化");
             InitDataBase();
+           
+            
         }
 
         //初始化数据库
@@ -78,6 +89,7 @@ namespace Game
             _connection = mySqlAccess.mySqlConnection;
             _command = _connection.CreateCommand();
             SaveInDic();
+            
         }
 
         private void SaveInDic()
@@ -185,15 +197,24 @@ namespace Game
             Debug.Log("关闭数据库连接");
             if (mySqlAccess.mySqlConnection!=null)
             {
-
+                EventCenter.Instance.RemoveListener(EventType.ResetLogin,ResetLogin);
                 if(_userCache!=null){
                     _userCache.isLogined = 0; 
                     _command.CommandText = "UPDATE customerinfo SET islogined = 0 WHERE username = " +"'" + _userCache.username + "'";
                     _command.ExecuteNonQuery();
                 }
                 mySqlAccess.mySqlConnection.Close();
-
             }
+        }
+
+        /// <summary>
+        /// 一键还原所有登录
+        /// </summary>
+        public void ResetLogin()
+        {
+            _command.CommandText = "Update customerInfo Set islogined = 0";
+            _command.ExecuteNonQuery();
+            print("已还原所有登录");
         }
     }
 }

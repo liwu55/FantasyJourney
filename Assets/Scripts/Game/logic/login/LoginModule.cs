@@ -1,11 +1,13 @@
 using System;
 using DG.Tweening;
 using Frame.UI;
+using Frame.Utility;
 using Game;
 using Game.bean;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using EventType = Frame.Utility.EventType;
 
 public class LoginModule : UIModuleBase
 {
@@ -45,17 +47,8 @@ public class LoginModule : UIModuleBase
         _tweener.SetEase(Ease.Linear);
         _tweener.SetAutoKill(true);
         _tweener.SetLoops(0);
-        /*Tweener tweener = txtMention.DOFade(0, 1.5f);
-        tweener.SetEase(Ease.Linear); 
-        tweener.SetLoops(0);
-        tweener.SetDelay(2.1f);*/
-
     }
-    /*public string GetUsernameStr()
-    {
-       UserInfo _user =  DataBaseManager.Instance.GetUserInfo(inputName.text, inputPsw.text);
-       return _user.username;
-    }*/
+
 
     private void Update()
     {
@@ -82,9 +75,10 @@ public class LoginModule : UIModuleBase
         {
             UIEvent.LoginClick(inputName.text, inputPsw.text);
         }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            //一键清空登录状态
+            EventCenter.Instance.Call(EventType.ResetLogin);
+        }
     }
-    
-    
-    
-    
 }

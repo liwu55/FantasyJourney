@@ -73,7 +73,6 @@ namespace Game.DoOneFight.State
             
             playerStateMachine.EnterState();
             //添加受伤事件
-            EventCenter.Instance.AddListener<float>(Frame.Utility.EventType.GetHurt, MinusHp);
         }
 
         void Start()

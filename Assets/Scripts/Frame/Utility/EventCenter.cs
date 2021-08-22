@@ -14,9 +14,13 @@ namespace Frame.Utility
         JudgmentStartGame,
         #endregion
 
+        #region Database
+        ResetLogin,
+        
+
+        #endregion
 
         #region DoOneFight
-        GetHurt,
         GameOver
         #endregion
         
