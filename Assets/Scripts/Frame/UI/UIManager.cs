@@ -43,9 +43,13 @@ public class UIManager : SingleTonMonoAuto<UIManager>
         EnsureCanvasExist();
         if (!_uiModuleBases.ContainsKey(name))
         {
+            Debug.Log("ShowModule Spawn "+name);
             GameObject module = ObjectPool.Instance.SpawnObj(name, tranCanvas ,data);
             UIModuleBase uiModuleBase = module.GetComponent<UIModuleBase>();
             _uiModuleBases.Add(name, uiModuleBase);
+        }else
+        {
+            Debug.Log("ShowModule Already Exist "+name);
         }
 
         UIModuleBase moduleBase = _uiModuleBases[name];

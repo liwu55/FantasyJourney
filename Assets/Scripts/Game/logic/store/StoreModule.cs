@@ -137,14 +137,6 @@ public class StoreModule : UIModuleBase
     private void ShowSkillAction(string skillName)
     {
         checkingHero.animator.SetBool(skillName,true);
-        //StartCoroutine(SetBoolDelayResume(skillName, 0.5f));
-    }
-
-    IEnumerator SetBoolDelayResume(string name,float time)
-    {
-        checkingHero.animator.SetBool(name,true);
-        yield return new WaitForSeconds(time);
-        checkingHero.animator.SetBool(name,false);
     }
 
     private void HideSkillDes()
@@ -155,8 +147,8 @@ public class StoreModule : UIModuleBase
     private void ShowSkillDes(HeroInfos.Hero.Skill heroSkill)
     {
         skillShow.gameObject.SetActive(true);
-        Debug.Log("skillName="+skillName);
-        Debug.Log("heroSkill="+heroSkill);
+        //Debug.Log("skillName="+skillName);
+        //Debug.Log("heroSkill="+heroSkill);
         skillName.text = heroSkill.name;
         skillDes.text = heroSkill.des;
     }
@@ -175,7 +167,7 @@ public class StoreModule : UIModuleBase
             storeHeroInfo.hero = hero;
             storeHeroInfo.owned = CheckIfOwn(hero);
             storeHeroInfo.index = i;
-            //测试代码，第二个设为选中
+            //选中
             if (PlayerInfo.Instance.IsChoose(hero.id))
             {
                 storeHeroInfo.choose = true;

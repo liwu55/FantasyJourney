@@ -26,7 +26,7 @@ namespace Frame.UI
             //根据标记找到重要的对象
             FindImportantWidget();
             cg = GetComponent<CanvasGroup>();
-            Debug.Log(GetType().Name+" Awake cg="+cg);
+            //Debug.Log(GetType().Name+" Awake cg="+cg);
         }
 
         private void FindImportantWidget()

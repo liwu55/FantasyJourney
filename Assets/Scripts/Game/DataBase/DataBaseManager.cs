@@ -76,7 +76,7 @@ namespace Game
         
         private DataBaseManager()
         {
-            Debug.Log("DataBaseManager实例化");
+            //Debug.Log("DataBaseManager实例化");
             InitDataBase();
            
             
@@ -194,7 +194,7 @@ namespace Game
 
         private void OnApplicationQuit()
         {
-            Debug.Log("关闭数据库连接");
+            //Debug.Log("关闭数据库连接");
             if (mySqlAccess.mySqlConnection!=null)
             {
                 EventCenter.Instance.RemoveListener(EventType.ResetLogin,ResetLogin);

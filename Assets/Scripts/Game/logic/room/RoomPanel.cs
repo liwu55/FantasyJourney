@@ -95,6 +95,7 @@ public class RoomPanel : UIModuleBase
         SceneHeroes.Instance.Clear();
         UIManager.Instance.Clear();
         ObjectPool.Instance.Clear();
+        HeroShow.Instance.Clear();
     }
     
     private void OnPlayerEntered(Player player)

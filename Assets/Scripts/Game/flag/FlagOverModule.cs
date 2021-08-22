@@ -1,9 +1,10 @@
+using System;
 using Frame.FSM;
 using Frame.UI;
 using Frame.Utility;
 using Game.flag;
 using Photon.Pun;
-using UnityEngine;
+using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class FlagOverModule : UIModuleBase
 {
     private Text winTeamShow;
     private Text reward;
+    private bool loadScene=false;
     protected override void Awake()
     {
         base.Awake();
@@ -24,9 +26,17 @@ public class FlagOverModule : UIModuleBase
             FlagData.Instance.Clear();
             MonoHelper.Instance.Clear();
             PhotonNetwork.LeaveRoom();
-            SceneManager.LoadScene("SampleScene");
         });
         FlagData.Instance.Reward += ShowReward;
+    }
+
+    private void Update()
+    {
+        if (!loadScene && PhotonNetwork.NetworkClientState == ClientState.ConnectedToMasterServer)
+        {
+            loadScene = true;
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 
     private void ShowReward(string show)

@@ -23,11 +23,13 @@ namespace Frame.Utility
             //对象池里面有对应的对象可以复用
             if (objPools.ContainsKey(name) && objPools[name].Count > 0)
             {
+                Debug.Log("ObjectPool SpawnObj use old name="+name);
                 obj = objPools[name].Pop();
                 obj.SetActive(true);
             }
             else
             {
+                Debug.Log("ObjectPool SpawnObj new name="+name);
                 GameObject prefab = AssetsManager.Instance.GetPrefabByName(name);
                 if (parent == null)
                 {
@@ -37,7 +39,6 @@ namespace Frame.Utility
                 {
                     obj = Object.Instantiate(prefab, parent);
                 }
-
                 obj.name = name;
             }
 

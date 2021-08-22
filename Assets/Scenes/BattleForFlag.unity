@@ -13969,7 +13969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleShowType: 0
   curTime: 0
-  AllTime: 60
+  AllTime: 5
 --- !u!225 &2066169054
 CanvasGroup:
   m_ObjectHideFlags: 0

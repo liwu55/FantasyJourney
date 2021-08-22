@@ -14,7 +14,7 @@ public class SingleTonObj<T> where T :class
         {
             if (instance == null)
             {
-                Debug.Log("获取单例初始化，name="+typeof(T).Name);
+                //Debug.Log("获取单例初始化，name="+typeof(T).Name);
                 instance = Activator.CreateInstance(typeof(T),true) as T;
             }
             return instance;

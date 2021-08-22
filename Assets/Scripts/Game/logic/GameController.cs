@@ -23,11 +23,19 @@ public class GameController: SingleTonObj<GameController>
     //网络框架
     private IPhotonWrapper _photonWrapper;
 
+    private bool init = false;
+
     /// <summary>
     /// 初始化
     /// </summary>
     public void Init()
     {
+        if (init)
+        {
+            return;
+        }
+
+        init = true;
         InitObj();
         BindUIEvent();
     }
@@ -142,15 +150,8 @@ public class GameController: SingleTonObj<GameController>
             _uiController.ShowMain(_mainPageInfoCache);
         }else{
             _uiController.ShowLogin();
+            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
-        // _uiController.ShowStore();
-
-        //_uiController.ShowRoomInfo();
-        //_uiController.ShowMain(null);
-
-        
-        PhotonNetwork.ConnectUsingSettings();
-        PhotonNetwork.AutomaticallySyncScene = true;
-
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Frame.UI;
@@ -139,7 +140,12 @@ public class MainModule : UIModuleBase
         showQuit();
         
     }
-    
+
+    private void OnDestroy()
+    {
+        UIEvent.RefreshMainPageHero -= showMainMoney;
+    }
+
 
     public override void OnSpawn(object obj)
     {

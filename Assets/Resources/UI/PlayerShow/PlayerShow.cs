@@ -1,3 +1,4 @@
+using System;
 using Game;
 using Game.bean;
 using UnityEngine;
@@ -31,10 +32,12 @@ public class PlayerShow : MonoBehaviour
         Instance = this;
         setPlayerClone();
     }
-    void  Start()
-    {
 
+    private void OnDestroy()
+    {
+        UIEvent.RefreshMainPageHero-=setPlayerClone;
     }
+
     private void Update()
     {
         isRotate();

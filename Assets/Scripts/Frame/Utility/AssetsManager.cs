@@ -29,7 +29,7 @@ namespace Frame.Utility
             }
 
             GameObject prefab = Resources.Load<GameObject>(GetPathByName(name));
-            _prefabsCache.Add(name, prefab);
+            //_prefabsCache.Add(name, prefab);
             return prefab;
         }
 

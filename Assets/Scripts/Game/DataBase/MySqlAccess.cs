@@ -31,7 +31,7 @@ public class MySqlAccess
         try {
             string mySqlString = string.Format("datasource={0};port={1};database={2};user={3};pwd={4};"
                 , host, port, databaseName, username, password);
-            Debug.Log(mySqlString);
+            //Debug.Log(mySqlString);
             mySqlConnection = new MySqlConnection(mySqlString);
             mySqlConnection.Open();
         } catch (Exception e) {
