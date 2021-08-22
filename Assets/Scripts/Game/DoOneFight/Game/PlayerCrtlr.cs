@@ -10,7 +10,7 @@ using EventType = UnityEngine.EventType;
 
 namespace Game.DoOneFight.State
 {
-    public class PlayerCrtlr : HealthSystem,IHeroController
+    public class PlayerCrtlr : HealthSystem, IHeroController
     {
         [HideInInspector] public CharacterController cc;
         [HideInInspector] public CharacterAniCtrler _aniCtrler;
@@ -30,6 +30,10 @@ namespace Game.DoOneFight.State
 
         private void Awake()
         {
+            if (!PhotonNetwork.InRoom)
+            {
+                return;
+            }
             /*_animator = GetComponent<Animator>();
             _aniCtrler = gameObject.GetComponent<CharacterAniCtrler>();
             _aniCtrler.Init(_animator);*/
@@ -50,7 +54,7 @@ namespace Game.DoOneFight.State
             Skill_01_AttackState skill01AttackState = new Skill_01_AttackState("Skill_01_AttackState", this);
             Skill_02_AttackState skill02AttackState = new Skill_02_AttackState("Skill_02_AttackState", this);
             HurtState hurtState = new HurtState("HurtState", this);
-            DeadState deadState = new DeadState("DeadState",this);
+            DeadState deadState = new DeadState("DeadState", this);
             //状态
             playerStateMachine.AddState(normalState);
             playerStateMachine.AddState(attackState);
@@ -68,24 +72,30 @@ namespace Game.DoOneFight.State
             normalState.AddTransition("HurtState", () => isHurt);
             hurtState.AddTransition("Normal", () => !isHurt);
             attackState.AddTransition("HurtState", () => isHurt);
-            normalState.AddTransition("DeadState",()=>isDead);
-            attackState.AddTransition("DeadState",()=>isDead);
-            
+            normalState.AddTransition("DeadState", () => isDead);
+            attackState.AddTransition("DeadState", () => isDead);
+
             playerStateMachine.EnterState();
             //添加受伤事件
         }
 
         void Start()
         {
+            if (!PhotonNetwork.InRoom)
+            {
+                return;
+            }
+
             _playerCanvas.gameObject.SetActive(true);
             _playerCanvas.SetPlayerName(photonView.Owner.NickName);
             InputMgr.Instance.InitInputDic();
         }
+
         bool IsGrounded()
         {
             return Physics.Raycast(transform.position, -Vector3.up, 10f);
         }
-        
+
         void FixedUpdate()
         {
             if (!photonView.IsMine)
@@ -102,27 +112,35 @@ namespace Game.DoOneFight.State
             }
         }
 
-        
-
 
         private void BindCamera()
         {
             CameraFollowTPS.Instance.BindPlayer(transform);
         }
-        
+
         #region 动画事件 取反bool值
+
         private void NormalAtkEnd()
         {
+            _aniCtrler.RestAction();
+            if (!PhotonNetwork.InRoom)
+            {
+                return;
+            }
             if (!cc.enabled)
             {
                 cc.enabled = true;
             }
-            _aniCtrler.RestAction();
+
             isNrmAtk = false;
         }
-        
+
         private void HeavyAttackEnd()
         {
+            if (!PhotonNetwork.InRoom)
+            {
+                return;
+            }
             cc.enabled = true;
             isOnSkill_01 = false;
         }
@@ -138,28 +156,31 @@ namespace Game.DoOneFight.State
         }
 
         #endregion
+
         [PunRPC]
-        public override void BeAttack(Vector3 point, Vector3 dir, string effectName, float damage,float f)
+        public override void BeAttack(Vector3 point, Vector3 dir, string effectName, float damage, float f)
         {
-            ShowHitEffect(effectName,point,dir);
+            ShowHitEffect(effectName, point, dir);
             print(name + "受到了" + damage + "伤害 ，还剩 " + currentHp + " 生命值");
             print("maxHp = " + maxHp);
             isHurt = true;
             MinusHp(damage);
-            _playerCanvas.SetHpPercent(currentHp/maxHp);
+            _playerCanvas.SetHpPercent(currentHp / maxHp);
             if (currentHp <= 0)
             {
                 isDead = true;
-                UIManager.Instance.ShowModule("DoGameOverPanel",this.photonView.Controller);
+                UIManager.Instance.ShowModule("DoGameOverPanel", this.photonView.Controller);
             }
         }
-        private void ShowHitEffect(string effectName,Vector3 point,Vector3 dir)
+
+        private void ShowHitEffect(string effectName, Vector3 point, Vector3 dir)
         {
             GameObject go = ObjectPool.Instance.SpawnObj(effectName);
             go.transform.position = point;
             go.transform.forward = dir;
-            Destroy(go,2);
+            Destroy(go, 2);
         }
+
         public PhotonView GetPhotonView()
         {
             return photonView;

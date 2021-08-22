@@ -59,6 +59,46 @@
         }
       ],
       "price" : 2998
+    },
+    {
+      "id": 3,
+      "name": "红萝莉",
+      "des": "",
+      "model": "RedLoli",
+      "avatar": "avatar_cat",
+      "skills": [
+        {
+          "icon":  "skills_6",
+          "name":"猫剑术" ,
+          "des":"猫人的剑术出神入化"
+        },
+        {
+          "icon":  "skills_7",
+          "name":"醉剑" ,
+          "des":"猫人喝了假酒，上头一剑"
+        }
+      ],
+      "price" : 99999999
+    },
+    {
+      "id": 4,
+      "name": "怪物",
+      "des": "",
+      "model": "Monster",
+      "avatar": "avatar_cat",
+      "skills": [
+        {
+          "icon":  "skills_8",
+          "name":"猫剑术" ,
+          "des":"猫人的剑术出神入化"
+        },
+        {
+          "icon":  "skills_9",
+          "name":"醉剑" ,
+          "des":"猫人喝了假酒，上头一剑"
+        }
+      ],
+      "price" : 99999999
     }
   ]
 }

@@ -67,38 +67,20 @@ public class StoreModule : UIModuleBase
             UIEvent.RefreshMainPageHero();
             UIManager.Instance.PopModule();
         });
-        skill1.Button.onClick.AddListener(() =>
-        {
-            ShowSkillAction("Skill1");
-        });
-        skill2.Button.onClick.AddListener(() =>
-        {
-            ShowSkillAction("Skill2");
-        });
-        skill1.GetComponent<Skill>().OnEnter += () =>
-        {
-            ShowSkillDes(checkingHero.hero.skills[0]);
-        };
-        skill1.GetComponent<Skill>().OnExit += () =>
-        {
-            HideSkillDes();
-        };
-        skill2.GetComponent<Skill>().OnEnter += () =>
-        {
-            ShowSkillDes(checkingHero.hero.skills[1]);
-        };
-        skill2.GetComponent<Skill>().OnExit += () =>
-        {
-            HideSkillDes();
-        };
-            
+        skill1.Button.onClick.AddListener(() => { ShowSkill1(); });
+        skill2.Button.onClick.AddListener(() => { ShowSkill2(); });
+        skill1.GetComponent<Skill>().OnEnter += () => { ShowSkillDes(checkingHero.hero.skills[0]); };
+        skill1.GetComponent<Skill>().OnExit += () => { HideSkillDes(); };
+        skill2.GetComponent<Skill>().OnEnter += () => { ShowSkillDes(checkingHero.hero.skills[1]); };
+        skill2.GetComponent<Skill>().OnExit += () => { HideSkillDes(); };
+
         actionButton.onClick.AddListener(() =>
         {
             if (checkingHero == null)
             {
                 return;
             }
-            
+
             //购买
             if (!checkingHero.owned)
             {
@@ -106,6 +88,7 @@ public class StoreModule : UIModuleBase
                 {
                     return;
                 }
+
                 PlayerInfo.Instance._userInfo.money -= checkingHero.hero.price;
                 PlayerInfo.Instance._userInfo.BuyHero(checkingHero.hero.id);
                 ShowMoney();
@@ -134,9 +117,33 @@ public class StoreModule : UIModuleBase
         });
     }
 
+    private void ShowSkill2()
+    {
+        if (checkingHero.hero.id < 3)
+        {
+            ShowSkillAction("Skill2");
+        }
+        else
+        {
+            checkingHero.animator.SetInteger("Action",1002);
+        }
+    }
+
+    private void ShowSkill1()
+    {
+        if (checkingHero.hero.id < 3)
+        {
+            ShowSkillAction("Skill1");
+        }
+        else
+        {
+            checkingHero.animator.SetInteger("Action",1001);
+        }
+    }
+
     private void ShowSkillAction(string skillName)
     {
-        checkingHero.animator.SetBool(skillName,true);
+        checkingHero.animator.SetBool(skillName, true);
     }
 
     private void HideSkillDes()
@@ -200,22 +207,24 @@ public class StoreModule : UIModuleBase
 
     void SyncShowHeroInfo(StoreHeroInfo storeHero)
     {
-        bool isHeroChange = checkingHero == null || 
+        bool isHeroChange = checkingHero == null ||
                             (storeHero != null && checkingHero != null
                                                && checkingHero.hero != storeHero.hero);
 
-        if(storeHero!=null){
+        if (storeHero != null)
+        {
             checkingHero = storeHero;
         }
 
-        if(isHeroChange){
+        if (isHeroChange)
+        {
             HeroInfos.Hero hero = checkingHero.hero;
             heroName.text = hero.name;
             checkingHero.animator = HeroShow.Instance.ShowHero(hero.model);
             skill1.Img.sprite = ResManager.LoadImg(hero.skills[0].icon);
             skill2.Img.sprite = ResManager.LoadImg(hero.skills[1].icon);
         }
-        
+
         if (checkingHero.owned)
         {
             if (checkingHero == chooseHero)
@@ -229,7 +238,7 @@ public class StoreModule : UIModuleBase
         }
         else
         {
-            actionText.text = "购买("+checkingHero.hero.price+")";
+            actionText.text = "购买(" + checkingHero.hero.price + ")";
         }
     }
 
