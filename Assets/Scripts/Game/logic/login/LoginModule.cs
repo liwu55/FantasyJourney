@@ -30,6 +30,10 @@ public class LoginModule : UIModuleBase
         inputPsw = FW("Field-UserPassword#").InputField;
         FW("LoginButton#").Button.onClick.AddListener(() =>
         {
+            if (inputName.text == "")
+            {
+                return;
+            }
             Debug.Log("点击了登录按钮 name=" + inputName.text + " psw=" + inputPsw.text);
             //调用UIEvent的事件
             UIEvent.LoginClick(inputName.text, inputPsw.text);

@@ -175,14 +175,13 @@ public class RoomPanel : UIModuleBase
         /*if (PhotonNetwork.CurrentRoom.PlayerCount % 2 == 0)
         {
         }*/
-      
         start1Button.gameObject.SetActive(CanStartGame());
-        start2Button.gameObject.SetActive(CanStartGame());
+        //start2Button.gameObject.SetActive(CanStartGame());
         
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        /*if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             start3Button.gameObject.SetActive(CanStartGame());
-        }
+        }*/
     }
 
 

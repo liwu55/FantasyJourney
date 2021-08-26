@@ -4,7 +4,6 @@ using Game.Interface;
 using Photon.Pun;
 
 //游戏控制类。负责所有游戏逻辑总控制
-//单例，待实现
 public class GameController: SingleTonObj<GameController>
 {
     private MainPageInfo _mainPageInfoCache;
@@ -46,8 +45,8 @@ public class GameController: SingleTonObj<GameController>
     private void InitObj()
     {
         _uiController=new UIController();
-        _loginManager=new LoginManager();
-        // _loginManager = new FakeLoginManager();
+        //_loginManager=new LoginManager();
+        _loginManager = new FakeLoginManager();
         _mapManager= new TestMapManager();
         _photonWrapper=new TestPhotonWrapper();
         _playerInfo=new PlayerInfo();

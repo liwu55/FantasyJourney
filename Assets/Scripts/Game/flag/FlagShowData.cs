@@ -211,7 +211,7 @@ namespace Game.flag
                 sb.Append("\n");
                 
                 //保存数据到数据库
-                DataBaseManager.Instance.AddMoneyAndHonor(flagDataInfo.name,money,honor);
+                //DataBaseManager.Instance.AddMoneyAndHonor(flagDataInfo.name,money,honor);
             }
             
             FlagData.Instance.photonView.RPC("OnReward",

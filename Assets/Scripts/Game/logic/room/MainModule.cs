@@ -131,7 +131,7 @@ public class MainModule : UIModuleBase
         //排名
         rankingList.Button.onClick.AddListener(() =>
         {
-            showList();
+            //showList();
         });
         playerLevelText.Text.text = "0/100";
         playerNowLevleFA.Img.fillAmount = 0.0f;

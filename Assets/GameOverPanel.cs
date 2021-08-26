@@ -30,6 +30,7 @@ public class GameOverPanel : UIModuleBase
             ObjectPool.Instance.Clear();
             MonoHelper.Instance.Clear();
             PhotonNetwork.LeaveRoom();
+            Time.timeScale = 1;
         });
     }
 

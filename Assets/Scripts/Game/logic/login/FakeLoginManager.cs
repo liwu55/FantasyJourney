@@ -16,7 +16,7 @@ namespace Game
 
         private UserInfo GetFakeUser(string name, string pwd)
         {
-            return new UserInfo(1,name,pwd,1010,2048,"0,1",0);
+            return new UserInfo(1,name,pwd,0,2048,"0,1,2",0);
         }
     }
 }

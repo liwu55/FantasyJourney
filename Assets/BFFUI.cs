@@ -86,19 +86,33 @@ public class BFFUI : UIModuleBase
             bffHeroControllers.Add((BFFHeroController)item);
         }
 
-        for (int i = 0; i < bffHeroControllers.Count-1; i++)
+        champScore = bffHeroControllers[0].Score;
+        champName =  bffHeroControllers[0].GetPhotonView().Owner.NickName;
+        if (bffHeroControllers.Count > 1)
         {
-            if (bffHeroControllers[i].Score < bffHeroControllers[i + 1].Score)
+            for (int i = 1; i < bffHeroControllers.Count-1; i++)
             {
-                champScore =  bffHeroControllers[i+1].Score;
-                champName =  bffHeroControllers[i + 1].GetPhotonView().Owner.NickName;
-            }
-            else
-            {
-                champScore =  bffHeroControllers[i].Score;
-                champName = bffHeroControllers[i].GetPhotonView().Owner.NickName;
+                if (bffHeroControllers[i].Score > champScore)
+                {
+                    champScore = bffHeroControllers[i].Score;
+                    champName = bffHeroControllers[i].GetPhotonView().Owner.NickName;
+                }
             }
         }
+
+    //   for (int i = 0; i < bffHeroControllers.Count-1; i++)
+    //   {
+    //       if (bffHeroControllers[i].Score < bffHeroControllers[i + 1].Score)
+    //       {
+    //           champScore =  bffHeroControllers[i+1].Score;
+    //           champName =  bffHeroControllers[i + 1].GetPhotonView().Owner.NickName;
+    //       }
+    //       else
+    //       {
+    //           champScore =  bffHeroControllers[i].Score;
+    //           champName = bffHeroControllers[i].GetPhotonView().Owner.NickName;
+    //       }
+    //   }
         
     }
 }
