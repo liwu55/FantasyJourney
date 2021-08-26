@@ -1,0 +1,4 @@
+部分较低Unity版本运行，可能会报缺失NewtonSoft dll文件，可作如下处理：
+1.下载NewsonSoft dll文件放置到Assets/Plugins目录下
+2.或者直接删除Assets/Scripts/Editor下的JsonCreator文件，这个文件是插件代码，用于开发时生成Json数据类，不影响运行
+以上选其一即可
